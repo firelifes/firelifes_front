@@ -20,7 +20,6 @@
         <view class="key-item" @click="inputAmount('8')"><text>8</text></view>
         <view class="key-item" @click="inputAmount('9')"><text>9</text></view>
         <view class="key-item function" @click="toggleDatePicker">
-          <text class="date-icon">📅</text>
           <text class="date-text">{{ formattedDate }}</text>
         </view>
       </view>
@@ -87,10 +86,33 @@ const displayAmount = ref('')
 const remark = ref('')
 const showRemarkInput = ref(false)
 
+// 当前显示的日期
+const currentDate = ref(new Date())
+// 是否选择了非今天的日期
+const hasSelectedDate = ref(false)
+
+// 格式化日期显示
 const formattedDate = computed(() => {
-  const date = new Date(props.date)
-  return `${date.getMonth() + 1}月${date.getDate()}日`
+  if (!hasSelectedDate.value) {
+    return '今天'
+  }
+  const year = currentDate.value.getFullYear()
+  const month = String(currentDate.value.getMonth() + 1).padStart(2, '0')
+  const day = String(currentDate.value.getDate()).padStart(2, '0')
+  return `${year}/${month}/${day}`
 })
+
+// 监听props.date变化，更新当前日期
+watch(() => props.date, (newDate) => {
+  if (newDate) {
+    const date = new Date(newDate)
+    currentDate.value = date
+    // 判断是否为今天
+    const today = new Date()
+    const isToday = date.toDateString() === today.toDateString()
+    hasSelectedDate.value = !isToday
+  }
+}, { immediate: true })
 
 watch(() => props.transactionType, () => {
   // 切换交易类型时重置金额
@@ -150,8 +172,16 @@ const toggleDatePicker = () => {
 
 <style scoped>
 .transaction-form {
-  padding: 20rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   background-color: #fff;
+  border-radius: 20rpx 20rpx 0 0;
+  padding: 20rpx;
+  box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.1);
+  z-index: 99;
+  padding-bottom: 100rpx;
 }
 
 .amount-display {

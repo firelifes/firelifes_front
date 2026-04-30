@@ -43,31 +43,31 @@
 				"pagePath": "pages/detail/index",
 				"iconPath": "static/logo.png",
 				"selectedIconPath": "static/logo.png",
-				"text": "Detail"
+				"text": "明细"
 			},
 			{
 				"pagePath": "pages/statistics/index",
 				"iconPath": "static/logo.png",
 				"selectedIconPath": "static/logo.png",
-				"text": "Statistics"
+				"text": "图表"
 			},
 			{
 				"pagePath": "pages/record/index",
 				"iconPath": "static/logo.png",
 				"selectedIconPath": "static/logo.png",
-				"text": "Record"
+				"text": "记账"
 			},
 			{
 				"pagePath": "pages/analysis/index",
 				"iconPath": "static/logo.png",
 				"selectedIconPath": "static/logo.png",
-				"text": "Analysis"
+				"text": "发现"
 			},
 			{
 				"pagePath": "pages/my/index",
 				"iconPath": "static/logo.png",
 				"selectedIconPath": "static/logo.png",
-				"text": "My"
+				"text": "我的"
 			}
 		]
 	},

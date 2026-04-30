@@ -158,28 +158,6 @@
       </view>
     </view>
 
-    <!-- 底部导航栏 -->
-    <view class="tab-bar">
-      <view class="tab-item active">
-        <view class="tab-icon">📋</view>
-        <text class="tab-text">明细</text>
-      </view>
-      <view class="tab-item">
-        <view class="tab-icon">📈</view>
-        <text class="tab-text">图表</text>
-      </view>
-      <view class="tab-item add-button">
-        <view class="add-icon">+</view>
-      </view>
-      <view class="tab-item">
-        <view class="tab-icon">🌍</view>
-        <text class="tab-text">发现</text>
-      </view>
-      <view class="tab-item">
-        <view class="tab-icon">👤</view>
-        <text class="tab-text">我的</text>
-      </view>
-    </view>
   </view>
 </template>
 
@@ -408,60 +386,5 @@ const navigateTo = (page: string) => {
 
 .item-amount.income {
   color: #19BE6B;
-}
-
-.tab-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background-color: #fff;
-  padding: 20rpx 0;
-  border-top: 1px solid #e0e0e0;
-  z-index: 100;
-}
-
-.tab-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10rpx;
-}
-
-.tab-item.active .tab-text {
-  color: #FFBB00;
-  font-weight: bold;
-}
-
-.tab-icon {
-  font-size: 36rpx;
-  margin-bottom: 5rpx;
-}
-
-.tab-text {
-  font-size: 20rpx;
-  color: #666;
-}
-
-.add-button {
-  position: relative;
-  top: -30rpx;
-}
-
-.add-icon {
-  width: 80rpx;
-  height: 80rpx;
-  background: linear-gradient(135deg, #FFD166 0%, #FFBB00 100%);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 48rpx;
-  color: #fff;
-  font-weight: bold;
-  box-shadow: 0 4rpx 12rpx rgba(255, 187, 0, 0.3);
 }
 </style>

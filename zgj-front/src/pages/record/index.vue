@@ -21,7 +21,7 @@
     </view>
 
     <!-- 可滚动内容区域 -->
-    <view class="content">
+    <view class="content" :class="{ 'has-form': selectedCategory }">
       <!-- 分类选择区 -->
       <CategorySelector
         :transactionType="transactionType"
@@ -53,7 +53,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import CategorySelector from './components/CategorySelector.vue'
 import TransactionForm from './components/TransactionForm.vue'
 import DatePicker from './components/DatePicker.vue'
@@ -75,7 +75,8 @@ const selectCategory = (category: { name: string; icon: string }) => {
 }
 
 const handleCancel = () => {
-  uni.navigateBack()
+  // 跳转到明细页面作为默认返回页面
+  uni.switchTab({ url: '/pages/detail/index' })
 }
 
 const handleComplete = () => {
@@ -99,9 +100,20 @@ const handleComplete = () => {
   
   uni.showToast({ title: '记账成功', icon: 'success' })
   setTimeout(() => {
-    uni.navigateBack()
+    uni.switchTab({ url: '/pages/detail/index' })
   }, 1000)
 }
+
+// 生命周期钩子
+onMounted(() => {
+  // 进入页面时隐藏 tabbar
+  uni.hideTabBar()
+})
+
+onUnmounted(() => {
+  // 离开页面时显示 tabbar
+  uni.showTabBar()
+})
 </script>
 
 <style>
@@ -140,6 +152,10 @@ const handleComplete = () => {
 .content {
   overflow-y: auto;
   padding-bottom: 20rpx;
+}
+
+.content.has-form {
+  padding-bottom: 500rpx;
 }
 
 .type-btn {
