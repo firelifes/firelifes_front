@@ -55,6 +55,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import { onShow } from '@dcloudio/uni-app'
 import CategorySelector from './components/CategorySelector.vue'
 import TransactionForm from './components/TransactionForm.vue'
 import DatePicker from './components/DatePicker.vue'
@@ -67,6 +68,28 @@ const remark = ref('')
 const selectedDate = ref(new Date().toISOString().split('T')[0])
 const showDatePicker = ref(false)
 const isSubmitting = ref(false)
+const categorySelectorRef = ref()
+
+onMounted(() => {
+  uni.hideTabBar()
+})
+
+onUnmounted(() => {
+  uni.showTabBar()
+})
+
+onShow(() => {
+  resetForm()
+})
+
+const resetForm = () => {
+  transactionType.value = 'expense'
+  selectedCategory.value = null
+  displayAmount.value = ''
+  remark.value = ''
+  selectedDate.value = new Date().toISOString().split('T')[0]
+  categorySelectorRef.value?.reload?.()
+}
 
 const switchType = (type: 'income' | 'expense') => {
   transactionType.value = type
@@ -123,15 +146,6 @@ const handleComplete = async () => {
     isSubmitting.value = false
   }
 }
-
-// 生命周期钩子
-onMounted(() => {
-  uni.hideTabBar()
-})
-
-onUnmounted(() => {
-  uni.showTabBar()
-})
 </script>
 
 <style>

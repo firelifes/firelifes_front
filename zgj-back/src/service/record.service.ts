@@ -11,6 +11,7 @@ export class RecordService {
 
   async createRecord(options: ICreateRecordOptions): Promise<Record> {
     const record = this.recordModel.create({
+      userId: options.userId,
       typeId: options.typeId,
       date: options.date,
       amount: options.amount,

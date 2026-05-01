@@ -112,6 +112,7 @@ interface RecordItem {
 
 const records = ref<RecordItem[]>([])
 const categories = ref<CategoryGroup[]>([])
+const userIconsMap = ref<Map<number, string>>(new Map())
 const loading = ref(false)
 
 const currentYear = ref('2026')
@@ -121,7 +122,8 @@ const getCategoryInfo = (typeId: number): { name: string; icon: string } => {
   for (const group of categories.value) {
     for (const cat of group.children) {
       if (cat.id === typeId) {
-        return { name: cat.name, icon: cat.iconUrl }
+        const iconUrl = userIconsMap.value.get(cat.iconId) || cat.iconUrl || '📦'
+        return { name: cat.name, icon: iconUrl }
       }
     }
   }
@@ -208,16 +210,27 @@ const handleAddTransaction = () => {
 const loadData = async () => {
   loading.value = true
   try {
-    const [recordsRes, categoriesRes] = await Promise.all([
+    const [recordsRes, expenseCategoriesRes, incomeCategoriesRes, iconsRes] = await Promise.all([
       recordApi.getAllRecords(),
-      categoryApi.getAllCategories()
+      categoryApi.getUserCategories('expense'),
+      categoryApi.getUserCategories('income'),
+      categoryApi.getUserIcons()
     ])
-    
+
     if (recordsRes.success && recordsRes.data) {
       records.value = recordsRes.data
     }
-    if (categoriesRes.success && categoriesRes.data) {
-      categories.value = [...categoriesRes.data.expense, ...categoriesRes.data.income]
+
+    if (expenseCategoriesRes.success && expenseCategoriesRes.data && incomeCategoriesRes.success && incomeCategoriesRes.data) {
+      categories.value = [...expenseCategoriesRes.data, ...incomeCategoriesRes.data]
+    }
+
+    if (iconsRes.success && iconsRes.data) {
+      const iconMap = new Map<number, string>()
+      iconsRes.data.forEach((icon: any) => {
+        iconMap.set(icon.id, icon.url)
+      })
+      userIconsMap.value = iconMap
     }
   } catch (error) {
     console.error('加载数据失败:', error)

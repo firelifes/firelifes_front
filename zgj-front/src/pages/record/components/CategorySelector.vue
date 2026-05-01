@@ -44,6 +44,10 @@ watch(() => props.transactionType, async () => {
   await loadCategories()
 })
 
+watch(() => props.selectedCategoryId, (newVal) => {
+  selectedCategoryId.value = newVal
+})
+
 onMounted(async () => {
   await loadIcons()
   await loadCategories()
