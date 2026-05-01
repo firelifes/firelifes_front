@@ -11,13 +11,10 @@
         <text class="app-title">鲨鱼记账</text>
       </view>
       <view class="header-content">
-        <!-- 月份选择器 -->
-        <view class="month-selector">
-          <text class="year">{{ currentYear }}年</text>
-          <view class="month-arrow-container" @tap="handleMonthChange('next')">
-            <text class="month">{{ currentMonth }}月</text>
-            <text class="arrow">▼</text>
-          </view>
+        <!-- 年月选择器 -->
+        <view class="date-selector">
+          <text class="year-text" @tap="showDatePicker">{{ currentYear }}年</text>
+          <text class="month-text" @tap="showDatePicker">{{ currentMonth }}月</text>
         </view>
         <!-- 收入支出金额 -->
         <view class="header-amounts">
@@ -31,6 +28,26 @@
             <text class="amount-value expense">{{ monthExpense.toFixed(2) }}</text>
           </view>
         </view>
+      </view>
+    </view>
+
+    <!-- 年月选择弹窗 -->
+    <view v-if="showPicker" class="picker-overlay" @tap="hideDatePicker">
+      <view class="picker-content" @tap.stop>
+        <picker-view 
+          class="picker-view" 
+          :value="pickerValue"
+          :indicator-style="{ height: '80rpx' }"
+          :item-height="80"
+          @change="onDateChange"
+        >
+          <picker-view-column class="picker-column">
+            <view v-for="year in yearList" :key="year" class="picker-item">{{ year }}年</view>
+          </picker-view-column>
+          <picker-view-column class="picker-column">
+            <view v-for="m in 12" :key="m" class="picker-item">{{ m.toString().padStart(2, '0') }}月</view>
+          </picker-view-column>
+        </picker-view>
       </view>
     </view>
 
@@ -70,7 +87,10 @@
       <view v-for="date in sortedDates" :key="date" class="bill-section">
         <view class="bill-date">
           <text class="date-text">{{ formatDate(date) }}</text>
-          <text class="day-total">支出: {{ getDayTotal(date) }}</text>
+          <view class="day-totals">
+            <text class="day-income">收入: {{ getDayIncome(date) }}</text>
+            <text class="day-expense">支出: {{ getDayExpense(date) }}</text>
+          </view>
         </view>
         <view class="bill-items">
           <view v-for="record in groupedRecords[date]" :key="record.id" class="bill-item">
@@ -97,6 +117,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
+import { onShow } from '@dcloudio/uni-app'
 import { recordApi } from '../../api/record'
 import { categoryApi, type CategoryGroup } from '../../api/category'
 
@@ -117,6 +138,37 @@ const loading = ref(false)
 
 const currentYear = ref('2026')
 const currentMonth = ref('04')
+const showPicker = ref(false)
+const yearList = ref<number[]>([])
+const pickerValue = ref([0, 0])
+
+const initYearList = () => {
+  const current = new Date().getFullYear()
+  const years: number[] = []
+  for (let i = current - 10; i <= current + 10; i++) {
+    years.push(i)
+  }
+  yearList.value = years
+}
+
+const showDatePicker = () => {
+  initYearList()
+  const yearIndex = yearList.value.indexOf(parseInt(currentYear.value))
+  const monthIndex = parseInt(currentMonth.value) - 1
+  pickerValue.value = [yearIndex >= 0 ? yearIndex : 0, monthIndex >= 0 ? monthIndex : 0]
+  showPicker.value = true
+}
+
+const hideDatePicker = () => {
+  showPicker.value = false
+}
+
+const onDateChange = (e: any) => {
+  const [yearIndex, monthIndex] = e.detail.value
+  currentYear.value = yearList.value[yearIndex].toString()
+  currentMonth.value = (monthIndex + 1).toString().padStart(2, '0')
+  showPicker.value = false
+}
 
 const getCategoryInfo = (typeId: number): { name: string; icon: string } => {
   for (const group of categories.value) {
@@ -133,8 +185,9 @@ const getCategoryInfo = (typeId: number): { name: string; icon: string } => {
 const filteredRecords = computed(() => {
   return records.value.filter(record => {
     const recordDate = new Date(record.date)
-    const month = (recordDate.getMonth() + 1).toString().padStart(2, '0')
-    return month === currentMonth.value
+    const recordYear = recordDate.getFullYear().toString()
+    const recordMonth = (recordDate.getMonth() + 1).toString().padStart(2, '0')
+    return recordYear === currentYear.value && recordMonth === currentMonth.value
   })
 })
 
@@ -159,7 +212,7 @@ const sortedDates = computed(() => {
 const monthIncome = computed(() => {
   return filteredRecords.value
     .filter(r => r.type === 'income')
-    .reduce((sum, r) => sum + r.amount, 0)
+    .reduce((sum, r) => sum + Math.abs(r.amount), 0)
 })
 
 const monthExpense = computed(() => {
@@ -176,7 +229,15 @@ const formatDate = (dateStr: string) => {
   return `${month}月${day}日 ${weekDay}`
 }
 
-const getDayTotal = (dateStr: string) => {
+const getDayIncome = (dateStr: string) => {
+  const dayRecords = groupedRecords.value[dateStr] || []
+  const income = dayRecords
+    .filter(r => r.type === 'income')
+    .reduce((sum, r) => sum + Math.abs(r.amount), 0)
+  return income.toFixed(2)
+}
+
+const getDayExpense = (dateStr: string) => {
   const dayRecords = groupedRecords.value[dateStr] || []
   const expense = dayRecords
     .filter(r => r.type === 'expense')
@@ -186,21 +247,6 @@ const getDayTotal = (dateStr: string) => {
 
 const formatAmount = (amount: number) => {
   return Math.abs(amount).toFixed(2)
-}
-
-const handleMonthChange = (direction: 'prev' | 'next') => {
-  let month = parseInt(currentMonth.value)
-  if (direction === 'prev') {
-    month = month === 1 ? 12 : month - 1
-  } else {
-    month = month === 12 ? 1 : month + 1
-  }
-  currentMonth.value = month.toString().padStart(2, '0')
-  if (month === 1) {
-    currentYear.value = (parseInt(currentYear.value) - 1).toString()
-  } else if (month === 12 && currentMonth.value === '01') {
-    currentYear.value = (parseInt(currentYear.value) + 1).toString()
-  }
 }
 
 const handleAddTransaction = () => {
@@ -243,6 +289,10 @@ onMounted(() => {
   const now = new Date()
   currentYear.value = now.getFullYear().toString()
   currentMonth.value = (now.getMonth() + 1).toString().padStart(2, '0')
+  loadData()
+})
+
+onShow(() => {
   loadData()
 })
 </script>
@@ -399,9 +449,19 @@ onMounted(() => {
   color: #333;
 }
 
-.day-total {
+.day-totals {
+  display: flex;
+  gap: 20rpx;
+}
+
+.day-income {
   font-size: 24rpx;
-  color: #666;
+  color: #19BE6B;
+}
+
+.day-expense {
+  font-size: 24rpx;
+  color: #FA3534;
 }
 
 .bill-items {
@@ -453,5 +513,62 @@ onMounted(() => {
 
 .item-amount.income {
   color: #19BE6B;
+}
+
+.picker-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.picker-content {
+  background: #fff;
+  border-radius: 24rpx 24rpx 0 0;
+  padding: 30rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.picker-view {
+  width: 100%;
+  height: 400rpx;
+}
+
+.picker-column {
+  flex: 1;
+  height: 400rpx;
+  text-align: center;
+}
+
+.picker-item {
+  font-size: 32rpx;
+  line-height: 80rpx;
+}
+
+.date-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5rpx;
+}
+
+.year-text {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.month-text {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #333;
 }
 </style>
