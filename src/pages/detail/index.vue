@@ -7,7 +7,7 @@
   <view class="page">
     <view class="header">
       <view class="header-top">
-        <text class="app-title">鲨鱼记账</text>
+        <text class="app-title">F.I.R.E生活家</text>
       </view>
       <view class="header-content">
         <view class="date-selector" @tap="showDatePicker">
@@ -482,6 +482,7 @@ onReachBottom(() => {
 
 .header-top {
   margin-bottom: 20rpx;
+  text-align: center;
 }
 
 .app-title {
