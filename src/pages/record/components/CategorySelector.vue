@@ -13,7 +13,7 @@
           @click="selectCategoryItem(category)"
         >
           <view class="category-icon">
-            {{ getIconUrl(category.iconId) }}
+            <text class="iconfont" :class="getIconClass(category.iconId, category.name)"></text>
           </view>
           <text class="category-name">{{ category.name }}</text>
         </view>
@@ -38,6 +38,24 @@ const emit = defineEmits<{
 const categoryGroups = ref<CategoryGroup[]>([])
 const selectedCategoryId = ref<number>(0)
 const userIcons = ref<Map<number, string>>(new Map())
+
+// 分类名→iconfont类名映射
+const CATEGORY_ICON_MAP: Record<string, string> = {
+  // 支出
+  '餐饮': 'icon-canyin', '零食': 'icon-lingshi', '交通': 'icon-jiaotong',
+  '购物': 'icon-gouwuche', '居住': 'icon-fangzi', '娱乐': 'icon-youxiyouxiji',
+  '医疗': 'icon-yiliao', '教育': 'icon-jiaoyu', '通讯': 'icon-shouji',
+  '旅行': 'icon-lvhang', '美容': 'icon-meirong', '服饰': 'icon-yifu',
+  '运动': 'icon-yundong-', '日用品': 'icon-riyongpin', '宠物': 'icon-xiedaichongwu',
+  '烟酒': 'icon-yanjiu', '社交': 'icon-13', '汽车': 'icon-qiche',
+  '数码家电': 'icon-shumajiadianleimu', '其他': 'icon-qita',
+  // 收入
+  '工资': 'icon-gongzijianyi', '工资条': 'icon-gongzitiao', '奖金': 'icon-jiangjinxiangqing',
+  '红包': 'icon-jiangjinjilu', '兼职': 'icon-a-068_jianzhi', '礼金': 'icon-a-068_lijin',
+  '退款': 'icon-tuikuan', '闲置': 'icon-xianzhi', '理财收益': 'icon-licaishouyi',
+  // 通用
+  '设置': 'icon-shezhi', '账单': 'icon-zhangdan',
+}
 
 watch(() => props.transactionType, async () => {
   selectedCategoryId.value = 0
@@ -79,8 +97,19 @@ const loadCategories = async () => {
   }
 }
 
+// 根据iconId或分类名返回iconfont类名
+const getIconClass = (iconId: number, name: string): string => {
+  // 优先使用分类名映射
+  if (CATEGORY_ICON_MAP[name]) {
+    return CATEGORY_ICON_MAP[name]
+  }
+  // fallback到API返回的iconUrl或默认图标
+  return 'icon-qita'
+}
+
+// 保留getIconUrl方法但不再在模板中使用
 const getIconUrl = (iconId: number): string => {
-  return userIcons.value.get(iconId) || '📦'
+  return userIcons.value.get(iconId) || 'icon-qita'
 }
 
 const selectCategoryItem = (category: CategoryItem) => {
@@ -88,7 +117,7 @@ const selectCategoryItem = (category: CategoryItem) => {
   emit('select', {
     id: category.id,
     name: category.name,
-    icon: getIconUrl(category.iconId),
+    icon: getIconClass(category.iconId, category.name),
   })
 }
 
@@ -109,7 +138,7 @@ defineExpose({
 .group-header {
   padding: 12rpx 0;
   margin-bottom: 16rpx;
-  border-bottom: 2rpx solid #FFD166;
+  border-bottom: 2rpx solid #00BFFF;
 }
 
 .group-name {
@@ -147,11 +176,13 @@ defineExpose({
   font-size: 44rpx;
   margin-bottom: 10rpx;
   box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+  color: #00BFFF;
 }
 
 .category-item.selected .category-icon {
-  background: linear-gradient(135deg, #FFD166 0%, #FFC145 100%);
-  box-shadow: 0 4rpx 16rpx rgba(255, 209, 102, 0.3);
+  background: linear-gradient(135deg, #00BFFF 0%, #0099CC 100%);
+  box-shadow: 0 4rpx 16rpx rgba(0, 191, 255, 0.3);
+  color: #fff;
 }
 
 .category-name {

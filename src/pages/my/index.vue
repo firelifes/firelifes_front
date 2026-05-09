@@ -66,7 +66,7 @@ const handleLogout = async () => {
 }
 
 .user-card {
-  background: linear-gradient(135deg, #3cc51f 0%, #2aa318 100%);
+  background: linear-gradient(135deg, #00BFFF 0%, #0099CC 100%);
   padding: 80rpx 40rpx 60rpx;
 }
 

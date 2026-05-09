@@ -7,8 +7,7 @@
       @click="switchTab(item.pagePath)"
     >
       <view class="tab-icon">
-        <text class="icon-emoji" :class="{ 'active': selectedTab === item.pagePath }">
-          {{ item.emoji }}
+        <text class="iconfont" :class="[item.iconClass, { 'active': selectedTab === item.pagePath }]">
         </text>
       </view>
       <text class="tab-text" :class="{ 'active': selectedTab === item.pagePath }">
@@ -26,27 +25,27 @@ const selectedTab = ref('pages/detail/index')
 const tabList = [
   {
     pagePath: 'pages/detail/index',
-    emoji: '📋',
+    iconClass: 'icon-zhangdan',
     text: '明细'
   },
   {
     pagePath: 'pages/statistics/index',
-    emoji: '📊',
+    iconClass: 'icon-tongji',
     text: '统计'
   },
   {
     pagePath: 'pages/record/index',
-    emoji: '📝',
+    iconClass: 'icon-ico_hushigongzuozhan_jizhangguanli',
     text: '记账'
   },
   {
     pagePath: 'pages/analysis/index',
-    emoji: '💰',
+    iconClass: 'icon-zichan',
     text: '资产'
   },
   {
     pagePath: 'pages/my/index',
-    emoji: '👤',
+    iconClass: 'icon-wode',
     text: '我的'
   }
 ]
@@ -113,13 +112,15 @@ onUnmounted(() => {
   justify-content: center;
 }
 
-.icon-emoji {
+.iconfont {
   font-size: 24px;
+  color: #999;
   opacity: 0.7;
 }
 
-.icon-emoji.active {
+.iconfont.active {
   opacity: 1;
+  color: #00BFFF;
 }
 
 .tab-text {
@@ -128,6 +129,6 @@ onUnmounted(() => {
 }
 
 .tab-text.active {
-  color: #3cc51f;
+  color: #00BFFF;
 }
 </style>

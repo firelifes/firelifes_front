@@ -146,7 +146,7 @@ const handleComplete = async () => {
 }
 
 .header {
-  background: linear-gradient(135deg, #ffd166 0%, #ffc145 100%);
+  background: linear-gradient(135deg, #00BFFF 0%, #0099CC 100%);
   padding: 20rpx 30rpx;
   color: #333;
   position: fixed;
@@ -154,7 +154,7 @@ const handleComplete = async () => {
   left: 0;
   right: 0;
   z-index: 80;
-  box-shadow: 0 4rpx 20rpx rgba(255, 209, 102, 0.3);
+  box-shadow: 0 4rpx 20rpx rgba(0, 191, 255, 0.3);
   backdrop-filter: blur(10rpx);
 }
 

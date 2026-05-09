@@ -37,7 +37,7 @@
       <view class="agreement">
         <checkbox-group @change="toggleAgreement">
           <label class="checkbox-label">
-            <checkbox :checked="agreed" color="#3cc51f" />
+            <checkbox :checked="agreed" color="#00BFFF" />
             <text>我已阅读并同意</text>
             <text class="link">《用户协议》</text>
             <text>和</text>
@@ -198,9 +198,9 @@ const goToLogin = () => {
 
 .send-code-btn {
   font-size: 26rpx;
-  color: #3cc51f;
+  color: #00BFFF;
   padding: 8rpx 16rpx;
-  border: 1px solid #3cc51f;
+  border: 1px solid #00BFFF;
   border-radius: 8rpx;
 }
 
@@ -222,11 +222,11 @@ const goToLogin = () => {
 }
 
 .link {
-  color: #3cc51f;
+  color: #00BFFF;
 }
 
 .register-btn {
-  background: #3cc51f;
+  background: #00BFFF;
   color: white;
   text-align: center;
   padding: 28rpx;

@@ -331,16 +331,16 @@ const toggleDatePicker = () => {
 }
 
 .key-item.confirm {
-  background: linear-gradient(135deg, #ffd166 0%, #ffc145 100%);
+  background: linear-gradient(135deg, #00BFFF 0%, #0099CC 100%);
   color: #fff;
   font-size: 32rpx;
   font-weight: 600;
-  box-shadow: 0 6rpx 20rpx rgba(255, 209, 102, 0.4);
+  box-shadow: 0 6rpx 20rpx rgba(0, 191, 255, 0.4);
 }
 
 .key-item.confirm:active {
   transform: scale(0.95);
-  box-shadow: 0 4rpx 12rpx rgba(255, 209, 102, 0.3);
+  box-shadow: 0 4rpx 12rpx rgba(0, 191, 255, 0.3);
 }
 
 .date-text {

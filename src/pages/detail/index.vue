@@ -30,23 +30,23 @@
 
     <view class="function-bar">
       <view class="function-item">
-        <view class="function-icon">📄</view>
+        <view class="function-icon"><text class="iconfont icon-zhangdan"></text></view>
         <text class="function-text">账单</text>
       </view>
       <view class="function-item">
-        <view class="function-icon">📊</view>
+        <view class="function-icon"><text class="iconfont icon-tongji"></text></view>
         <text class="function-text">预算</text>
       </view>
       <view class="function-item">
-        <view class="function-icon">🛡️</view>
+        <view class="function-icon"><text class="iconfont icon-zichan"></text></view>
         <text class="function-text">资产管家</text>
       </view>
       <view class="function-item">
-        <view class="function-icon">🛍️</view>
+        <view class="function-icon"><text class="iconfont icon-gouwuche"></text></view>
         <text class="function-text">购物返现</text>
       </view>
       <view class="function-item">
-        <view class="function-icon">⋯</view>
+        <view class="function-icon"><text class="iconfont icon-qita"></text></view>
         <text class="function-text">更多</text>
       </view>
     </view>
@@ -75,7 +75,7 @@
               <view v-for="record in getDateRecords(date)" :key="record.id" class="bill-item-wrapper">
                 <WdCell :title="getCategoryInfo(record.typeId).name" :value="`${record.type === 'expense' ? '-' : '+'}${formatAmount(record.amount)}`">
                   <template #icon>
-                    <view class="item-icon">{{ getCategoryInfo(record.typeId).icon }}</view>
+                    <view class="item-icon"><text class="iconfont" :class="getCategoryInfo(record.typeId).icon"></text></view>
                   </template>
                   <template #value>
                     <text :class="['item-amount', record.type]">
@@ -204,16 +204,38 @@ const confirmDate = () => {
   loadMonthData()
 }
 
+// 分类名→iconfont类名映射
+const CATEGORY_ICON_MAP: Record<string, string> = {
+  // 支出
+  '餐饮': 'icon-canyin', '零食': 'icon-lingshi', '交通': 'icon-jiaotong',
+  '购物': 'icon-gouwuche', '居住': 'icon-fangzi', '娱乐': 'icon-youxiyouxiji',
+  '医疗': 'icon-yiliao', '教育': 'icon-jiaoyu', '通讯': 'icon-shouji',
+  '旅行': 'icon-lvhang', '美容': 'icon-meirong', '服饰': 'icon-yifu',
+  '运动': 'icon-yundong-', '日用品': 'icon-riyongpin', '宠物': 'icon-xiedaichongwu',
+  '烟酒': 'icon-yanjiu', '社交': 'icon-13', '汽车': 'icon-qiche',
+  '数码家电': 'icon-shumajiadianleimu', '其他': 'icon-qita',
+  // 收入
+  '工资': 'icon-gongzijianyi', '工资条': 'icon-gongzitiao', '奖金': 'icon-jiangjinxiangqing',
+  '红包': 'icon-jiangjinjilu', '兼职': 'icon-a-068_jianzhi', '礼金': 'icon-a-068_lijin',
+  '退款': 'icon-tuikuan', '闲置': 'icon-xianzhi', '理财收益': 'icon-licaishouyi',
+  // 通用
+  '设置': 'icon-shezhi', '账单': 'icon-zhangdan',
+}
+
 const getCategoryInfo = (typeId: number): { name: string; icon: string } => {
   for (const group of categories.value) {
     for (const cat of group.children) {
       if (cat.id === typeId) {
-        const iconUrl = userIconsMap.value.get(cat.iconId) || cat.iconUrl || '📦'
+        // 优先使用本地映射表
+        if (CATEGORY_ICON_MAP[cat.name]) {
+          return { name: cat.name, icon: CATEGORY_ICON_MAP[cat.name] }
+        }
+        const iconUrl = userIconsMap.value.get(cat.iconId) || cat.iconUrl || 'icon-qita'
         return { name: cat.name, icon: iconUrl }
       }
     }
   }
-  return { name: '其他', icon: '📦' }
+  return { name: '其他', icon: 'icon-qita' }
 }
 
 const sortedDates = computed(() => {
@@ -466,7 +488,7 @@ onReachBottom(() => {
 }
 
 .header {
-  background: linear-gradient(135deg, #ffd166 0%, #ffbb00 100%);
+  background: linear-gradient(135deg, #00BFFF 0%, #0099CC 100%);
   padding: 40rpx 30rpx 30rpx;
   color: #333;
   flex-shrink: 0;
@@ -578,7 +600,7 @@ onReachBottom(() => {
 
 .picker-confirm {
   font-size: 28rpx;
-  color: #ffb347;
+  color: #00BFFF;
   font-weight: 600;
   padding: 8rpx 20rpx;
   border-radius: 12rpx;
@@ -603,6 +625,7 @@ onReachBottom(() => {
 .function-icon {
   font-size: 48rpx;
   margin-bottom: 10rpx;
+  color: #00BFFF;
 }
 
 .function-text {
@@ -708,6 +731,7 @@ onReachBottom(() => {
 }
 
 .item-icon {
+  color: #00BFFF;
   font-size: 40rpx;
   width: 60rpx;
   height: 60rpx;
