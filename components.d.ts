@@ -22,5 +22,6 @@ declare module 'vue' {
     WdSwipeAction: typeof import('@wot-ui/ui/components/wd-swipe-action/wd-swipe-action.vue')['default']
     WdSwipeCell: typeof import('@wot-ui/ui/components/wd-swipe-cell/wd-swipe-cell.vue')['default']
     WdTextarea: typeof import('@wot-ui/ui/components/wd-textarea/wd-textarea.vue')['default']
+    YearMonthPicker: typeof import('./src/components/YearMonthPicker.vue')['default']
   }
 }

@@ -101,24 +101,18 @@
       </scroll-view>
     </view>
 
-    <WdPopup position="bottom" v-model="showPicker" :z-index="1000" custom-style="border-radius: 24rpx 24rpx 0 0;">
-      <view class="picker-header">
-        <view class="picker-cancel" @tap="hideDatePicker">取消</view>
-        <view class="picker-title">选择日期</view>
-        <view class="picker-confirm" @tap="confirmDate">确定</view>
-      </view>
-      <WdPickerView :model-value="pickerValue" :columns="pickerColumns" @change="onPickerChange" custom-style="height: 400rpx" />
-    </WdPopup>
+    <YearMonthPicker ref="yearMonthPickerRef" v-model="selectedYearMonth" />
     <CustomTabbar />
   </view>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, reactive } from 'vue'
+import { ref, computed, onMounted, reactive, watch } from 'vue'
 import { onShow, onReachBottom, onPullDownRefresh } from '@dcloudio/uni-app'
 import { recordApi } from '../../api/record'
 import { categoryApi, type CategoryGroup } from '../../api/category'
 import CustomTabbar from '../../components/CustomTabbar.vue'
+import YearMonthPicker from '../../components/YearMonthPicker.vue'
 
 interface RecordItem {
   id: number
@@ -146,40 +140,20 @@ const transitionDirection = ref<'next' | 'prev'>('next')
 const today = new Date()
 const currentYear = ref(today.getFullYear().toString())
 const currentMonth = ref((today.getMonth() + 1).toString().padStart(2, '0'))
-const showPicker = ref(false)
-const yearList = ref<number[]>([])
+const selectedYearMonth = ref(`${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}`)
+const yearMonthPickerRef = ref<InstanceType<typeof YearMonthPicker> | null>(null)
 
-const pickerColumns = computed(() => {
-  const currentYearNum = today.getFullYear()
-  const currentMonthNum = today.getMonth() + 1
-  const selectedYear = parseInt(currentYear.value)
-  
-  // 如果是当前年份，月份只到当前月
-  let monthValues: number[]
-  if (selectedYear === currentYearNum) {
-    monthValues = Array.from({ length: currentMonthNum }, (_, i) => i + 1)
-  } else if (selectedYear > currentYearNum) {
-    // 未来年份不显示月份
-    monthValues = [1]
-  } else {
-    monthValues = Array.from({ length: 12 }, (_, i) => i + 1)
-  }
-  
-  return [
-    {
-      values: yearList.value,
-      defaultIndex: yearList.value.indexOf(parseInt(currentYear.value)),
-      format: (label: number) => `${label}年`
-    },
-    {
-      values: monthValues,
-      defaultIndex: Math.min(parseInt(currentMonth.value) - 1, monthValues.length - 1),
-      format: (label: number) => `${label.toString().padStart(2, '0')}月`
-    }
-  ]
+const showDatePicker = () => {
+  yearMonthPickerRef.value?.open()
+}
+
+watch(selectedYearMonth, (newVal) => {
+  if (!newVal) return
+  const parts = newVal.split('-')
+  currentYear.value = parts[0]
+  currentMonth.value = parts[1]
+  loadMonthData()
 })
-
-const pickerValue = ref([0, 0])
 
 const monthIncome = ref(0)
 const monthExpense = ref(0)
@@ -194,53 +168,6 @@ let loadPrevMonthLock = false
 const loadMoreText = computed(() => {
   return '上拉查看上一个月'
 })
-
-const initYearList = () => {
-  const current = new Date().getFullYear()
-  const years: number[] = []
-  // 只到当前年份，不包含未来年份
-  for (let i = current - 10; i <= current; i++) {
-    years.push(i)
-  }
-  yearList.value = years
-}
-
-const showDatePicker = () => {
-  initYearList()
-  const yearIndex = yearList.value.indexOf(parseInt(currentYear.value))
-  const monthIndex = parseInt(currentMonth.value) - 1
-  pickerValue.value = [yearIndex >= 0 ? yearIndex : 0, monthIndex >= 0 ? monthIndex : 0]
-  showPicker.value = true
-}
-
-const hideDatePicker = () => {
-  showPicker.value = false
-}
-
-const onPickerChange = (e: any) => {
-  const [yearIndex, monthIndex] = e.modelValue
-  const selectedYear = yearList.value[yearIndex]
-  const currentYearNum = today.getFullYear()
-  const currentMonthNum = today.getMonth() + 1
-  
-  // 限制不能选择未来的年份和月份
-  if (selectedYear > currentYearNum) {
-    return
-  }
-  
-  let selectedMonth = monthIndex + 1
-  if (selectedYear === currentYearNum && selectedMonth > currentMonthNum) {
-    selectedMonth = currentMonthNum
-  }
-  
-  currentYear.value = selectedYear.toString()
-  currentMonth.value = selectedMonth.toString().padStart(2, '0')
-}
-
-const confirmDate = () => {
-  showPicker.value = false
-  loadMonthData()
-}
 
 // 分类名→iconfont类名映射
 const CATEGORY_ICON_MAP: Record<string, string> = {
@@ -620,36 +547,6 @@ onReachBottom(() => {
   height: 60rpx;
   background: rgba(255, 255, 255, 0.5);
   margin: 0 25rpx;
-}
-
-.picker-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24rpx 32rpx;
-  border-bottom: 1rpx solid rgba(229, 231, 235, 0.6);
-}
-
-.picker-cancel {
-  font-size: 28rpx;
-  color: #9ca3af;
-  font-weight: 500;
-  padding: 8rpx 16rpx;
-  border-radius: 12rpx;
-}
-
-.picker-title {
-  font-size: 32rpx;
-  font-weight: 600;
-  color: #2d3436;
-}
-
-.picker-confirm {
-  font-size: 28rpx;
-  color: #00BFFF;
-  font-weight: 600;
-  padding: 8rpx 20rpx;
-  border-radius: 12rpx;
 }
 
 .function-bar {
