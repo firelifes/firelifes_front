@@ -16,12 +16,15 @@ const countdown = ref(3)
 const adImageUrl = ref('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=1600&fit=crop')
 
 const navigate = () => {
-  if (userStore.isLoggedIn()) {
-    uni.switchTab({
+  if (userStore.isLoggedIn() && !userStore.isLoginExpired()) {
+    uni.reLaunch({
       url: '/pages/detail/index'
     })
   } else {
-    uni.redirectTo({
+    if (userStore.isLoggedIn() && userStore.isLoginExpired()) {
+      userStore.clearAuth()
+    }
+    uni.reLaunch({
       url: '/pages/login/index'
     })
   }

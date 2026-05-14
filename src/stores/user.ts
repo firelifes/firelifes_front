@@ -21,6 +21,9 @@ import { storage } from '../utils/storage'
 import type { User } from '../api/auth'
 
 export const useUserStore = defineStore('user', () => {
+  const LOGIN_EXPIRE_DAYS = 15
+  const LOGIN_EXPIRE_MS = LOGIN_EXPIRE_DAYS * 24 * 60 * 60 * 1000
+
   // 当前用户的认证 Token
   const token = ref<string | null>(storage.get(config.tokenKey))
   // 当前用户的信息
@@ -36,6 +39,7 @@ export const useUserStore = defineStore('user', () => {
     user.value = newUser
     storage.set(config.tokenKey, newToken)
     storage.set(config.userKey, newUser)
+    storage.set('login_timestamp', Date.now())
   }
 
   /**
@@ -46,6 +50,7 @@ export const useUserStore = defineStore('user', () => {
     user.value = null
     storage.remove(config.tokenKey)
     storage.remove(config.userKey)
+    storage.remove('login_timestamp')
   }
 
   /**
@@ -67,12 +72,21 @@ export const useUserStore = defineStore('user', () => {
     return !!token.value && !!user.value
   }
 
+  const isLoginExpired = () => {
+    if (!token.value || !user.value) return true
+    const loginTimestamp = storage.get('login_timestamp')
+    if (!loginTimestamp) return true
+    return Date.now() - loginTimestamp > LOGIN_EXPIRE_MS
+  }
+
   return {
     token,
     user,
     setAuth,
     clearAuth,
     updateUser,
-    isLoggedIn
+    isLoggedIn,
+    isLoginExpired,
+    LOGIN_EXPIRE_DAYS
   }
 })

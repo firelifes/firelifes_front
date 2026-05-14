@@ -39,26 +39,32 @@ interface ResponseData<T = any> {
   data: T
 }
 
-/**
- * 处理401未认证的统一函数
- */
+let isHandling401 = false
+
 const handle401Error = () => {
-  console.log('[request] 处理401错误')
-  
+  if (isHandling401) {
+    console.log('[request] 401已处理中，跳过重复触发')
+    return
+  }
+  isHandling401 = true
+  console.log('[request] 处理401错误，清除认证信息并跳转登录页')
+
   storage.remove(config.tokenKey)
   storage.remove(config.userKey)
-  
+  storage.remove('login_timestamp')
+
   uni.showToast({
     title: '登录已过期，请重新登录',
     icon: 'none',
     duration: 2000
   })
-  
+
   setTimeout(() => {
-    uni.redirectTo({
+    uni.reLaunch({
       url: '/pages/login/index'
     })
-  }, 1500)
+    isHandling401 = false
+  }, 800)
 }
 
 /**

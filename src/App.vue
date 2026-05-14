@@ -8,23 +8,42 @@ import { onLaunch, onError } from "@dcloudio/uni-app";
 import config from './config/index';
 import { storage } from './utils/storage';
 
-// 设置状态栏高度（H5 环境）
+const LOGIN_EXPIRE_MS = 15 * 24 * 60 * 60 * 1000
+
 const setStatusBarHeight = () => {
   if (typeof window !== 'undefined') {
-    // 对于 H5，设置一个默认值
     document.documentElement.style.setProperty('--status-bar-height', '0px');
   }
 };
 
-// 应用启动时触发
+const checkLoginExpiry = () => {
+  const token = storage.get(config.tokenKey)
+  const user = storage.get(config.userKey)
+  if (!token || !user) return
+
+  const loginTimestamp = storage.get('login_timestamp')
+  if (!loginTimestamp) {
+    storage.remove(config.tokenKey)
+    storage.remove(config.userKey)
+    return
+  }
+
+  if (Date.now() - loginTimestamp > LOGIN_EXPIRE_MS) {
+    console.log('[app] 登录已超过15天，清除认证信息')
+    storage.remove(config.tokenKey)
+    storage.remove(config.userKey)
+    storage.remove('login_timestamp')
+  } else {
+    const remainingDays = Math.ceil((LOGIN_EXPIRE_MS - (Date.now() - loginTimestamp)) / (24 * 60 * 60 * 1000))
+    console.log('[app] 登录状态有效，剩余', remainingDays, '天')
+  }
+}
+
 onLaunch(() => {
   console.log('[app] 应用启动');
   setStatusBarHeight();
-  const token = storage.get(config.tokenKey);
-  const user = storage.get(config.userKey);
-  console.log('[app] 初始状态', { token: token ? '有' : '无', user: user ? user.phone : '无' });
-  
-  // 全局错误监听
+  checkLoginExpiry()
+
   if (typeof window !== 'undefined') {
     window.addEventListener('unhandledrejection', (event) => {
       console.error('[app] 未处理的Promise拒绝:', event.reason);
