@@ -310,10 +310,81 @@ Budget (预算表)
 服务:       src/service/record.service.ts
 实体:       src/entity/record.entity.ts
 
+# 短信验证相关
+控制器:     src/controller/auth/auth.controller.ts
+服务:       src/service/sms.service.ts
+实体:       src/entity/sms_code.entity.ts
+API接口:    POST /auth/send-sms
+
 # 配置
 配置文件:   src/config/config.*.ts
 API文档:    API.md
 ```
+
+---
+
+## 2.5 短信验证服务
+
+### 业务流程
+
+```
+用户点击「获取验证码」
+    ↓
+前端调用 POST /auth/send-sms
+    ↓
+后端接收手机号和验证码类型
+    ↓
+✅ 频率检查：60秒内不能重复发送
+✅ 日限检查：每天最多100条
+    ↓
+生成 6 位数字验证码
+    ↓
+存入 sms_codes 表（手机号、验证码、类型、过期时间、使用状态）
+    ↓
+调用 Spug 推送 API 发送短信
+    ↓
+返回成功响应（开发环境同时在控制台输出验证码）
+```
+
+### Spug 推送 API
+
+**接口地址：**
+```
+GET https://push.spug.cc/send/{apiKey}?code={验证码}&targets={手机号}
+```
+
+**参数说明：**
+| 参数 | 说明 | 示例 |
+|------|------|------|
+| apiKey | Spug 推送密钥 | `ApaWxrRQeqj7YLGB` |
+| code | 6位数字验证码 | `123456` |
+| targets | 手机号，多个用逗号分隔 | `18682028219` |
+
+**配置方式：**
+- 配置文件：`src/config/config.*.ts` 中的 `spugSms.apiKey`
+- 环境变量：`SPUG_SMS_API_KEY`
+- 默认值：`ApaWxrRQeqj7YLGB`
+
+### 数据库表结构 (sms_codes)
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| id | int | 主键自增 |
+| phone | varchar(20) | 手机号 |
+| code | varchar(10) | 6位验证码 |
+| type | enum | 类型：register/login/reset-password |
+| expires_at | timestamp | 过期时间（5分钟后） |
+| used | boolean | 是否已使用 |
+| created_at | timestamp | 创建时间 |
+
+### 安全机制
+
+| 限制 | 值 | 说明 |
+|------|----|------|
+| 发送间隔 | 60秒 | 同一手机号60秒内不能重复发送 |
+| 日发送上限 | 100条 | 防止恶意刷短信 |
+| 有效期 | 5分钟 | 验证码5分钟后自动失效 |
+| 一次性 | 验证后立即标记为已使用 |
 
 ---
 
