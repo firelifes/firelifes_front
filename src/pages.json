@@ -102,14 +102,14 @@
 			}
 		},
 		{
-			"path": "pages/my/category-group-list",
+			"path": "pages/my/category-setting/category-group-list",
 			"style": {
 				"navigationBarTitleText": "分类管理",
 				"navigationStyle": "custom"
 			}
 		},
 		{
-			"path": "pages/my/category-list",
+			"path": "pages/my/category-setting/category-list",
 			"style": {
 				"navigationBarTitleText": "子分类管理",
 				"navigationStyle": "custom"

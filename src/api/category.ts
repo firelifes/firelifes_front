@@ -74,6 +74,7 @@ export interface UserCategoryGroup {
   sortOrder: number
   isEnabled: boolean
   isUserCreated: boolean
+  childrenCount?: number
   createdAt: string
   updatedAt: string
 }
@@ -203,6 +204,17 @@ export const categoryApi = {
     return request({
       url: `/api/category/user/groups/${id}`,
       method: 'DELETE',
+    })
+  },
+
+  /**
+   * 重新排序分类大类
+   */
+  reorderGroups: (orderedIds: number[]) => {
+    return request({
+      url: '/api/category/user/groups/reorder',
+      method: 'POST',
+      data: { orderedIds },
     })
   },
 

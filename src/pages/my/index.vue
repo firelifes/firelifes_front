@@ -71,7 +71,7 @@ const handleUserCardClick = () => {
 // 跳转到分类设置
 const navigateToCategoryList = () => {
   uni.navigateTo({
-    url: '/pages/my/category-group-list'
+    url: '/pages/my/category-setting/category-group-list'
   })
 }
 

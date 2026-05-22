@@ -157,8 +157,8 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { onShow } from '@dcloudio/uni-app'
-import { categoryApi, type UserCategory, type UserIcon } from '../../api/category'
-import { navigateBack } from '../../utils/navigate'
+import { categoryApi, type UserCategory, type UserIcon } from '../../../api/category'
+import { navigateBack } from '../../../utils/navigate'
 
 const groupId = ref(0)
 const groupName = ref('')
@@ -216,7 +216,7 @@ async function loadCategories() {
 }
 
 function goBack() {
-  navigateBack('/pages/my/category-group-list')
+  navigateBack('/pages/my/category-setting/category-group-list')
 }
 
 function handleAdd() {

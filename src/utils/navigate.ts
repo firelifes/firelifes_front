@@ -7,8 +7,8 @@
  * 页面路由映射 - 用于兜底返回
  */
 const PAGE_BACKUP_MAP: Record<string, string> = {
-  '/pages/my/category-list': '/pages/my/category-group-list',
-  '/pages/my/category-group-list': '/pages/my/index',
+  '/pages/my/category-setting/category-list': '/pages/my/category-setting/category-group-list',
+  '/pages/my/category-setting/category-group-list': '/pages/my/index',
   '/pages/my/account-setting/account-edit': '/pages/my/account-setting/account-list',
   '/pages/my/account-setting/account-list': '/pages/my/index',
   '/pages/my/index': '/pages/detail/index'

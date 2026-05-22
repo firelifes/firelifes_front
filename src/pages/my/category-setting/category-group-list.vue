@@ -24,55 +24,79 @@
       </view>
 
       <view v-else class="group-list">
-        <wd-swipe-action
-          v-for="group in groups"
+        <view
+          v-for="(group, index) in groups"
           :key="group.id"
-          :right-width="140"
+          class="group-row"
+          :class="{ 'row-dragging': draggingIndex === index }"
         >
-          <template #default>
-            <view
-              class="group-card"
-              :class="{ 'card-disabled': !group.isEnabled }"
-              @click="goToCategoryList(group)"
+          <view
+            class="drag-handle"
+            @touchstart="onDragStart($event, index)"
+            @touchmove="onDragMove($event)"
+            @touchend="onDragEnd"
+          >
+            <text class="drag-icon">☰</text>
+          </view>
+          <view class="swipe-wrapper">
+            <wd-swipe-action
+              :right-width="280"
             >
-              <view class="card-content">
-                <view class="card-title-row">
-                  <text class="card-title">{{ group.name }}</text>
-                  <view v-if="!group.isUserCreated" class="default-badge">
-                    <text class="badge-text">默认</text>
+              <template #default>
+                <view
+                  class="group-card"
+                  :class="{ 'card-disabled': !group.isEnabled }"
+                  @click="goToCategoryList(group)"
+                >
+                  <view class="card-left">
+                    <view v-if="!group.isUserCreated" class="card-badge">
+                      <text class="card-badge-text">默认</text>
+                    </view>
+                    <view v-else class="card-badge-spacer"></view>
+                    <view class="card-text-group">
+                      <text class="card-name">{{ group.name }}</text>
+                      <text
+                        v-if="!group.isEnabled"
+                        class="card-subtitle card-subtitle-disabled"
+                      >已禁用</text>
+                      <text
+                        v-else-if="childrenCountMap[group.id] !== undefined"
+                        class="card-subtitle"
+                      >{{ childrenCountMap[group.id] }}个子分类</text>
+                    </view>
+                  </view>
+                  <view class="card-gap"></view>
+                  <text class="card-arrow">›</text>
+                </view>
+              </template>
+
+              <template #right>
+                <view class="swipe-actions">
+                  <view
+                    class="swipe-btn swipe-btn-edit"
+                    @click.stop="handleEdit(group)"
+                  >
+                    <text class="swipe-btn-text">编辑</text>
+                  </view>
+                  <view
+                    v-if="group.isUserCreated"
+                    class="swipe-btn swipe-btn-delete"
+                    @click.stop="handleDelete(group)"
+                  >
+                    <text class="swipe-btn-text">删除</text>
+                  </view>
+                  <view
+                    v-else
+                    class="swipe-btn swipe-btn-toggle"
+                    @click.stop="handleToggle(group)"
+                  >
+                    <text class="swipe-btn-text">{{ group.isEnabled ? '禁用' : '启用' }}</text>
                   </view>
                 </view>
-                <text v-if="!group.isEnabled" class="disabled-label">已禁用</text>
-              </view>
-              <text class="card-arrow">›</text>
-            </view>
-          </template>
-
-          <template #right>
-            <view class="swipe-actions">
-              <view
-                class="swipe-btn swipe-btn-edit"
-                @click.stop="handleEdit(group)"
-              >
-                <text class="swipe-btn-text">编辑</text>
-              </view>
-              <view
-                v-if="group.isUserCreated"
-                class="swipe-btn swipe-btn-delete"
-                @click.stop="handleDelete(group)"
-              >
-                <text class="swipe-btn-text">删除</text>
-              </view>
-              <view
-                v-else
-                class="swipe-btn swipe-btn-toggle"
-                @click.stop="handleToggle(group)"
-              >
-                <text class="swipe-btn-text">{{ group.isEnabled ? '禁用' : '启用' }}</text>
-              </view>
-            </view>
-          </template>
-        </wd-swipe-action>
+              </template>
+            </wd-swipe-action>
+          </view>
+        </view>
       </view>
 
       <view class="safe-bottom"></view>
@@ -83,11 +107,17 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { onShow } from '@dcloudio/uni-app'
-import { categoryApi, type UserCategoryGroup } from '../../api/category'
-import { navigateBack } from '../../utils/navigate'
+import { categoryApi, type UserCategoryGroup } from '../../../api/category'
+import { navigateBack } from '../../../utils/navigate'
 
 const loading = ref(false)
 const groups = ref<UserCategoryGroup[]>([])
+const childrenCountMap = ref<Record<number, number>>({})
+
+const draggingIndex = ref(-1)
+const dragStartY = ref(0)
+const dragOffsetY = ref(0)
+const itemHeightPx = ref(70)
 
 const hasGroups = computed(() => groups.value.length > 0)
 
@@ -97,6 +127,7 @@ async function loadGroups() {
     const res = await categoryApi.getUserGroups()
     if (res.success) {
       groups.value = res.data
+      loadChildrenCounts()
     } else {
       uni.showToast({
         title: res.message || '获取分类列表失败',
@@ -114,13 +145,34 @@ async function loadGroups() {
   }
 }
 
+async function loadChildrenCounts() {
+  const counts = await Promise.all(
+    groups.value.map(async (group) => {
+      try {
+        const res = await categoryApi.getCategoriesByGroup(group.id)
+        if (res.success) {
+          return { id: group.id, count: res.data.length }
+        }
+      } catch {
+        // 单个大类获取子分类失败不影响整体
+      }
+      return { id: group.id, count: 0 }
+    })
+  )
+  const map: Record<number, number> = {}
+  for (const { id, count } of counts) {
+    map[id] = count
+  }
+  childrenCountMap.value = map
+}
+
 function goBack() {
   navigateBack('/pages/my/index')
 }
 
 function goToCategoryList(group: UserCategoryGroup) {
   uni.navigateTo({
-    url: `/pages/my/category-list?groupId=${group.id}&groupName=${encodeURIComponent(group.name)}`
+    url: `/pages/my/category-setting/category-list?groupId=${group.id}&groupName=${encodeURIComponent(group.name)}`
   })
 }
 
@@ -236,6 +288,45 @@ onMounted(() => {
   loadGroups()
 })
 
+function onDragStart(e: any, index: number) {
+  draggingIndex.value = index
+  const touch = e.touches ? e.touches[0] : e
+  dragStartY.value = touch.clientY
+  dragOffsetY.value = 0
+}
+
+function onDragMove(e: any) {
+  if (draggingIndex.value === -1) return
+  const touch = e.touches ? e.touches[0] : e
+  const deltaY = touch.clientY - dragStartY.value
+  dragOffsetY.value = deltaY
+
+  const moveSteps = Math.round(deltaY / itemHeightPx.value)
+  if (moveSteps === 0) return
+
+  const fromIndex = draggingIndex.value
+  const toIndex = Math.max(0, Math.min(groups.value.length - 1, fromIndex + moveSteps))
+  if (fromIndex === toIndex) return
+
+  const items = [...groups.value]
+  const [removed] = items.splice(fromIndex, 1)
+  items.splice(toIndex, 0, removed)
+  groups.value = items
+  draggingIndex.value = toIndex
+  dragStartY.value = touch.clientY
+  dragOffsetY.value = 0
+}
+
+function onDragEnd() {
+  if (draggingIndex.value === -1) return
+  const orderedIds = groups.value.map(g => g.id)
+  draggingIndex.value = -1
+  dragOffsetY.value = 0
+  categoryApi.reorderGroups(orderedIds).catch(() => {
+    loadGroups()
+  })
+}
+
 onShow(() => {
   loadGroups()
 })
@@ -282,11 +373,50 @@ onShow(() => {
   gap: 20rpx;
 }
 
-.group-card {
+.group-row {
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.swipe-wrapper {
+  flex: 1;
+  overflow: hidden;
+}
+
+.group-row .drag-handle {
+  width: 48rpx;
   height: 120rpx;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-right: -8rpx;
+  z-index: 5;
+}
+
+.drag-icon {
+  font-size: 32rpx;
+  color: #CCCCCC;
+  line-height: 1;
+}
+
+.group-row:active .drag-icon,
+.group-row.row-dragging .drag-icon {
+  color: #00BFFF;
+}
+
+.row-dragging {
+  opacity: 0.85;
+  transform: scale(1.02);
+  z-index: 10;
+}
+
+.group-card {
+  height: 120rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   padding: 0 32rpx;
   background-color: #FFFFFF;
   border-radius: 20rpx;
@@ -301,41 +431,59 @@ onShow(() => {
   opacity: 0.6;
 }
 
-.card-content {
-  flex: 1;
+.card-left {
   display: flex;
-  flex-direction: column;
-  gap: 8rpx;
+  flex-direction: row;
+  align-items: center;
+  gap: 16rpx;
 }
 
-.card-title-row {
+.card-badge {
+  width: 72rpx;
+  height: 36rpx;
+  background: linear-gradient(135deg, #00BFFF 0%, #0099CC 100%);
+  border-radius: 8rpx;
   display: flex;
   align-items: center;
-  gap: 12rpx;
-  flex-wrap: wrap;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
-.card-title {
-  font-size: 32rpx;
-  font-weight: 600;
-  color: #333333;
+.card-badge-spacer {
+  width: 72rpx;
+  height: 1rpx;
+  flex-shrink: 0;
 }
 
-.default-badge {
-  background: linear-gradient(135deg, #00BFFF 0%, #0099CC 100%);
-  padding: 2rpx 12rpx;
-  border-radius: 8rpx;
-}
-
-.badge-text {
+.card-badge-text {
   font-size: 20rpx;
   color: #FFFFFF;
   font-weight: 500;
 }
 
-.disabled-label {
+.card-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.card-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333333;
+}
+
+.card-subtitle {
   font-size: 24rpx;
+  color: #999999;
+}
+
+.card-subtitle-disabled {
   color: #FAAD14;
+}
+
+.card-gap {
+  flex: 1;
 }
 
 .card-arrow {
@@ -347,10 +495,11 @@ onShow(() => {
 .swipe-actions {
   display: flex;
   height: 100%;
+  border-radius: 20rpx;
 }
 
 .swipe-btn {
-  width: 70rpx;
+  width: 140rpx;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -362,10 +511,12 @@ onShow(() => {
 
 .swipe-btn-delete {
   background-color: #FA3534;
+  border-radius: 0 20rpx 20rpx 0;
 }
 
 .swipe-btn-toggle {
   background-color: #FAAD14;
+  border-radius: 0 20rpx 20rpx 0;
 }
 
 .swipe-btn-text {
