@@ -270,4 +270,15 @@ export const categoryApi = {
       method: 'DELETE',
     })
   },
+
+  /**
+   * 重新排序子分类
+   */
+  reorderCategories: (groupId: number, orderedIds: number[]) => {
+    return request({
+      url: `/api/category/group/${groupId}/reorder`,
+      method: 'POST',
+      data: { orderedIds },
+    })
+  },
 }

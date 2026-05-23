@@ -186,7 +186,7 @@ function goToCategoryList(group: UserCategoryGroup) {
     return
   }
   uni.navigateTo({
-    url: `/pages/my/category-setting/category-list?groupId=${group.id}&groupName=${encodeURIComponent(group.name)}`
+    url: `/pages/my/category-setting/category-list?groupId=${group.id}&groupName=${encodeURIComponent(group.name)}&groupType=${group.type || 'expense'}`
   })
 }
 
