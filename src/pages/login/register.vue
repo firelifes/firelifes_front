@@ -396,11 +396,7 @@ const closeWxQrcode = () => {
 }
 
 const goBack = () => {
-  uni.navigateBack({
-    fail: () => {
-      uni.redirectTo({ url: '/pages/login/login' })
-    }
-  })
+  uni.redirectTo({ url: '/pages/login/login' })
 }
 
 const goToLogin = () => {
