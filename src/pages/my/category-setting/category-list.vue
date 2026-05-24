@@ -48,7 +48,7 @@
                   :class="{ 'card-disabled': !category.isEnabled }"
                 >
                   <view class="card-icon-wrapper">
-                    <text class="card-icon">{{ getIconUrl(category) }}</text>
+                    <view class="card-icon" :class="getIconClass(category.name)"></view>
                   </view>
                   <view class="card-info">
                     <view class="card-title-row">
@@ -102,6 +102,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { onShow } from '@dcloudio/uni-app'
 import { categoryApi, type UserCategory } from '../../../api/category'
+import { getCategoryIconClass } from '../../../utils/category-icon-map'
 import { navigateBack } from '../../../utils/navigate'
 import CategoryEditPopup from './category-edit.vue'
 
@@ -127,8 +128,8 @@ const sortedCategories = computed(() => {
   return [...enabled, ...disabled]
 })
 
-function getIconUrl(category: UserCategory) {
-  return category.icon?.url || '📦'
+function getIconClass(name: string): string {
+  return getCategoryIconClass(name)
 }
 
 async function loadCategories() {
@@ -390,8 +391,12 @@ onShow(() => {
 }
 
 .card-icon {
-  font-size: 48rpx;
-  line-height: 1;
+  width: 48rpx;
+  height: 48rpx;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: var(--color-primary, #0D9488);
 }
 
 .card-info {
