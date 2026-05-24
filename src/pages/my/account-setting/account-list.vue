@@ -246,14 +246,14 @@ onShow(() => {
 .page-container {
   overflow-x: hidden;
   min-height: 100vh;
-  background-color: #F0F2F5;
+  background-color: var(--color-bg-page, #F5F7FA);
 }
 
 .nav-add-btn {
   width: 56rpx;
   height: 56rpx;
   border-radius: 50%;
-  background: rgba(0, 191, 255, 0.1);
+  background: var(--color-primary-light, #E6F7F5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -261,13 +261,13 @@ onShow(() => {
 }
 
 .nav-add-btn:active {
-  background: rgba(0, 191, 255, 0.2);
+  background: var(--color-primary-light, #E6F7F5);
   transform: scale(0.92);
 }
 
 .nav-add-icon {
   font-size: 36rpx;
-  color: #00BFFF;
+  color: var(--color-primary, #0D9488);
   font-weight: 300;
   line-height: 1;
 }
@@ -284,7 +284,7 @@ onShow(() => {
 
 .skeleton-card {
   height: 120rpx;
-  background-color: #FFFFFF;
+  background-color: var(--color-bg-card, #FFFFFF);
   border-radius: 20rpx;
   padding: 0 28rpx;
   display: flex;
@@ -296,7 +296,7 @@ onShow(() => {
   width: 64rpx;
   height: 64rpx;
   border-radius: 16rpx;
-  background: linear-gradient(90deg, #F0F2F5 25%, #E8EAED 50%, #F0F2F5 75%);
+  background: linear-gradient(90deg, var(--color-border-light, #F1F5F9) 25%, var(--color-border, #E2E8F0) 50%, var(--color-border-light, #F1F5F9) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s ease-in-out infinite;
   flex-shrink: 0;
@@ -312,7 +312,7 @@ onShow(() => {
 
 .skeleton-line {
   border-radius: 8rpx;
-  background: linear-gradient(90deg, #F0F2F5 25%, #E8EAED 50%, #F0F2F5 75%);
+  background: linear-gradient(90deg, var(--color-border-light, #F1F5F9) 25%, var(--color-border, #E2E8F0) 50%, var(--color-border-light, #F1F5F9) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s ease-in-out infinite;
 }
@@ -331,7 +331,7 @@ onShow(() => {
   width: 120rpx;
   height: 32rpx;
   border-radius: 8rpx;
-  background: linear-gradient(90deg, #F0F2F5 25%, #E8EAED 50%, #F0F2F5 75%);
+  background: linear-gradient(90deg, var(--color-border-light, #F1F5F9) 25%, var(--color-border, #E2E8F0) 50%, var(--color-border-light, #F1F5F9) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s ease-in-out infinite;
   flex-shrink: 0;
@@ -353,7 +353,7 @@ onShow(() => {
   width: 140rpx;
   height: 140rpx;
   border-radius: 50%;
-  background: rgba(0, 191, 255, 0.08);
+  background: var(--color-primary-light, #E6F7F5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -367,13 +367,13 @@ onShow(() => {
 .empty-title {
   font-size: 28rpx;
   font-weight: 600;
-  color: #666666;
+  color: var(--color-text-secondary, #94A3B8);
   margin-bottom: 12rpx;
 }
 
 .empty-subtitle {
   font-size: 24rpx;
-  color: #999999;
+  color: var(--color-text-secondary, #94A3B8);
   margin-bottom: 48rpx;
 }
 
@@ -381,7 +381,7 @@ onShow(() => {
   width: 320rpx;
   height: 88rpx;
   border-radius: 44rpx;
-  background: linear-gradient(135deg, #00BFFF 0%, #0099CC 100%);
+  background: linear-gradient(135deg, var(--color-primary, #0D9488) 0%, var(--color-primary-dark, #0B7A70) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -396,7 +396,7 @@ onShow(() => {
 .empty-btn-text {
   font-size: 30rpx;
   font-weight: 600;
-  color: #FFFFFF;
+  color: var(--color-text-inverse, #FFFFFF);
 }
 
 .group-section {
@@ -427,13 +427,13 @@ onShow(() => {
 .title-text {
   font-size: 28rpx;
   font-weight: 600;
-  color: #666666;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .title-count {
   font-size: 24rpx;
   font-weight: 400;
-  color: #999999;
+  color: var(--color-text-secondary, #94A3B8);
   margin-left: 8rpx;
 }
 
@@ -448,7 +448,7 @@ onShow(() => {
   display: flex;
   align-items: center;
   padding: 0 28rpx;
-  background-color: #FFFFFF;
+  background-color: var(--color-bg-card, #FFFFFF);
   border-radius: 20rpx;
   box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.04);
   transition: all 200ms ease;
@@ -456,7 +456,7 @@ onShow(() => {
 }
 
 .account-card:active {
-  background-color: #F5F7FA;
+  background-color: var(--color-border-light, #F1F5F9);
   transform: scale(0.985);
 }
 
@@ -493,7 +493,7 @@ onShow(() => {
 .account-name {
   font-size: 32rpx;
   font-weight: 600;
-  color: #333333;
+  color: var(--color-text-primary, #1E293B);
   line-height: 1.2;
 }
 
@@ -510,18 +510,18 @@ onShow(() => {
 }
 
 .default-badge.income {
-  background: linear-gradient(135deg, #19BE6B 0%, #14A85D 100%);
+  background: linear-gradient(135deg, var(--color-success, #10B981) 0%, var(--color-primary-dark, #0B7A70) 100%);
 }
 
 .badge-text {
   font-size: 20rpx;
-  color: #FFFFFF;
+  color: var(--color-text-inverse, #FFFFFF);
   font-weight: 500;
 }
 
 .account-desc {
   font-size: 24rpx;
-  color: #999999;
+  color: var(--color-text-secondary, #94A3B8);
   margin-top: 4rpx;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -543,7 +543,7 @@ onShow(() => {
 
 .card-arrow {
   font-size: 44rpx;
-  color: #CCCCCC;
+  color: var(--color-text-tertiary, #CBD5E1);
   line-height: 1;
 }
 
@@ -560,16 +560,16 @@ onShow(() => {
 }
 
 .swipe-btn-edit {
-  background-color: #00BFFF;
+  background-color: var(--color-primary, #0D9488);
 }
 
 .swipe-btn-delete {
-  background-color: #FA3534;
+  background-color: var(--color-danger, #EF4444);
 }
 
 .swipe-btn-text {
   font-size: 26rpx;
-  color: #FFFFFF;
+  color: var(--color-text-inverse, #FFFFFF);
   font-weight: 500;
 }
 

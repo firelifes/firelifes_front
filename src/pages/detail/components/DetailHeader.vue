@@ -44,7 +44,7 @@ const formatAmount = (amount: number) => {
 
 <style scoped>
 .header {
-  background: linear-gradient(135deg, #00BFFF 0%, #0099CC 100%);
+  background: linear-gradient(135deg, var(--color-primary, #0D9488) 0%, var(--color-primary-dark, #0B7A70) 100%);
   padding: 24rpx 30rpx 20rpx;
   flex-shrink: 0;
   width: 100%;
@@ -106,7 +106,7 @@ const formatAmount = (amount: number) => {
 .summary-value {
   font-size: 36rpx;
   font-weight: 700;
-  color: #fff;
+  color: var(--color-text-inverse, #FFFFFF);
 }
 
 .month-num {

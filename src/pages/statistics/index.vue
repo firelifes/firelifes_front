@@ -239,7 +239,7 @@ onMounted(() => {
 <style scoped>
 .page {
   min-height: 100vh;
-  background: #f5f6fa;
+  background: var(--color-bg-page, #F5F7FA);
   padding-bottom: 80px;
 }
 
@@ -249,19 +249,19 @@ onMounted(() => {
   justify-content: center;
   padding: 24rpx 0;
   gap: 40rpx;
-  background: #fff;
+  background: var(--color-bg-card, #FFFFFF);
 }
 
 .month-arrow {
   font-size: 28rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
   padding: 12rpx 20rpx;
 }
 
 .month-text {
   font-size: 32rpx;
   font-weight: 600;
-  color: #2d3436;
+  color: var(--color-text-primary, #1E293B);
   min-width: 180rpx;
   text-align: center;
 }
@@ -269,7 +269,7 @@ onMounted(() => {
 .summary-row {
   display: flex;
   align-items: center;
-  background: linear-gradient(135deg, #00BFFF, #0099CC);
+  background: linear-gradient(135deg, var(--color-primary, #0D9488), var(--color-primary-dark, #0B7A70));
   margin: 20rpx;
   border-radius: 20rpx;
   padding: 32rpx 0;
@@ -291,7 +291,7 @@ onMounted(() => {
 .summary-value {
   font-size: 36rpx;
   font-weight: 700;
-  color: #fff;
+  color: var(--color-text-inverse, #FFFFFF);
 }
 
 .summary-divider {
@@ -307,7 +307,7 @@ onMounted(() => {
 
 .loading-text {
   font-size: 28rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .content {
@@ -315,7 +315,7 @@ onMounted(() => {
 }
 
 .section {
-  background: #fff;
+  background: var(--color-bg-card, #FFFFFF);
   border-radius: 20rpx;
   padding: 28rpx;
   margin-bottom: 20rpx;
@@ -324,7 +324,7 @@ onMounted(() => {
 .section-title {
   font-size: 28rpx;
   font-weight: 600;
-  color: #2d3436;
+  color: var(--color-text-primary, #1E293B);
   margin-bottom: 24rpx;
 }
 
@@ -342,7 +342,7 @@ onMounted(() => {
 
 .rank-num {
   font-size: 24rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
   min-width: 32rpx;
   text-align: center;
 }
@@ -359,33 +359,33 @@ onMounted(() => {
 
 .category-icon .iconfont {
   font-size: 28rpx;
-  color: #5c6b7a;
+  color: var(--color-primary, #0D9488);
 }
 
 .category-name {
   font-size: 26rpx;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
   min-width: 100rpx;
 }
 
 .category-bar-wrap {
   flex: 1;
   height: 12rpx;
-  background: #f0f2f5;
+  background: var(--color-border-light, #F1F5F9);
   border-radius: 6rpx;
   overflow: hidden;
 }
 
 .category-bar {
   height: 100%;
-  background: linear-gradient(90deg, #00BFFF, #0099CC);
+  background: linear-gradient(90deg, var(--color-primary, #0D9488), var(--color-primary-dark, #0B7A70));
   border-radius: 6rpx;
   transition: width 0.5s ease;
 }
 
 .category-amount {
   font-size: 26rpx;
-  color: #555;
+  color: var(--color-text-secondary, #94A3B8);
   font-weight: 500;
   min-width: 120rpx;
   text-align: right;
@@ -393,7 +393,7 @@ onMounted(() => {
 
 .category-percent {
   font-size: 22rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
   min-width: 60rpx;
   text-align: right;
 }
@@ -428,16 +428,16 @@ onMounted(() => {
 }
 
 .income-bar {
-  background: #19BE6B;
+  background: var(--color-success, #10B981);
 }
 
 .expense-bar {
-  background: #00BFFF;
+  background: var(--color-primary, #0D9488);
 }
 
 .trend-label {
   font-size: 22rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .trend-legend {
@@ -460,16 +460,16 @@ onMounted(() => {
 }
 
 .income-dot {
-  background: #19BE6B;
+  background: var(--color-success, #10B981);
 }
 
 .expense-dot {
-  background: #00BFFF;
+  background: var(--color-primary, #0D9488);
 }
 
 .legend-text {
   font-size: 22rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .empty-state {
@@ -479,6 +479,6 @@ onMounted(() => {
 
 .empty-text {
   font-size: 28rpx;
-  color: #ccc;
+  color: var(--color-text-tertiary, #CBD5E1);
 }
 </style>

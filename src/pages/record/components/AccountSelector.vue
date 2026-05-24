@@ -231,16 +231,16 @@ defineExpose({
 
 .search-input {
   height: 72rpx;
-  background: #f5f5f5;
+  background: var(--color-border-light, #F1F5F9);
   border-radius: 16rpx;
   padding: 0 24rpx;
   font-size: 28rpx;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .section-title {
   font-size: 24rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
   padding: 20rpx 24rpx 12rpx;
 }
 
@@ -249,7 +249,7 @@ defineExpose({
   align-items: center;
   padding: 24rpx;
   margin: 0 16rpx 12rpx;
-  background: #fff;
+  background: var(--color-bg-card, #FFFFFF);
   border-radius: 16rpx;
   box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
   transition: all 0.2s ease;
@@ -257,12 +257,12 @@ defineExpose({
 
 .account-item:active {
   transform: scale(0.98);
-  background: rgba(0, 191, 255, 0.03);
+  background: var(--color-primary-light, #E6F7F5);
 }
 
 .account-item.selected {
-  background: rgba(0, 191, 255, 0.08);
-  box-shadow: 0 0 0 2rpx rgba(0, 191, 255, 0.3);
+  background: var(--color-primary-light, #E6F7F5);
+  box-shadow: 0 0 0 2rpx var(--color-primary, #0D9488);
 }
 
 .account-icon {
@@ -278,7 +278,7 @@ defineExpose({
 
 .account-name {
   font-size: 28rpx;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
   font-weight: 500;
 }
 
@@ -289,16 +289,16 @@ defineExpose({
 }
 
 .account-balance.positive {
-  color: #19BE6B;
+  color: var(--color-success, #10B981);
 }
 
 .account-balance.negative {
-  color: #FA3534;
+  color: var(--color-danger, #EF4444);
 }
 
 .check-mark {
   font-size: 28rpx;
-  color: #00BFFF;
+  color: var(--color-primary, #0D9488);
   font-weight: 700;
 }
 
@@ -309,6 +309,6 @@ defineExpose({
 
 .empty-text {
   font-size: 28rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
 }
 </style>

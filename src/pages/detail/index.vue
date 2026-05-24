@@ -200,7 +200,7 @@ const CATEGORY_ICON_MAP: Record<string, string> = {
   '设置': 'icon-shezhi', '账单': 'icon-zhangdan',
 }
 
-const CATEGORY_BG_COLOR = 'rgba(0, 191, 255, 0.08)'
+const CATEGORY_BG_COLOR = 'var(--color-primary-light)'
 
 const getCategoryInfo = (typeId: number): { name: string; icon: string; color: string } => {
   for (const group of categories.value) {
@@ -496,7 +496,7 @@ onShow(() => {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background: #f5f6fa;
+  background: var(--color-bg-page, #F5F7FA);
   overflow-x: hidden;
 }
 
@@ -509,7 +509,7 @@ onShow(() => {
 
 .loading-text {
   font-size: 28rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .bill-wrapper {
@@ -573,7 +573,7 @@ onShow(() => {
 
 .load-more-text {
   font-size: 26rpx;
-  color: #666;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .empty-state {
@@ -586,12 +586,12 @@ onShow(() => {
 
 .empty-text {
   font-size: 32rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
   margin-bottom: 20rpx;
 }
 
 .empty-hint {
   font-size: 26rpx;
-  color: #ccc;
+  color: var(--color-text-tertiary, #CBD5E1);
 }
 </style>

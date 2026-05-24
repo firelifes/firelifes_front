@@ -215,7 +215,7 @@ defineExpose({ openAdd, openEdit, close })
 .popup-content {
   width: 100%;
   max-height: 80vh;
-  background-color: #FFFFFF;
+  background-color: var(--color-bg-card, #FFFFFF);
   border-radius: 32rpx 32rpx 0 0;
   display: flex;
   flex-direction: column;
@@ -232,18 +232,18 @@ defineExpose({ openAdd, openEdit, close })
   align-items: center;
   justify-content: space-between;
   padding: 32rpx;
-  border-bottom: 1rpx solid #F0F2F5;
+  border-bottom: 1rpx solid var(--color-border-light, #F1F5F9);
 }
 
 .popup-title {
   font-size: 34rpx;
   font-weight: 600;
-  color: #333333;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .popup-close {
   font-size: 48rpx;
-  color: #999999;
+  color: var(--color-text-secondary, #94A3B8);
   line-height: 1;
 }
 
@@ -270,24 +270,24 @@ defineExpose({ openAdd, openEdit, close })
 
 .readonly-label {
   font-size: 26rpx;
-  color: #999999;
+  color: var(--color-text-secondary, #94A3B8);
   flex-shrink: 0;
 }
 
 .readonly-tag {
-  background-color: #F5F5F5;
+  background-color: var(--color-border-light, #F1F5F9);
   border-radius: 6rpx;
   padding: 4rpx 20rpx;
 }
 
 .readonly-tag-text {
   font-size: 28rpx;
-  color: #666666;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .form-divider {
   height: 1rpx;
-  background-color: #F0F2F5;
+  background-color: var(--color-border-light, #F1F5F9);
 }
 
 .form-item {
@@ -298,21 +298,21 @@ defineExpose({ openAdd, openEdit, close })
 
 .form-label {
   font-size: 28rpx;
-  color: #666666;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .form-input {
   height: 88rpx;
   padding: 0 24rpx;
-  background-color: #F8F9FA;
+  background-color: var(--color-border-light, #F1F5F9);
   border-radius: 16rpx;
   font-size: 28rpx;
-  color: #333333;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .char-count {
   font-size: 22rpx;
-  color: #BBBBBB;
+  color: var(--color-text-tertiary, #CBD5E1);
   text-align: right;
 }
 
@@ -330,7 +330,7 @@ defineExpose({ openAdd, openEdit, close })
 .icon-item {
   width: 96rpx;
   height: 96rpx;
-  background-color: #F8F9FA;
+  background-color: var(--color-border-light, #F1F5F9);
   border-radius: 20rpx;
   display: flex;
   align-items: center;
@@ -340,8 +340,8 @@ defineExpose({ openAdd, openEdit, close })
 }
 
 .icon-item-active {
-  background: linear-gradient(135deg, rgba(0, 191, 255, 0.15) 0%, rgba(0, 153, 204, 0.15) 100%);
-  border: 2rpx solid #00BFFF;
+  background: linear-gradient(135deg, var(--color-primary-light, #E6F7F5) 0%, rgba(11, 122, 112, 0.15) 100%);
+  border: 2rpx solid var(--color-primary, #0D9488);
 }
 
 .icon-emoji {
@@ -354,7 +354,7 @@ defineExpose({ openAdd, openEdit, close })
   gap: 16rpx;
   padding: 32rpx;
   padding-bottom: calc(32rpx + env(safe-area-inset-bottom));
-  border-top: 1rpx solid #F0F2F5;
+  border-top: 1rpx solid var(--color-border-light, #F1F5F9);
 }
 
 .footer-btn {
@@ -368,11 +368,11 @@ defineExpose({ openAdd, openEdit, close })
 }
 
 .cancel-btn {
-  background-color: #F0F2F5;
+  background-color: var(--color-border-light, #F1F5F9);
 }
 
 .confirm-btn {
-  background: linear-gradient(135deg, #00BFFF 0%, #0099CC 100%);
+  background: linear-gradient(135deg, var(--color-primary, #0D9488) 0%, var(--color-primary-dark, #0B7A70) 100%);
 }
 
 .footer-btn-disabled {
@@ -388,10 +388,10 @@ defineExpose({ openAdd, openEdit, close })
 .footer-btn-text {
   font-size: 30rpx;
   font-weight: 500;
-  color: #666666;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .confirm-btn .footer-btn-text {
-  color: #FFFFFF;
+  color: var(--color-text-inverse, #FFFFFF);
 }
 </style>

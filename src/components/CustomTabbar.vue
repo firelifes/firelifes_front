@@ -86,8 +86,8 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   height: 60px;
-  background-color: #ffffff;
-  border-top: 1px solid #e0e0e0;
+  background-color: var(--color-bg-card, #FFFFFF);
+  border-top: 1px solid var(--color-border, #E2E8F0);
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -114,21 +114,21 @@ onUnmounted(() => {
 
 .iconfont {
   font-size: 24px;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
   opacity: 0.7;
 }
 
 .iconfont.active {
   opacity: 1;
-  color: #00BFFF;
+  color: var(--color-primary, #0D9488);
 }
 
 .tab-text {
   font-size: 12px;
-  color: #7A7E83;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .tab-text.active {
-  color: #00BFFF;
+  color: var(--color-primary, #0D9488);
 }
 </style>

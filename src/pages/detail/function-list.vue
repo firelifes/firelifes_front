@@ -206,7 +206,7 @@ const onDragEnd = () => {
 <style scoped>
 .page {
   min-height: 100vh;
-  background: #f5f6fa;
+  background: var(--color-bg-page, #F5F7FA);
 }
 
 .hint-bar {
@@ -214,9 +214,9 @@ const onDragEnd = () => {
   align-items: center;
   margin: 20rpx 24rpx;
   padding: 16rpx 20rpx;
-  background: linear-gradient(135deg, rgba(0, 191, 255, 0.06), rgba(108, 92, 231, 0.04));
+  background: linear-gradient(135deg, var(--color-primary-light, #E6F7F5), var(--color-border-light, #F1F5F9));
   border-radius: 12rpx;
-  border: 1rpx solid rgba(0, 191, 255, 0.1);
+  border: 1rpx solid var(--color-primary-light, #E6F7F5);
 }
 
 .hint-icon {
@@ -226,7 +226,7 @@ const onDragEnd = () => {
 
 .hint-text {
   font-size: 24rpx;
-  color: #636e72;
+  color: var(--color-text-secondary, #94A3B8);
   line-height: 1.5;
 }
 
@@ -244,23 +244,23 @@ const onDragEnd = () => {
   width: 8rpx;
   height: 8rpx;
   border-radius: 50%;
-  background: #00BFFF;
+  background: var(--color-primary, #0D9488);
   margin-right: 12rpx;
 }
 
 .section-dot.secondary {
-  background: #6c5ce7;
+  background: var(--color-info, #3B82F6);
 }
 
 .section-title {
   font-size: 26rpx;
   font-weight: 600;
-  color: #2d3436;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .section-sub {
   font-size: 22rpx;
-  color: #b2bec3;
+  color: var(--color-text-secondary, #94A3B8);
   margin-left: 12rpx;
 }
 
@@ -271,7 +271,7 @@ const onDragEnd = () => {
 .function-card {
   display: flex;
   align-items: center;
-  background: #fff;
+  background: var(--color-bg-card, #FFFFFF);
   border-radius: 16rpx;
   padding: 22rpx 20rpx;
   margin-bottom: 14rpx;
@@ -285,7 +285,7 @@ const onDragEnd = () => {
 }
 
 .function-card.top-card {
-  border-left: 6rpx solid #00BFFF;
+  border-left: 6rpx solid var(--color-primary, #0D9488);
 }
 
 .drag-handle {
@@ -311,7 +311,7 @@ const onDragEnd = () => {
   width: 6rpx;
   height: 6rpx;
   border-radius: 50%;
-  background: #ccc;
+  background: var(--color-text-tertiary, #CBD5E1);
 }
 
 .function-icon {
@@ -340,12 +340,12 @@ const onDragEnd = () => {
 .function-name {
   font-size: 28rpx;
   font-weight: 500;
-  color: #2d3436;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .function-desc {
   font-size: 22rpx;
-  color: #b2bec3;
+  color: var(--color-text-secondary, #94A3B8);
   margin-top: 4rpx;
 }
 
@@ -353,8 +353,8 @@ const onDragEnd = () => {
   width: 36rpx;
   height: 36rpx;
   border-radius: 50%;
-  background: rgba(0, 191, 255, 0.1);
-  color: #00BFFF;
+  background: var(--color-primary-light, #E6F7F5);
+  color: var(--color-primary, #0D9488);
   font-size: 22rpx;
   font-weight: 600;
   display: flex;
@@ -365,7 +365,7 @@ const onDragEnd = () => {
 
 .function-arrow {
   font-size: 32rpx;
-  color: #ccc;
+  color: var(--color-text-tertiary, #CBD5E1);
 }
 
 .empty-state {
@@ -383,6 +383,6 @@ const onDragEnd = () => {
 
 .empty-text {
   font-size: 28rpx;
-  color: #b2bec3;
+  color: var(--color-text-secondary, #94A3B8);
 }
 </style>

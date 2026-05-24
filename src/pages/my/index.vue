@@ -246,6 +246,6 @@ const handleLogout = () => {
 
 .logout-btn:active {
   transform: scale(0.99);
-  background: #FFF5F5;
+  background: var(--color-danger-light, #FEF2F2);
 }
 </style>

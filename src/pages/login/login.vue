@@ -315,7 +315,7 @@ const goToForgotPassword = () => {
 <style scoped>
 .login-container {
   min-height: 100vh;
-  background: #F5F7FA;
+  background: var(--color-bg-page, #F5F7FA);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -332,7 +332,7 @@ const goToForgotPassword = () => {
 .logo-icon-box {
   width: 140rpx;
   height: 140rpx;
-  background: #0D9488;
+  background: var(--color-primary, #0D9488);
   border-radius: 36rpx;
   display: flex;
   align-items: center;
@@ -347,13 +347,13 @@ const goToForgotPassword = () => {
 .app-name {
   font-size: 40rpx;
   font-weight: 700;
-  color: #1E293B;
+  color: var(--color-text-primary, #1E293B);
   margin-bottom: 8rpx;
 }
 
 .app-subtitle {
   font-size: 26rpx;
-  color: #94A3B8;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .tab-area {
@@ -372,25 +372,25 @@ const goToForgotPassword = () => {
 
 .tab-text {
   font-size: 30rpx;
-  color: #94A3B8;
+  color: var(--color-text-secondary, #94A3B8);
   margin-bottom: 8rpx;
 }
 
 .tab-item.active .tab-text {
-  color: #0D9488;
+  color: var(--color-primary, #0D9488);
   font-weight: 600;
 }
 
 .tab-indicator {
   width: 32rpx;
   height: 6rpx;
-  background: #0D9488;
+  background: var(--color-primary, #0D9488);
   border-radius: 3rpx;
 }
 
 .form-card {
   width: 654rpx;
-  background: #FFFFFF;
+  background: var(--color-bg-card, #FFFFFF);
   border-radius: 24rpx;
   padding: 44rpx;
   box-shadow: 0 4rpx 24rpx rgba(0, 0, 0, 0.06);
@@ -399,7 +399,7 @@ const goToForgotPassword = () => {
 .input-row {
   display: flex;
   align-items: center;
-  border-bottom: 2rpx solid #E2E8F0;
+  border-bottom: 2rpx solid var(--color-border, #E2E8F0);
   padding: 20rpx 0;
   margin-bottom: 8rpx;
 }
@@ -412,11 +412,11 @@ const goToForgotPassword = () => {
 .input {
   flex: 1;
   font-size: 28rpx;
-  color: #1E293B;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .input::placeholder {
-  color: #94A3B8;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .pw-row {
@@ -440,16 +440,16 @@ const goToForgotPassword = () => {
 
 .send-code-btn {
   font-size: 24rpx;
-  color: #0D9488;
-  background: #E6F7F5;
+  color: var(--color-primary, #0D9488);
+  background: var(--color-primary-light, #E6F7F5);
   padding: 12rpx 24rpx;
   border-radius: 20rpx;
   white-space: nowrap;
 }
 
 .send-code-btn.disabled {
-  color: #94A3B8;
-  background: #F1F5F9;
+  color: var(--color-text-secondary, #94A3B8);
+  background: var(--color-border-light, #F1F5F9);
 }
 
 .agreement {
@@ -464,30 +464,30 @@ const goToForgotPassword = () => {
 
 .agreement-text {
   font-size: 24rpx;
-  color: #94A3B8;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .agreement-link {
   font-size: 24rpx;
-  color: #0D9488;
+  color: var(--color-primary, #0D9488);
 }
 
 .login-btn {
   width: 100%;
   height: 96rpx;
-  background: #0D9488;
+  background: var(--color-primary, #0D9488);
   border-radius: 48rpx;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 32rpx;
   font-weight: 600;
-  color: #FFFFFF;
+  color: var(--color-text-inverse, #FFFFFF);
   margin-bottom: 32rpx;
 }
 
 .login-btn.disabled {
-  background: #CBD5E1;
+  background: var(--color-text-tertiary, #CBD5E1);
 }
 
 .divider-row {
@@ -500,26 +500,26 @@ const goToForgotPassword = () => {
 .divider-line {
   width: 80rpx;
   height: 2rpx;
-  background: #E2E8F0;
+  background: var(--color-border, #E2E8F0);
 }
 
 .divider-text {
   font-size: 24rpx;
-  color: #CBD5E1;
+  color: var(--color-text-tertiary, #CBD5E1);
   margin: 0 20rpx;
 }
 
 .wechat-btn {
   width: 100%;
   height: 96rpx;
-  background: #07C160;
+  background: var(--color-wechat, #07C160);
   border-radius: 48rpx;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 32rpx;
   font-weight: 600;
-  color: #FFFFFF;
+  color: var(--color-text-inverse, #FFFFFF);
   margin-bottom: 36rpx;
 }
 
@@ -532,12 +532,12 @@ const goToForgotPassword = () => {
 
 .link {
   font-size: 26rpx;
-  color: #0D9488;
+  color: var(--color-primary, #0D9488);
 }
 
 .link-divider {
   font-size: 26rpx;
-  color: #E2E8F0;
+  color: var(--color-border, #E2E8F0);
 }
 
 .popup-overlay {
@@ -546,7 +546,7 @@ const goToForgotPassword = () => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--color-mask, rgba(0, 0, 0, 0.5));
   z-index: 1000;
   display: flex;
   align-items: flex-end;
@@ -555,7 +555,7 @@ const goToForgotPassword = () => {
 .popup-sheet {
   width: 100%;
   max-height: 70vh;
-  background: white;
+  background: var(--color-bg-card, white);
   border-radius: 24rpx 24rpx 0 0;
   display: flex;
   flex-direction: column;
@@ -573,12 +573,12 @@ const goToForgotPassword = () => {
 .popup-title {
   font-size: 32rpx;
   font-weight: bold;
-  color: #1E293B;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .popup-divider {
   height: 2rpx;
-  background: #E2E8F0;
+  background: var(--color-border, #E2E8F0);
   flex-shrink: 0;
 }
 
@@ -589,7 +589,7 @@ const goToForgotPassword = () => {
 
 .popup-text {
   font-size: 28rpx;
-  color: #475569;
+  color: var(--color-text-secondary, #475569);
   line-height: 1.8;
   white-space: pre-wrap;
 }
@@ -600,12 +600,12 @@ const goToForgotPassword = () => {
   align-items: center;
   height: 104rpx;
   flex-shrink: 0;
-  border-top: 2rpx solid #F1F5F9;
+  border-top: 2rpx solid var(--color-border-light, #F1F5F9);
 }
 
 .close-text {
   font-size: 30rpx;
-  color: #0D9488;
+  color: var(--color-primary, #0D9488);
   width: 100%;
   text-align: center;
   line-height: 104rpx;

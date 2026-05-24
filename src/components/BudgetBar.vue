@@ -60,7 +60,7 @@ const alertLevel = computed(() => {
   flex: 1;
   height: 12rpx;
   border-radius: 6rpx;
-  background: #e8e8e8;
+  background: var(--color-border-light, #F1F5F9);
   overflow: hidden;
 }
 
@@ -71,16 +71,16 @@ const alertLevel = computed(() => {
 }
 
 .bar-healthy {
-  background: #00b894;
+  background: var(--color-primary, #0D9488);
 }
 .bar-normal {
-  background: #00bfff;
+  background: var(--color-primary, #0D9488);
 }
 .bar-warning {
-  background: #fdcb6e;
+  background: var(--color-warning, #F59E0B);
 }
 .bar-danger {
-  background: #d63031;
+  background: var(--color-danger, #EF4444);
 }
 
 .budget-bar-label {
@@ -89,8 +89,8 @@ const alertLevel = computed(() => {
   text-align: right;
 }
 
-.text-healthy { color: #00b894; }
-.text-normal { color: #00bfff; }
-.text-warning { color: #e17055; }
-.text-danger { color: #d63031; }
+.text-healthy { color: var(--color-primary, #0D9488); }
+.text-normal { color: var(--color-primary, #0D9488); }
+.text-warning { color: var(--color-danger, #EF4444); }
+.text-danger { color: var(--color-danger, #EF4444); }
 </style>

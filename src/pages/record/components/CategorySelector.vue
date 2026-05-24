@@ -164,12 +164,12 @@ defineExpose({
 .group-header {
   padding: 12rpx 0;
   margin-bottom: 16rpx;
-  border-bottom: 2rpx solid #00BFFF;
+  border-bottom: 2rpx solid var(--color-primary, #0D9488);
 }
 
 .group-name {
   font-size: 28rpx;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
   font-weight: 600;
 }
 
@@ -194,7 +194,7 @@ defineExpose({
 .category-icon {
   width: 88rpx;
   height: 88rpx;
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--color-bg-card, #FFFFFF);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -202,18 +202,18 @@ defineExpose({
   font-size: 44rpx;
   margin-bottom: 10rpx;
   box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
-  color: #00BFFF;
+  color: var(--color-primary, #0D9488);
 }
 
 .category-item.selected .category-icon {
-  background: linear-gradient(135deg, #00BFFF 0%, #0099CC 100%);
-  box-shadow: 0 4rpx 16rpx rgba(0, 191, 255, 0.3);
-  color: #fff;
+  background: linear-gradient(135deg, var(--color-primary, #0D9488) 0%, var(--color-primary-dark, #0B7A70) 100%);
+  box-shadow: 0 4rpx 16rpx rgba(13, 148, 136, 0.3);
+  color: var(--color-text-inverse, #FFFFFF);
 }
 
 .category-name {
   font-size: 24rpx;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
   text-align: center;
 }
 </style>

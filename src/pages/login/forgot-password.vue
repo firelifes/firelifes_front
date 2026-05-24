@@ -129,7 +129,7 @@ const goToLogin = () => {
 <style scoped>
 .fp-container {
   min-height: 100vh;
-  background: #F5F7FA;
+  background: var(--color-bg-page, #F5F7FA);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -148,19 +148,19 @@ const goToLogin = () => {
   position: absolute;
   left: 30rpx;
   font-size: 44rpx;
-  color: #1E293B;
+  color: var(--color-text-primary, #1E293B);
   padding: 8rpx;
 }
 
 .title {
   font-size: 36rpx;
   font-weight: 600;
-  color: #1E293B;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .form-card {
   width: 654rpx;
-  background: #FFFFFF;
+  background: var(--color-bg-card, #FFFFFF);
   border-radius: 24rpx;
   padding: 44rpx;
   margin-top: 20rpx;
@@ -170,7 +170,7 @@ const goToLogin = () => {
 .input-row {
   display: flex;
   align-items: center;
-  border-bottom: 2rpx solid #E2E8F0;
+  border-bottom: 2rpx solid var(--color-border, #E2E8F0);
   padding: 24rpx 0;
 }
 
@@ -182,11 +182,11 @@ const goToLogin = () => {
 .input {
   flex: 1;
   font-size: 28rpx;
-  color: #1E293B;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .input::placeholder {
-  color: #94A3B8;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .code-row {
@@ -201,16 +201,16 @@ const goToLogin = () => {
 
 .send-code-btn {
   font-size: 24rpx;
-  color: #0D9488;
-  background: #E6F7F5;
+  color: var(--color-primary, #0D9488);
+  background: var(--color-primary-light, #E6F7F5);
   padding: 12rpx 24rpx;
   border-radius: 20rpx;
   white-space: nowrap;
 }
 
 .send-code-btn.disabled {
-  color: #94A3B8;
-  background: #F1F5F9;
+  color: var(--color-text-secondary, #94A3B8);
+  background: var(--color-border-light, #F1F5F9);
 }
 
 .pw-row {
@@ -225,20 +225,20 @@ const goToLogin = () => {
 .reset-btn {
   width: 100%;
   height: 96rpx;
-  background: #0D9488;
+  background: var(--color-primary, #0D9488);
   border-radius: 48rpx;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 32rpx;
   font-weight: 600;
-  color: #FFFFFF;
+  color: var(--color-text-inverse, #FFFFFF);
   margin-top: 40rpx;
   margin-bottom: 32rpx;
 }
 
 .reset-btn.disabled {
-  background: #CBD5E1;
+  background: var(--color-text-tertiary, #CBD5E1);
 }
 
 .login-link {
@@ -249,12 +249,12 @@ const goToLogin = () => {
 
 .login-text {
   font-size: 26rpx;
-  color: #94A3B8;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .login-go {
   font-size: 26rpx;
-  color: #0D9488;
+  color: var(--color-primary, #0D9488);
   margin-left: 4rpx;
 }
 </style>

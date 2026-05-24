@@ -121,12 +121,12 @@ onMounted(() => {
 <style scoped>
 .page {
   min-height: 100vh;
-  background: #f5f6fa;
+  background: var(--color-bg-page, #F5F7FA);
   padding-bottom: 80px;
 }
 
 .net-worth-card {
-  background: linear-gradient(135deg, #00BFFF, #0099CC);
+  background: linear-gradient(135deg, var(--color-primary, #0D9488), var(--color-primary-dark, #0B7A70));
   margin: 20rpx;
   border-radius: 20rpx;
   padding: 40rpx 32rpx;
@@ -144,7 +144,7 @@ onMounted(() => {
 .nw-value {
   font-size: 56rpx;
   font-weight: 700;
-  color: #fff;
+  color: var(--color-text-inverse, #FFFFFF);
   letter-spacing: 1rpx;
 }
 
@@ -154,7 +154,7 @@ onMounted(() => {
 }
 
 .section {
-  background: #fff;
+  background: var(--color-bg-card, #FFFFFF);
   border-radius: 20rpx;
   margin: 0 20rpx 20rpx;
   padding: 28rpx;
@@ -163,17 +163,17 @@ onMounted(() => {
 .section-title {
   font-size: 28rpx;
   font-weight: 600;
-  color: #2d3436;
+  color: var(--color-text-primary, #1E293B);
   margin-bottom: 20rpx;
   padding-bottom: 16rpx;
-  border-bottom: 1rpx solid #f5f5f5;
+  border-bottom: 1rpx solid var(--color-border-light, #F1F5F9);
 }
 
 .account-row {
   display: flex;
   align-items: center;
   padding: 18rpx 0;
-  border-bottom: 1rpx solid #f8f8f8;
+  border-bottom: 1rpx solid var(--color-border-light, #F1F5F9);
 }
 
 .account-row:last-child {
@@ -194,30 +194,30 @@ onMounted(() => {
 
 .account-name {
   font-size: 28rpx;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
   font-weight: 500;
 }
 
 .account-type {
   font-size: 22rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .account-balance {
   font-size: 30rpx;
   font-weight: 600;
-  color: #2d3436;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .account-balance.negative {
-  color: #e74c3c;
+  color: var(--color-danger, #EF4444);
 }
 
 .asset-row {
   display: flex;
   align-items: center;
   padding: 18rpx 0;
-  border-bottom: 1rpx solid #f8f8f8;
+  border-bottom: 1rpx solid var(--color-border-light, #F1F5F9);
 }
 
 .asset-row:last-child {
@@ -228,7 +228,7 @@ onMounted(() => {
   width: 64rpx;
   height: 64rpx;
   border-radius: 16rpx;
-  background: rgba(0, 191, 255, 0.08);
+  background: var(--color-primary-light, #E6F7F5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -248,13 +248,13 @@ onMounted(() => {
 
 .asset-name {
   font-size: 28rpx;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
   font-weight: 500;
 }
 
 .asset-category {
   font-size: 22rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .asset-value-col {
@@ -267,20 +267,20 @@ onMounted(() => {
 .asset-value {
   font-size: 28rpx;
   font-weight: 600;
-  color: #00BFFF;
+  color: var(--color-primary, #0D9488);
 }
 
 .asset-progress-bar {
   width: 120rpx;
   height: 8rpx;
-  background: #e8edf2;
+  background: var(--color-border-light, #F1F5F9);
   border-radius: 4rpx;
   overflow: hidden;
 }
 
 .asset-progress-fill {
   height: 100%;
-  background: #00BFFF;
+  background: var(--color-primary, #0D9488);
   border-radius: 4rpx;
   transition: width 0.5s ease;
 }
@@ -299,11 +299,11 @@ onMounted(() => {
 
 .empty-text {
   font-size: 28rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .empty-hint {
   font-size: 24rpx;
-  color: #ccc;
+  color: var(--color-text-tertiary, #CBD5E1);
 }
 </style>

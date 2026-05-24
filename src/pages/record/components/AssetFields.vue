@@ -210,7 +210,7 @@ watch(() => props.initialData, (data) => {
 
 <style scoped>
 .asset-fields {
-  background: rgba(245, 246, 250, 0.8);
+  background: var(--color-border-light, #F1F5F9);
   border-radius: 20rpx;
   overflow: hidden;
   margin-bottom: 20rpx;
@@ -225,7 +225,7 @@ watch(() => props.initialData, (data) => {
 
 .switch-label {
   font-size: 28rpx;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
   font-weight: 500;
 }
 
@@ -233,20 +233,20 @@ watch(() => props.initialData, (data) => {
   width: 88rpx;
   height: 50rpx;
   border-radius: 25rpx;
-  background: #dcdde1;
+  background: var(--color-border, #E2E8F0);
   transition: background 0.2s;
   position: relative;
 }
 
 .switch-track.active {
-  background: #00BFFF;
+  background: var(--color-primary, #0D9488);
 }
 
 .switch-thumb {
   width: 44rpx;
   height: 44rpx;
   border-radius: 50%;
-  background: #fff;
+  background: var(--color-bg-card, #FFFFFF);
   position: absolute;
   top: 3rpx;
   left: 3rpx;
@@ -289,7 +289,7 @@ watch(() => props.initialData, (data) => {
 
 .form-label {
   font-size: 26rpx;
-  color: #666;
+  color: var(--color-text-secondary, #94A3B8);
   flex-shrink: 0;
   min-width: 140rpx;
 }
@@ -303,12 +303,12 @@ watch(() => props.initialData, (data) => {
 
 .form-value-text {
   font-size: 26rpx;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .form-arrow {
   font-size: 20rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
   margin-left: 12rpx;
 }
 
@@ -327,7 +327,7 @@ watch(() => props.initialData, (data) => {
   width: 32rpx;
   height: 32rpx;
   border-radius: 50%;
-  border: 3rpx solid #dcdde1;
+  border: 3rpx solid var(--color-border, #E2E8F0);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -335,13 +335,13 @@ watch(() => props.initialData, (data) => {
 }
 
 .radio-dot.active {
-  border-color: #00BFFF;
-  background: #00BFFF;
+  border-color: var(--color-primary, #0D9488);
+  background: var(--color-primary, #0D9488);
 }
 
 .radio-text {
   font-size: 24rpx;
-  color: #666;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .depreciation-hint {
@@ -350,7 +350,7 @@ watch(() => props.initialData, (data) => {
 
 .depreciation-value {
   font-size: 26rpx;
-  color: #00BFFF;
+  color: var(--color-primary, #0D9488);
   font-weight: 600;
 }
 
@@ -358,7 +358,7 @@ watch(() => props.initialData, (data) => {
   flex: 1;
   text-align: right;
   font-size: 26rpx;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
   padding: 8rpx 0;
 }
 
@@ -374,7 +374,7 @@ watch(() => props.initialData, (data) => {
 
 .input-suffix {
   font-size: 24rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .input-with-prefix {
@@ -385,7 +385,7 @@ watch(() => props.initialData, (data) => {
 
 .input-prefix {
   font-size: 26rpx;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
   font-weight: 600;
 }
 
@@ -405,7 +405,7 @@ watch(() => props.initialData, (data) => {
 .picker-panel {
   width: 100%;
   max-height: 600rpx;
-  background: #fff;
+  background: var(--color-bg-card, #FFFFFF);
   border-radius: 32rpx 32rpx 0 0;
   animation: pickerIn 0.25s ease;
 }
@@ -424,18 +424,18 @@ watch(() => props.initialData, (data) => {
   justify-content: space-between;
   align-items: center;
   padding: 28rpx 32rpx;
-  border-bottom: 1rpx solid #f0f0f0;
+  border-bottom: 1rpx solid var(--color-border, #E2E8F0);
 }
 
 .picker-title {
   font-size: 30rpx;
   font-weight: 600;
-  color: #2d3436;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .picker-close {
   font-size: 32rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
   padding: 8rpx;
 }
 
@@ -457,12 +457,12 @@ watch(() => props.initialData, (data) => {
 
 .picker-option-text {
   font-size: 28rpx;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .picker-option-check {
   font-size: 28rpx;
-  color: #00BFFF;
+  color: var(--color-primary, #0D9488);
   font-weight: 700;
 }
 </style>

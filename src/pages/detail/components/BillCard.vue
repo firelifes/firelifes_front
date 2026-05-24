@@ -76,7 +76,7 @@ const formatAmount = (amount: number) => {
 
 <style scoped>
 .bill-card {
-  background: #fff;
+  background: var(--color-bg-card, #FFFFFF);
   border-radius: 20rpx;
   box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
   overflow: hidden;
@@ -87,13 +87,13 @@ const formatAmount = (amount: number) => {
   justify-content: space-between;
   align-items: center;
   padding: 24rpx 28rpx;
-  border-bottom: 1rpx solid #f5f5f5;
+  border-bottom: 1rpx solid var(--color-border, #E2E8F0);
 }
 
 .date-text {
   font-size: 28rpx;
   font-weight: 600;
-  color: #2d3436;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .day-totals {
@@ -103,16 +103,16 @@ const formatAmount = (amount: number) => {
 
 .day-income {
   font-size: 22rpx;
-  color: #5c6b7a;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .day-expense {
   font-size: 22rpx;
-  color: #5c6b7a;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .bill-item-wrap {
-  border-bottom: 1rpx solid #f5f5f5;
+  border-bottom: 1rpx solid var(--color-border, #E2E8F0);
 }
 
 .bill-item-wrap:last-child,
@@ -129,7 +129,7 @@ const formatAmount = (amount: number) => {
 }
 
 .bill-item:active {
-  background: #fafafa;
+  background: var(--color-border-light, #F1F5F9);
 }
 
 .bill-item-left {
@@ -152,7 +152,7 @@ const formatAmount = (amount: number) => {
 
 .category-icon .iconfont {
   font-size: 36rpx;
-  color: #5c6b7a;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .bill-item-info {
@@ -165,7 +165,7 @@ const formatAmount = (amount: number) => {
 .bill-item-name {
   font-size: 28rpx;
   font-weight: 500;
-  color: #2d3436;
+  color: var(--color-text-primary, #1E293B);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -176,13 +176,13 @@ const formatAmount = (amount: number) => {
   font-weight: 600;
   flex-shrink: 0;
   margin-left: 20rpx;
-  color: #2d3436;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .delete-btn {
   width: 70px;
   height: 100%;
-  background: #FA3534;
+  background: var(--color-danger, #EF4444);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -191,6 +191,6 @@ const formatAmount = (amount: number) => {
 .delete-btn-text {
   font-size: 26rpx;
   font-weight: 600;
-  color: #FFFFFF;
+  color: var(--color-text-inverse, #FFFFFF);
 }
 </style>

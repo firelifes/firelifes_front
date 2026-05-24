@@ -196,25 +196,25 @@ const toggleExpand = (id: number) => {
 
 .loading-text {
   font-size: 28rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .empty-title {
   font-size: 32rpx;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
   font-weight: 600;
   margin-bottom: 12rpx;
 }
 
 .empty-hint {
   font-size: 24rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
   text-align: center;
   line-height: 1.6;
 }
 
 .overview-card {
-  background: #fff;
+  background: var(--color-bg-card, #FFFFFF);
   border-radius: 16rpx;
   padding: 32rpx 28rpx;
   margin-bottom: 20rpx;
@@ -222,7 +222,7 @@ const toggleExpand = (id: number) => {
 }
 
 .annual-card {
-  border-left: 6rpx solid #00bfff;
+  border-left: 6rpx solid var(--color-primary, #0D9488);
 }
 
 .overview-header {
@@ -232,7 +232,7 @@ const toggleExpand = (id: number) => {
 .overview-title {
   font-size: 30rpx;
   font-weight: 600;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .overview-grid {
@@ -248,7 +248,7 @@ const toggleExpand = (id: number) => {
 
 .ov-label {
   font-size: 22rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
   display: block;
   margin-bottom: 4rpx;
 }
@@ -256,22 +256,22 @@ const toggleExpand = (id: number) => {
 .ov-value {
   font-size: 28rpx;
   font-weight: 700;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .ov-value.expense {
-  color: #e17055;
+  color: var(--color-danger, #EF4444);
 }
 
 .ov-value.income {
-  color: #00b894;
+  color: var(--color-primary, #0D9488);
 }
 
 .projected-text {
   display: block;
   margin-top: 12rpx;
   font-size: 22rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
   text-align: center;
 }
 
@@ -282,14 +282,14 @@ const toggleExpand = (id: number) => {
 .section-title {
   font-size: 28rpx;
   font-weight: 600;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
   display: block;
   margin-bottom: 12rpx;
   padding-left: 8rpx;
 }
 
 .alert-card {
-  background: #fff;
+  background: var(--color-bg-card, #FFFFFF);
   border-radius: 12rpx;
   padding: 20rpx;
   margin-bottom: 12rpx;
@@ -297,11 +297,11 @@ const toggleExpand = (id: number) => {
 }
 
 .alert-danger {
-  border-left: 4rpx solid #d63031;
+  border-left: 4rpx solid var(--color-danger, #EF4444);
 }
 
 .alert-warning {
-  border-left: 4rpx solid #fdcb6e;
+  border-left: 4rpx solid var(--color-warning, #F59E0B);
 }
 
 .alert-left {
@@ -321,13 +321,13 @@ const toggleExpand = (id: number) => {
 .alert-name {
   font-size: 26rpx;
   font-weight: 600;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
   display: block;
 }
 
 .alert-detail {
   font-size: 22rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
   display: block;
   margin-top: 4rpx;
 }
@@ -339,7 +339,7 @@ const toggleExpand = (id: number) => {
 
 .alert-more text {
   font-size: 24rpx;
-  color: #00bfff;
+  color: var(--color-primary, #0D9488);
 }
 
 .category-section {
@@ -347,7 +347,7 @@ const toggleExpand = (id: number) => {
 }
 
 .category-card {
-  background: #fff;
+  background: var(--color-bg-card, #FFFFFF);
   border-radius: 12rpx;
   padding: 20rpx;
   margin-bottom: 12rpx;
@@ -364,7 +364,7 @@ const toggleExpand = (id: number) => {
 .category-name {
   font-size: 28rpx;
   font-weight: 600;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .category-right {
@@ -375,12 +375,12 @@ const toggleExpand = (id: number) => {
 
 .category-amount {
   font-size: 24rpx;
-  color: #666;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .category-arrow {
   font-size: 20rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .category-footer {
@@ -389,17 +389,17 @@ const toggleExpand = (id: number) => {
 
 .category-remaining {
   font-size: 22rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .expand-hint {
   margin-top: 12rpx;
   padding-top: 12rpx;
-  border-top: 1rpx solid #f0f0f0;
+  border-top: 1rpx solid var(--color-border, #E2E8F0);
 }
 
 .expand-text {
   font-size: 22rpx;
-  color: #bbb;
+  color: var(--color-text-tertiary, #CBD5E1);
 }
 </style>

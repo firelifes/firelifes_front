@@ -266,21 +266,21 @@ const handleComplete = async () => {
 <style>
 .record-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #faf9f6 0%, #f5f3ef 100%);
+  background: var(--color-bg-page, #F5F7FA);
   padding-top: 120rpx;
   padding-bottom: 80px;
 }
 
 .header {
-  background: linear-gradient(135deg, #00BFFF 0%, #0099CC 100%);
+  background: linear-gradient(135deg, var(--color-primary, #0D9488) 0%, var(--color-primary-dark, #0B7A70) 100%);
   padding: 20rpx 30rpx;
-  color: #333;
+  color: var(--color-text-inverse, #FFFFFF);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 80;
-  box-shadow: 0 4rpx 20rpx rgba(0, 191, 255, 0.3);
+  box-shadow: 0 4rpx 20rpx rgba(13, 148, 136, 0.3);
   backdrop-filter: blur(10rpx);
 }
 
@@ -310,14 +310,14 @@ const handleComplete = async () => {
 .type-btn {
   font-size: 32rpx;
   font-weight: 600;
-  color: rgba(51, 51, 51, 0.5);
+  color: rgba(255, 255, 255, 0.6);
   padding: 10rpx 30rpx;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
 }
 
 .type-btn.active {
-  color: #333;
+  color: var(--color-text-inverse, #FFFFFF);
 }
 
 .type-btn.active::after {
@@ -328,7 +328,7 @@ const handleComplete = async () => {
   transform: translateX(-50%);
   width: 40rpx;
   height: 6rpx;
-  background: #333;
+  background: var(--color-text-inverse, #FFFFFF);
   border-radius: 3rpx;
   animation: slideDown 0.3s ease;
 }
@@ -346,24 +346,24 @@ const handleComplete = async () => {
 
 .type-divider {
   font-size: 32rpx;
-  color: rgba(51, 51, 51, 0.3);
+  color: rgba(255, 255, 255, 0.3);
   font-weight: 200;
 }
 
 .cancel-btn {
   font-size: 28rpx;
-  color: #333;
+  color: var(--color-text-inverse, #FFFFFF);
   padding: 10rpx 24rpx;
   border-radius: 20rpx;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(5rpx);
-  border: 1rpx solid rgba(255, 255, 255, 0.3);
+  border: 1rpx solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
 }
 
 .cancel-btn:active {
   transform: scale(0.95);
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .loading-overlay {
@@ -414,8 +414,8 @@ const handleComplete = async () => {
 .loading-spinner {
   width: 56rpx;
   height: 56rpx;
-  border: 4rpx solid rgba(0, 191, 255, 0.15);
-  border-top-color: #00BFFF;
+  border: 4rpx solid var(--color-primary-light, #E6F7F5);
+  border-top-color: var(--color-primary, #0D9488);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
@@ -424,14 +424,14 @@ const handleComplete = async () => {
   width: 56rpx;
   height: 56rpx;
   border-radius: 50%;
-  background: linear-gradient(135deg, #00BFFF 0%, #0099CC 100%);
+  background: linear-gradient(135deg, var(--color-primary, #0D9488) 0%, var(--color-primary-dark, #0B7A70) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 32rpx;
-  color: #fff;
+  color: var(--color-text-inverse, #FFFFFF);
   font-weight: bold;
-  box-shadow: 0 4rpx 16rpx rgba(0, 191, 255, 0.35);
+  box-shadow: 0 4rpx 16rpx rgba(13, 148, 136, 0.35);
   animation: checkPop 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -453,7 +453,7 @@ const handleComplete = async () => {
 }
 
 .loading-text {
-  color: #2d3436;
+  color: var(--color-text-primary, #1E293B);
   font-size: 28rpx;
   font-weight: 500;
 }

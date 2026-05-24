@@ -120,7 +120,7 @@ onMounted(() => {
 
 .confirm-card {
   width: 600rpx;
-  background: #fff;
+  background: var(--color-bg-card, #FFFFFF);
   border-radius: 32rpx;
   padding: 60rpx 48rpx 40rpx;
   display: flex;
@@ -144,8 +144,8 @@ onMounted(() => {
   width: 80rpx;
   height: 80rpx;
   border-radius: 50%;
-  background: #19BE6B;
-  color: #fff;
+  background: var(--color-success, #10B981);
+  color: var(--color-text-inverse, #FFFFFF);
   font-size: 44rpx;
   font-weight: 700;
   display: flex;
@@ -163,7 +163,7 @@ onMounted(() => {
 .confirm-title {
   font-size: 32rpx;
   font-weight: 600;
-  color: #2d3436;
+  color: var(--color-text-primary, #1E293B);
   margin-top: 24rpx;
 }
 
@@ -171,47 +171,47 @@ onMounted(() => {
   font-size: 56rpx;
   font-weight: 700;
   margin-top: 20rpx;
-  color: #2d3436;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .confirm-amount.income {
-  color: #19BE6B;
+  color: var(--color-success, #10B981);
 }
 
 .confirm-category {
   font-size: 28rpx;
-  color: #666;
+  color: var(--color-text-secondary, #94A3B8);
   margin-top: 12rpx;
 }
 
 .confirm-account {
   margin-top: 24rpx;
   padding: 16rpx 28rpx;
-  background: #f5f6fa;
+  background: var(--color-border-light, #F1F5F9);
   border-radius: 16rpx;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 26rpx;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .account-balance {
-  color: #00BFFF;
+  color: var(--color-primary, #0D9488);
   font-weight: 600;
 }
 
 .confirm-asset-hint {
   margin-top: 16rpx;
   font-size: 24rpx;
-  color: #00BFFF;
+  color: var(--color-primary, #0D9488);
 }
 
 .section-divider {
   width: 100%;
   height: 1rpx;
-  background: #f0f0f0;
+  background: var(--color-border, #E2E8F0);
   margin: 24rpx 0;
 }
 
@@ -227,13 +227,13 @@ onMounted(() => {
 
 .net-worth-label {
   font-size: 26rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .net-worth-value {
   font-size: 32rpx;
   font-weight: 700;
-  color: #00BFFF;
+  color: var(--color-primary, #0D9488);
 }
 
 .fire-progress-row {
@@ -246,21 +246,21 @@ onMounted(() => {
 .fire-progress-bar {
   flex: 1;
   height: 14rpx;
-  background: #e8edf2;
+  background: var(--color-border-light, #F1F5F9);
   border-radius: 7rpx;
   overflow: hidden;
 }
 
 .fire-progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #00BFFF, #0099CC);
+  background: linear-gradient(90deg, var(--color-primary, #0D9488), var(--color-primary-dark, #0B7A70));
   border-radius: 7rpx;
   transition: width 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .fire-progress-text {
   font-size: 24rpx;
-  color: #00BFFF;
+  color: var(--color-primary, #0D9488);
   font-weight: 600;
   min-width: 60rpx;
   text-align: right;
@@ -273,13 +273,13 @@ onMounted(() => {
 
 .fire-gap-text {
   font-size: 22rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .net-worth-loading {
   margin-top: 24rpx;
   font-size: 24rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .confirm-buttons {
@@ -306,14 +306,14 @@ onMounted(() => {
 }
 
 .confirm-btn.primary {
-  background: linear-gradient(135deg, #00BFFF 0%, #0099CC 100%);
-  color: #fff;
-  box-shadow: 0 4rpx 16rpx rgba(0, 191, 255, 0.25);
+  background: linear-gradient(135deg, var(--color-primary, #0D9488) 0%, var(--color-primary-dark, #0B7A70) 100%);
+  color: var(--color-text-inverse, #FFFFFF);
+  box-shadow: 0 4rpx 16rpx rgba(13, 148, 136, 0.25);
 }
 
 .confirm-btn.outline {
-  background: #fff;
-  color: #666;
-  border: 2rpx solid #e0e0e0;
+  background: var(--color-bg-card, #FFFFFF);
+  color: var(--color-text-secondary, #94A3B8);
+  border: 2rpx solid var(--color-border, #E2E8F0);
 }
 </style>

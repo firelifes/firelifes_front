@@ -499,7 +499,7 @@ const goToLogin = () => {
 }
 
 .register-btn.disabled {
-  background: #ccc;
+  background: var(--color-text-tertiary, #ccc);
 }
 
 .login-link {
@@ -529,8 +529,8 @@ const goToLogin = () => {
 }
 
 .wechat-btn {
-  background: #07C160;
-  color: white;
+  background: var(--color-wechat, #07C160);
+  color: var(--color-text-inverse, white);
   text-align: center;
   padding: 28rpx;
   border-radius: 50rpx;
@@ -557,7 +557,7 @@ const goToLogin = () => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--color-mask, rgba(0, 0, 0, 0.5));
   z-index: 1000;
   display: flex;
   align-items: flex-end;
@@ -566,7 +566,7 @@ const goToLogin = () => {
 .popup-sheet {
   width: 100%;
   max-height: 70vh;
-  background: white;
+  background: var(--color-bg-card, white);
   border-radius: 24rpx 24rpx 0 0;
   display: flex;
   flex-direction: column;
@@ -584,12 +584,12 @@ const goToLogin = () => {
 .popup-title {
   font-size: 32rpx;
   font-weight: bold;
-  color: #333;
+  color: var(--color-text-primary, #333);
 }
 
 .popup-divider {
   height: 1px;
-  background: #e5e5e5;
+  background: var(--color-border, #e5e5e5);
   flex-shrink: 0;
 }
 
@@ -600,7 +600,7 @@ const goToLogin = () => {
 
 .popup-text {
   font-size: 28rpx;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
   line-height: 1.8;
   white-space: pre-wrap;
 }
@@ -611,7 +611,7 @@ const goToLogin = () => {
   align-items: center;
   height: 104rpx;
   flex-shrink: 0;
-  border-top: 1px solid #f5f5f5;
+  border-top: 1px solid var(--color-border-light, #F1F5F9);
   z-index: 1;
 }
 
@@ -644,7 +644,7 @@ const goToLogin = () => {
 .qrcode-title {
   font-size: 32rpx;
   font-weight: bold;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .qrcode-body {
@@ -662,7 +662,7 @@ const goToLogin = () => {
 .qrcode-placeholder {
   width: 360rpx;
   height: 360rpx;
-  background: #f5f5f5;
+  background: var(--color-border-light, #F1F5F9);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -671,12 +671,12 @@ const goToLogin = () => {
 
 .qrcode-placeholder-text {
   font-size: 28rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .qrcode-tip {
   font-size: 26rpx;
-  color: #666;
+  color: var(--color-text-secondary, #94A3B8);
   margin-top: 30rpx;
 }
 
@@ -686,7 +686,7 @@ const goToLogin = () => {
   align-items: center;
   height: 104rpx;
   flex-shrink: 0;
-  border-top: 1px solid #f5f5f5;
+  border-top: 1px solid var(--color-border-light, #F1F5F9);
   width: 100%;
 }
 </style>

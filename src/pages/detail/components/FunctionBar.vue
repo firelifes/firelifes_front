@@ -84,7 +84,7 @@ const getEmoji = (item: FunctionItem): string => {
   display: flex;
   justify-content: space-around;
   padding: 18rpx 20rpx;
-  background: #fff;
+  background: var(--color-bg-card, #FFFFFF);
   box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
 }
 
@@ -98,7 +98,7 @@ const getEmoji = (item: FunctionItem): string => {
   width: 72rpx;
   height: 72rpx;
   border-radius: 50%;
-  background: rgba(0, 191, 255, 0.08);
+  background: var(--color-primary-light, #E6F7F5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -112,6 +112,6 @@ const getEmoji = (item: FunctionItem): string => {
 
 .function-text {
   font-size: 20rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
 }
 </style>

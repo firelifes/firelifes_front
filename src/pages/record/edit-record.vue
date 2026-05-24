@@ -44,7 +44,7 @@
       <view class="loading-box">
         <view v-if="submitStatus === 'submitting'" class="loading-spinner"></view>
         <view v-else-if="submitStatus === 'success'" class="loading-check">✓</view>
-        <view v-else class="loading-check" style="background:#e74c3c">✕</view>
+        <view v-else class="loading-check" style="background: var(--color-danger, #EF4444)">✕</view>
         <text class="loading-text">
           {{ submitStatus === 'submitting' ? '保存中...' : submitStatus === 'success' ? '保存成功' : '保存失败' }}
         </text>
@@ -262,7 +262,7 @@ onMounted(() => {
 <style scoped>
 .edit-page {
   min-height: 100vh;
-  background: #f5f6fa;
+  background: var(--color-bg-page, #F5F7FA);
 }
 
 .edit-header {
@@ -270,18 +270,18 @@ onMounted(() => {
   align-items: center;
   justify-content: space-between;
   padding: 20rpx 30rpx;
-  background: linear-gradient(135deg, #00BFFF 0%, #0099CC 100%);
+  background: linear-gradient(135deg, var(--color-primary, #0D9488) 0%, var(--color-primary-dark, #0B7A70) 100%);
 }
 
 .back-btn {
   font-size: 28rpx;
-  color: #fff;
+  color: var(--color-text-inverse, #FFFFFF);
 }
 
 .edit-title {
   font-size: 30rpx;
   font-weight: 600;
-  color: #fff;
+  color: var(--color-text-inverse, #FFFFFF);
 }
 
 .delete-btn {
@@ -293,7 +293,7 @@ onMounted(() => {
   padding: 200rpx 0;
   text-align: center;
   font-size: 28rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .edit-body {
@@ -328,8 +328,8 @@ onMounted(() => {
 .loading-spinner {
   width: 56rpx;
   height: 56rpx;
-  border: 4rpx solid #e0e0e0;
-  border-top-color: #00BFFF;
+  border: 4rpx solid var(--color-border, #E2E8F0);
+  border-top-color: var(--color-primary, #0D9488);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
@@ -342,7 +342,7 @@ onMounted(() => {
   width: 56rpx;
   height: 56rpx;
   border-radius: 50%;
-  color: #fff;
+  color: var(--color-text-inverse, #FFFFFF);
   font-size: 32rpx;
   font-weight: 700;
   display: flex;
@@ -351,12 +351,12 @@ onMounted(() => {
 }
 
 .loading-check {
-  background: #19BE6B;
+  background: var(--color-success, #10B981);
 }
 
 .loading-text {
   font-size: 28rpx;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
   font-weight: 500;
 }
 </style>

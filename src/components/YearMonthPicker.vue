@@ -5,7 +5,7 @@
     :z-index="1001"
     :modal="true"
     :close-on-click-modal="true"
-    custom-style="border-radius: 32rpx 32rpx 0 0; background: #fff;"
+    custom-style="border-radius: 32rpx 32rpx 0 0; background: var(--color-bg-card, #FFFFFF);"
     @close="handleClose"
   >
     <view class="picker-header">
@@ -110,12 +110,12 @@ defineExpose({ open })
   align-items: center;
   padding: 24rpx 32rpx;
   border-bottom: 1rpx solid rgba(229, 231, 235, 0.6);
-  background: #fff;
+  background: var(--color-bg-card, #FFFFFF);
 }
 
 .picker-cancel {
   font-size: 28rpx;
-  color: #9ca3af;
+  color: var(--color-text-secondary, #94A3B8);
   font-weight: 500;
   padding: 8rpx 16rpx;
   border-radius: 12rpx;
@@ -123,25 +123,25 @@ defineExpose({ open })
 
 .picker-cancel:active {
   background: rgba(156, 163, 175, 0.1);
-  color: #6b7280;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .picker-title {
   font-size: 32rpx;
   font-weight: 600;
-  color: #2d3436;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .picker-confirm {
   font-size: 28rpx;
-  color: #00BFFF;
+  color: var(--color-primary, #0D9488);
   font-weight: 600;
   padding: 8rpx 20rpx;
   border-radius: 12rpx;
 }
 
 .picker-confirm:active {
-  background: rgba(0, 191, 255, 0.15);
+  background: var(--color-primary-light, #E6F7F5);
   transform: scale(0.95);
 }
 </style>

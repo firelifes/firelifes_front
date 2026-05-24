@@ -295,14 +295,14 @@ onShow(() => {
 .page-container {
   overflow-x: hidden;
   min-height: 100vh;
-  background-color: #F5F5F5;
+  background-color: var(--color-bg-page, #F5F7FA);
 }
 
 .nav-add-btn {
   width: 56rpx;
   height: 56rpx;
   border-radius: 50%;
-  background: rgba(0, 191, 255, 0.1);
+  background: var(--color-primary-light, #E6F7F5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -310,13 +310,13 @@ onShow(() => {
 }
 
 .nav-add-btn:active {
-  background: rgba(0, 191, 255, 0.2);
+  background: var(--color-primary-light, #E6F7F5);
   transform: scale(0.92);
 }
 
 .nav-add-icon {
   font-size: 36rpx;
-  color: #00BFFF;
+  color: var(--color-primary, #0D9488);
   font-weight: 300;
   line-height: 1;
 }
@@ -344,7 +344,7 @@ onShow(() => {
 .loading-text,
 .empty-text {
   font-size: 28rpx;
-  color: #999999;
+  color: var(--color-text-secondary, #94A3B8);
   text-align: center;
   line-height: 1.6;
 }
@@ -379,13 +379,13 @@ onShow(() => {
 
 .drag-icon {
   font-size: 32rpx;
-  color: #CCCCCC;
+  color: var(--color-text-tertiary, #CBD5E1);
   line-height: 1;
 }
 
 .group-row:active .drag-icon,
 .group-row.row-dragging .drag-icon {
-  color: #00BFFF;
+  color: var(--color-primary, #0D9488);
 }
 
 .row-dragging {
@@ -400,13 +400,13 @@ onShow(() => {
   flex-direction: row;
   align-items: center;
   padding: 0 32rpx;
-  background-color: #FFFFFF;
+  background-color: var(--color-bg-card, #FFFFFF);
   border-radius: 20rpx;
   box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.04);
 }
 
 .group-card:active {
-  background-color: #F8F9FA;
+  background-color: var(--color-border-light, #F1F5F9);
 }
 
 .card-disabled {
@@ -423,7 +423,7 @@ onShow(() => {
 .card-badge {
   width: 72rpx;
   height: 36rpx;
-  background: linear-gradient(135deg, #00BFFF 0%, #0099CC 100%);
+  background: linear-gradient(135deg, var(--color-primary, #0D9488) 0%, var(--color-primary-dark, #0B7A70) 100%);
   border-radius: 8rpx;
   display: flex;
   align-items: center;
@@ -439,7 +439,7 @@ onShow(() => {
 
 .card-badge-text {
   font-size: 20rpx;
-  color: #FFFFFF;
+  color: var(--color-text-inverse, #FFFFFF);
   font-weight: 500;
 }
 
@@ -452,16 +452,16 @@ onShow(() => {
 .card-name {
   font-size: 32rpx;
   font-weight: 600;
-  color: #333333;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .card-subtitle {
   font-size: 24rpx;
-  color: #999999;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .card-subtitle-disabled {
-  color: #FAAD14;
+  color: var(--color-warning, #F59E0B);
 }
 
 .card-gap {
@@ -470,7 +470,7 @@ onShow(() => {
 
 .card-arrow {
   font-size: 44rpx;
-  color: #CCCCCC;
+  color: var(--color-text-tertiary, #CBD5E1);
   line-height: 1;
 }
 
@@ -488,22 +488,22 @@ onShow(() => {
 }
 
 .swipe-btn-edit {
-  background-color: #00BFFF;
+  background-color: var(--color-primary, #0D9488);
 }
 
 .swipe-btn-delete {
-  background-color: #FA3534;
+  background-color: var(--color-danger, #EF4444);
   border-radius: 0 20rpx 20rpx 0;
 }
 
 .swipe-btn-toggle {
-  background-color: #FAAD14;
+  background-color: var(--color-warning, #F59E0B);
   border-radius: 0 20rpx 20rpx 0;
 }
 
 .swipe-btn-text {
   font-size: 26rpx;
-  color: #FFFFFF;
+  color: var(--color-text-inverse, #FFFFFF);
   font-weight: 500;
 }
 

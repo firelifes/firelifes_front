@@ -3,7 +3,7 @@
     position="bottom"
     v-model="visible"
     :z-index="1002"
-    custom-style="border-radius: 32rpx 32rpx 0 0; background: #f8f9fa;"
+    custom-style="border-radius: 32rpx 32rpx 0 0; background: var(--color-bg-card, #FFFFFF);"
     :close-on-click-modal="true"
     @close="handleClose"
   >
@@ -73,20 +73,20 @@ defineExpose({ open, close })
   justify-content: space-between;
   align-items: center;
   padding: 28rpx 32rpx 20rpx;
-  border-bottom: 1rpx solid rgba(229, 231, 235, 0.6);
-  background: #fff;
+  border-bottom: 1rpx solid var(--color-border, #E2E8F0);
+  background: var(--color-bg-card, #FFFFFF);
   border-radius: 32rpx 32rpx 0 0;
 }
 
 .popup-title {
   font-size: 32rpx;
   font-weight: 600;
-  color: #2d3436;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .popup-close {
   font-size: 40rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
   padding: 4rpx 12rpx;
 }
 </style>

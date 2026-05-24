@@ -80,7 +80,7 @@
             placeholder="请输入账户名称"
             :maxlength="20"
             showClear
-            customStyle="background: #F5F6FA; border-radius: 10rpx;"
+            customStyle="background: var(--color-border-light, #F1F5F9); border-radius: 10rpx;"
           />
         </view>
 
@@ -111,7 +111,7 @@
             :maxlength="500"
             showWordCount
             autoHeight
-            customStyle="background: #F5F6FA; border-radius: 10rpx;"
+            customStyle="background: var(--color-border-light, #F1F5F9); border-radius: 10rpx;"
           />
         </view>
       </view>
@@ -125,7 +125,7 @@
           </view>
           <WdSwitch
             v-model="formData.isDefaultExpense"
-            activeColor="#00BFFF"
+            activeColor="var(--color-primary, #0D9488)"
           />
         </view>
         <view class="switch-divider"></view>
@@ -136,7 +136,7 @@
           </view>
           <WdSwitch
             v-model="formData.isDefaultIncome"
-            activeColor="#00BFFF"
+            activeColor="var(--color-primary, #0D9488)"
           />
         </view>
       </view>
@@ -151,7 +151,7 @@
             v-model.number="formData.originalPrincipal"
             type="digit"
             placeholder="请输入原始贷款总额"
-            customStyle="background: #F5F6FA; border-radius: 10rpx;"
+            customStyle="background: var(--color-border-light, #F1F5F9); border-radius: 10rpx;"
           >
             <template #suffix>
               <text class="unit">元</text>
@@ -165,7 +165,7 @@
             v-model.number="formData.annualInterestRate"
             type="digit"
             placeholder="4.9"
-            customStyle="background: #F5F6FA; border-radius: 10rpx;"
+            customStyle="background: var(--color-border-light, #F1F5F9); border-radius: 10rpx;"
           >
             <template #suffix>
               <text class="unit">%</text>
@@ -195,7 +195,7 @@
             v-model.number="formData.totalMonths"
             type="number"
             placeholder="请输入总期数"
-            customStyle="background: #F5F6FA; border-radius: 10rpx;"
+            customStyle="background: var(--color-border-light, #F1F5F9); border-radius: 10rpx;"
           >
             <template #suffix>
               <text class="unit">月</text>
@@ -209,7 +209,7 @@
             v-model.number="formData.remainingMonths"
             type="number"
             placeholder="请输入剩余期数"
-            customStyle="background: #F5F6FA; border-radius: 10rpx;"
+            customStyle="background: var(--color-border-light, #F1F5F9); border-radius: 10rpx;"
           >
             <template #suffix>
               <text class="unit">月</text>
@@ -522,7 +522,7 @@ onLoad((options: any) => {
 <style scoped>
 .account-edit-page {
   min-height: 100vh;
-  background-color: #F0F2F5;
+  background-color: var(--color-bg-page, #F5F7FA);
   display: flex;
   flex-direction: column;
 }
@@ -535,7 +535,7 @@ onLoad((options: any) => {
 }
 
 .card {
-  background-color: #FFFFFF;
+  background-color: var(--color-bg-card, #FFFFFF);
   border-radius: 24rpx;
   padding: 32rpx 28rpx;
   margin-bottom: 20rpx;
@@ -544,7 +544,7 @@ onLoad((options: any) => {
 .card-title {
   font-size: 30rpx;
   font-weight: 600;
-  color: #333333;
+  color: var(--color-text-primary, #1E293B);
   margin-bottom: 20rpx;
 }
 
@@ -560,7 +560,7 @@ onLoad((options: any) => {
   width: 112rpx;
   height: 112rpx;
   border-radius: 24rpx;
-  background: rgba(0, 191, 255, 0.08);
+  background: var(--color-primary-light, #E6F7F5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -568,7 +568,7 @@ onLoad((options: any) => {
 }
 
 .icon-preview.preview-liability {
-  background: rgba(250, 53, 52, 0.08);
+  background: var(--color-danger-light, #FEF2F2);
 }
 
 .icon-preview-text {
@@ -584,12 +584,12 @@ onLoad((options: any) => {
 .icon-preview-title {
   font-size: 30rpx;
   font-weight: 600;
-  color: #333333;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .icon-preview-desc {
   font-size: 24rpx;
-  color: #999999;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 /* 图标选择行 */
@@ -603,7 +603,7 @@ onLoad((options: any) => {
   width: 80rpx;
   height: 80rpx;
   border-radius: 16rpx;
-  background: #F5F6FA;
+  background: var(--color-border-light, #F1F5F9);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -615,7 +615,7 @@ onLoad((options: any) => {
 }
 
 .icon-item.active {
-  background: rgba(0, 191, 255, 0.1);
+  background: var(--color-primary-light, #E6F7F5);
 }
 
 .icon-item-text {
@@ -638,7 +638,7 @@ onLoad((options: any) => {
   flex: 1;
   height: 112rpx;
   border-radius: 16rpx;
-  background: #F5F6FA;
+  background: var(--color-border-light, #F1F5F9);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -663,7 +663,7 @@ onLoad((options: any) => {
 
 .type-card-label {
   font-size: 22rpx;
-  color: #666666;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 /* 表单行 */
@@ -677,7 +677,7 @@ onLoad((options: any) => {
 
 .form-label {
   font-size: 26rpx;
-  color: #666666;
+  color: var(--color-text-secondary, #94A3B8);
   font-weight: 500;
   margin-bottom: 12rpx;
 }
@@ -685,7 +685,7 @@ onLoad((options: any) => {
 .balance-input-wrap {
   display: flex;
   align-items: center;
-  background: #F5F6FA;
+  background: var(--color-border-light, #F1F5F9);
   border-radius: 10rpx;
   padding: 0 24rpx;
   height: 88rpx;
@@ -694,13 +694,13 @@ onLoad((options: any) => {
 .balance-prefix {
   font-size: 32rpx;
   font-weight: 700;
-  color: #333333;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .balance-divider {
   width: 1rpx;
   height: 36rpx;
-  background: #E8E8E8;
+  background: var(--color-border, #E2E8F0);
   margin: 0 20rpx;
   flex-shrink: 0;
 }
@@ -723,7 +723,7 @@ onLoad((options: any) => {
 
 .switch-divider {
   height: 1rpx;
-  background: #F0F2F5;
+  background: var(--color-border-light, #F1F5F9);
   margin: 0 28rpx;
 }
 
@@ -737,37 +737,37 @@ onLoad((options: any) => {
 
 .switch-title {
   font-size: 28rpx;
-  color: #333333;
+  color: var(--color-text-primary, #1E293B);
   font-weight: 500;
 }
 
 .switch-desc {
   font-size: 22rpx;
-  color: #999999;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 /* 负债类 */
 .liability-form {
-  background: #FFF5F5;
-  border: 2rpx solid rgba(250, 53, 52, 0.1);
+  background: var(--color-danger-light, #FEF2F2);
+  border: 2rpx solid rgba(239, 68, 68, 0.1);
 }
 
 .liability-header {
   font-size: 28rpx;
   font-weight: 600;
-  color: #FA3534;
+  color: var(--color-danger, #EF4444);
   margin-bottom: 24rpx;
 }
 
 .unit {
   font-size: 26rpx;
-  color: #999999;
+  color: var(--color-text-secondary, #94A3B8);
   margin-right: 8rpx;
 }
 
 .field-hint {
   font-size: 22rpx;
-  color: #999999;
+  color: var(--color-text-secondary, #94A3B8);
   margin-top: 8rpx;
   display: block;
 }
@@ -780,24 +780,24 @@ onLoad((options: any) => {
 
 .option-item {
   padding: 16rpx 28rpx;
-  background: #FFFFFF;
-  border: 2rpx solid #EEEEEE;
+  background: var(--color-bg-card, #FFFFFF);
+  border: 2rpx solid var(--color-border, #E2E8F0);
   border-radius: 12rpx;
   transition: all 0.2s ease;
 }
 
 .option-item.active {
-  border-color: #FA3534;
-  background: rgba(250, 53, 52, 0.05);
+  border-color: var(--color-danger, #EF4444);
+  background: var(--color-danger-light, #FEF2F2);
 }
 
 .option-text {
   font-size: 24rpx;
-  color: #666666;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .option-item.active .option-text {
-  color: #FA3534;
+  color: var(--color-danger, #EF4444);
   font-weight: 500;
 }
 
@@ -813,24 +813,24 @@ onLoad((options: any) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #FFFFFF;
-  border: 2rpx solid #EEEEEE;
+  background: var(--color-bg-card, #FFFFFF);
+  border: 2rpx solid var(--color-border, #E2E8F0);
   border-radius: 12rpx;
   transition: all 0.2s ease;
 }
 
 .day-item.active {
-  border-color: #FA3534;
-  background: rgba(250, 53, 52, 0.05);
+  border-color: var(--color-danger, #EF4444);
+  background: var(--color-danger-light, #FEF2F2);
 }
 
 .day-text {
   font-size: 24rpx;
-  color: #666666;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .day-item.active .day-text {
-  color: #FA3534;
+  color: var(--color-danger, #EF4444);
   font-weight: 600;
 }
 
@@ -839,23 +839,23 @@ onLoad((options: any) => {
   align-items: center;
   justify-content: space-between;
   padding: 20rpx 24rpx;
-  background: #F5F6FA;
+  background: var(--color-border-light, #F1F5F9);
   border-radius: 10rpx;
 }
 
 .picker-value {
   font-size: 28rpx;
-  color: #333333;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .picker-placeholder {
   font-size: 28rpx;
-  color: #CCCCCC;
+  color: var(--color-text-tertiary, #CBD5E1);
 }
 
 .picker-arrow {
   font-size: 32rpx;
-  color: #CCCCCC;
+  color: var(--color-text-tertiary, #CBD5E1);
 }
 
 /* 保存区域 */
@@ -866,7 +866,7 @@ onLoad((options: any) => {
   right: 0;
   padding: 20rpx 32rpx;
   padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
-  background-color: #F0F2F5;
+  background-color: var(--color-bg-page, #F5F7FA);
 }
 
 .safe-bottom {
@@ -875,7 +875,7 @@ onLoad((options: any) => {
 
 /* 弹窗 */
 .account-picker-popup {
-  background: #FFFFFF;
+  background: var(--color-bg-card, #FFFFFF);
   border-radius: 24rpx 24rpx 0 0;
   max-height: 60vh;
 }
@@ -885,18 +885,18 @@ onLoad((options: any) => {
   align-items: center;
   justify-content: space-between;
   padding: 32rpx 24rpx;
-  border-bottom: 2rpx solid #F5F5F5;
+  border-bottom: 2rpx solid var(--color-border-light, #F1F5F9);
 }
 
 .picker-title {
   font-size: 32rpx;
   font-weight: 600;
-  color: #333333;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .picker-cancel {
   font-size: 28rpx;
-  color: #999999;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .picker-list {
@@ -913,7 +913,7 @@ onLoad((options: any) => {
 }
 
 .picker-item:active {
-  background: #F5F5F5;
+  background: var(--color-border-light, #F1F5F9);
 }
 
 .picker-icon {
@@ -924,17 +924,17 @@ onLoad((options: any) => {
 .picker-name {
   flex: 1;
   font-size: 28rpx;
-  color: #333333;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .check-icon {
   font-size: 28rpx;
-  color: #00BFFF;
+  color: var(--color-primary, #0D9488);
   font-weight: 600;
 }
 
 .picker-clear .picker-name {
-  color: #FA3534;
+  color: var(--color-danger, #EF4444);
   text-align: center;
 }
 </style>

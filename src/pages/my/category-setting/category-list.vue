@@ -283,7 +283,7 @@ onShow(() => {
 .page-container {
   overflow-x: hidden;
   min-height: 100vh;
-  background-color: #F5F5F5;
+  background-color: var(--color-bg-page, #F5F7FA);
 }
 
 .content-scroll {
@@ -309,7 +309,7 @@ onShow(() => {
 .loading-text,
 .empty-text {
   font-size: 28rpx;
-  color: #999999;
+  color: var(--color-text-secondary, #94A3B8);
   text-align: center;
   line-height: 1.6;
 }
@@ -344,13 +344,13 @@ onShow(() => {
 
 .drag-icon {
   font-size: 32rpx;
-  color: #CCCCCC;
+  color: var(--color-text-tertiary, #CBD5E1);
   line-height: 1;
 }
 
 .group-row:active .drag-icon,
 .group-row.row-dragging .drag-icon {
-  color: #00BFFF;
+  color: var(--color-primary, #0D9488);
 }
 
 .row-dragging {
@@ -365,13 +365,13 @@ onShow(() => {
   align-items: center;
   gap: 20rpx;
   padding: 0 32rpx;
-  background-color: #FFFFFF;
+  background-color: var(--color-bg-card, #FFFFFF);
   border-radius: 20rpx;
   box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.04);
 }
 
 .category-card:active {
-  background-color: #F8F9FA;
+  background-color: var(--color-border-light, #F1F5F9);
 }
 
 .card-disabled {
@@ -381,7 +381,7 @@ onShow(() => {
 .card-icon-wrapper {
   width: 88rpx;
   height: 88rpx;
-  background: linear-gradient(135deg, rgba(0, 191, 255, 0.1) 0%, rgba(0, 153, 204, 0.1) 100%);
+  background: var(--color-primary-light, #E6F7F5);
   border-radius: 20rpx;
   display: flex;
   align-items: center;
@@ -411,24 +411,24 @@ onShow(() => {
 .card-title {
   font-size: 32rpx;
   font-weight: 600;
-  color: #333333;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .default-badge {
-  background: linear-gradient(135deg, #00BFFF 0%, #0099CC 100%);
+  background: linear-gradient(135deg, var(--color-primary, #0D9488) 0%, var(--color-primary-dark, #0B7A70) 100%);
   padding: 2rpx 12rpx;
   border-radius: 8rpx;
 }
 
 .badge-text {
   font-size: 20rpx;
-  color: #FFFFFF;
+  color: var(--color-text-inverse, #FFFFFF);
   font-weight: 500;
 }
 
 .disabled-label {
   font-size: 24rpx;
-  color: #FAAD14;
+  color: var(--color-warning, #F59E0B);
 }
 
 .swipe-actions {
@@ -444,20 +444,20 @@ onShow(() => {
 }
 
 .swipe-btn-edit {
-  background-color: #00BFFF;
+  background-color: var(--color-primary, #0D9488);
 }
 
 .swipe-btn-delete {
-  background-color: #FA3534;
+  background-color: var(--color-danger, #EF4444);
 }
 
 .swipe-btn-toggle {
-  background-color: #FAAD14;
+  background-color: var(--color-warning, #F59E0B);
 }
 
 .swipe-btn-text {
   font-size: 26rpx;
-  color: #FFFFFF;
+  color: var(--color-text-inverse, #FFFFFF);
   font-weight: 500;
 }
 

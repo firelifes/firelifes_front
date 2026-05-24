@@ -47,7 +47,7 @@ const formatAmount = (val: number) => Math.abs(val).toFixed(2)
 <style scoped>
 .savings-card {
   margin: 0 20rpx 16rpx;
-  background: #fff;
+  background: var(--color-bg-card, #FFFFFF);
   border-radius: 16rpx;
   padding: 20rpx 24rpx;
   position: relative;
@@ -72,13 +72,13 @@ const formatAmount = (val: number) => Math.abs(val).toFixed(2)
 
 .savings-label {
   font-size: 22rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .savings-amount {
   font-size: 28rpx;
   font-weight: 600;
-  color: #2d3436;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .savings-right {
@@ -93,25 +93,25 @@ const formatAmount = (val: number) => Math.abs(val).toFixed(2)
 .savings-rate {
   font-size: 28rpx;
   font-weight: 700;
-  color: #00BFFF;
+  color: var(--color-primary, #0D9488);
 }
 
 .savings-rate-label {
   font-size: 20rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .savings-bar {
   margin-top: 12rpx;
   height: 10rpx;
-  background: #e8edf2;
+  background: var(--color-border-light, #F1F5F9);
   border-radius: 5rpx;
   overflow: hidden;
 }
 
 .savings-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, #00BFFF 0%, #0099CC 100%);
+  background: linear-gradient(90deg, var(--color-primary, #0D9488) 0%, var(--color-primary-dark, #0B7A70) 100%);
   border-radius: 5rpx;
   transition: width 0.4s ease;
 }
@@ -124,6 +124,6 @@ const formatAmount = (val: number) => Math.abs(val).toFixed(2)
 
 .savings-detail-text {
   font-size: 20rpx;
-  color: #bbb;
+  color: var(--color-text-tertiary, #CBD5E1);
 }
 </style>

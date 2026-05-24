@@ -269,12 +269,12 @@ onMounted(() => {
 <style scoped>
 .page {
   min-height: 100vh;
-  background: #f5f6fa;
+  background: var(--color-bg-page, #F5F7FA);
 }
 
 .tab-bar {
   display: flex;
-  background: #fff;
+  background: var(--color-bg-card, #FFFFFF);
   padding: 0 40rpx;
   gap: 0;
 }
@@ -288,12 +288,12 @@ onMounted(() => {
 
 .tab-text {
   font-size: 28rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
   font-weight: 500;
 }
 
 .tab-item.active .tab-text {
-  color: #00BFFF;
+  color: var(--color-primary, #0D9488);
   font-weight: 600;
 }
 
@@ -305,7 +305,7 @@ onMounted(() => {
   transform: translateX(-50%);
   width: 48rpx;
   height: 6rpx;
-  background: #00BFFF;
+  background: var(--color-primary, #0D9488);
   border-radius: 3rpx;
 }
 
@@ -323,20 +323,20 @@ onMounted(() => {
 
 .month-arrow {
   font-size: 28rpx;
-  color: #00BFFF;
+  color: var(--color-primary, #0D9488);
   padding: 10rpx 20rpx;
 }
 
 .month-text {
   font-size: 30rpx;
   font-weight: 600;
-  color: #2d3436;
+  color: var(--color-text-primary, #1E293B);
   min-width: 180rpx;
   text-align: center;
 }
 
 .summary-card {
-  background: linear-gradient(135deg, #00BFFF, #0099CC);
+  background: linear-gradient(135deg, var(--color-primary, #0D9488), var(--color-primary-dark, #0B7A70));
   border-radius: 20rpx;
   padding: 32rpx 28rpx;
   display: flex;
@@ -365,11 +365,11 @@ onMounted(() => {
 .summary-value {
   font-size: 32rpx;
   font-weight: 700;
-  color: #fff;
+  color: var(--color-text-inverse, #FFFFFF);
 }
 
 .summary-value.income {
-  color: #fff;
+  color: var(--color-text-inverse, #FFFFFF);
 }
 
 .summary-value.expense {
@@ -400,7 +400,7 @@ onMounted(() => {
 }
 
 .bill-list {
-  background: #fff;
+  background: var(--color-bg-card, #FFFFFF);
   border-radius: 20rpx;
   overflow: hidden;
 }
@@ -408,13 +408,13 @@ onMounted(() => {
 .list-header {
   display: flex;
   padding: 20rpx 24rpx;
-  background: #f8f9fb;
-  border-bottom: 1rpx solid #f0f0f0;
+  background: var(--color-border-light, #F1F5F9);
+  border-bottom: 1rpx solid var(--color-border, #E2E8F0);
 }
 
 .header-cell {
   font-size: 24rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
   font-weight: 500;
 }
 
@@ -430,7 +430,7 @@ onMounted(() => {
 .bill-row {
   display: flex;
   padding: 24rpx;
-  border-bottom: 1rpx solid #f5f5f5;
+  border-bottom: 1rpx solid var(--color-border, #E2E8F0);
 }
 
 .bill-row:last-child {
@@ -439,15 +439,15 @@ onMounted(() => {
 
 .bill-cell {
   font-size: 26rpx;
-  color: #2d3436;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .bill-cell.income {
-  color: #00BFFF;
+  color: var(--color-primary, #0D9488);
 }
 
 .bill-cell.expense {
-  color: #e17055;
+  color: var(--color-danger, #EF4444);
 }
 
 .empty-state {
@@ -459,6 +459,6 @@ onMounted(() => {
 
 .empty-text {
   font-size: 28rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
 }
 </style>

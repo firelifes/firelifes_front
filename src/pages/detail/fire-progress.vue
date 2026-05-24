@@ -22,7 +22,7 @@
             <view class="ring-bg"></view>
             <view
               class="ring-fill"
-              :style="{ background: `conic-gradient(#00BFFF ${firePercent * 3.6}deg, transparent ${firePercent * 3.6}deg)` }"
+              :style="{ background: `conic-gradient(var(--color-primary) ${firePercent * 3.6}deg, transparent ${firePercent * 3.6}deg)` }"
             ></view>
             <view class="ring-inner">
               <text class="ring-percent">{{ firePercent.toFixed(1) }}%</text>
@@ -212,7 +212,7 @@ onMounted(() => {
 <style scoped>
 .page {
   min-height: 100vh;
-  background: #f5f6fa;
+  background: var(--color-bg-page, #F5F7FA);
 }
 
 .content {
@@ -220,7 +220,7 @@ onMounted(() => {
 }
 
 .progress-section {
-  background: #fff;
+  background: var(--color-bg-card, #FFFFFF);
   border-radius: 20rpx;
   padding: 40rpx 24rpx 32rpx;
   margin-bottom: 20rpx;
@@ -243,7 +243,7 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: #f0f0f0;
+  background: var(--color-border, #E2E8F0);
   position: absolute;
 }
 
@@ -269,12 +269,12 @@ onMounted(() => {
 .ring-percent {
   font-size: 52rpx;
   font-weight: 700;
-  color: #00BFFF;
+  color: var(--color-primary, #0D9488);
 }
 
 .ring-label {
   font-size: 24rpx;
-  color: #b2bec3;
+  color: var(--color-text-secondary, #94A3B8);
   margin-top: 8rpx;
 }
 
@@ -294,25 +294,25 @@ onMounted(() => {
 .stat-value {
   font-size: 32rpx;
   font-weight: 600;
-  color: #2d3436;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .stat-label {
   font-size: 22rpx;
-  color: #b2bec3;
+  color: var(--color-text-secondary, #94A3B8);
   margin-top: 6rpx;
 }
 
 .stat-divider {
   width: 2rpx;
   height: 48rpx;
-  background: #eee;
+  background: var(--color-border, #E2E8F0);
 }
 
 .gap-card {
   margin-top: 28rpx;
   padding: 20rpx;
-  background: linear-gradient(135deg, rgba(0, 191, 255, 0.06), rgba(108, 92, 231, 0.04));
+  background: linear-gradient(135deg, var(--color-primary-light, #E6F7F5), var(--color-border-light, #F1F5F9));
   border-radius: 12rpx;
   display: flex;
   flex-direction: column;
@@ -321,13 +321,13 @@ onMounted(() => {
 
 .gap-label {
   font-size: 24rpx;
-  color: #636e72;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .gap-amount {
   font-size: 40rpx;
   font-weight: 700;
-  color: #e17055;
+  color: var(--color-danger, #EF4444);
   margin: 8rpx 0 16rpx;
 }
 
@@ -341,7 +341,7 @@ onMounted(() => {
 
 .gap-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, #00BFFF, #6c5ce7);
+  background: linear-gradient(90deg, var(--color-primary, #0D9488), var(--color-info, #3B82F6));
   border-radius: 6rpx;
   transition: width 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
@@ -357,11 +357,11 @@ onMounted(() => {
 .section-title {
   font-size: 28rpx;
   font-weight: 600;
-  color: #2d3436;
+  color: var(--color-text-primary, #1E293B);
 }
 
 .goal-card {
-  background: #fff;
+  background: var(--color-bg-card, #FFFFFF);
   border-radius: 20rpx;
   padding: 28rpx 24rpx;
   box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
@@ -375,52 +375,52 @@ onMounted(() => {
 
 .goal-input-label {
   font-size: 28rpx;
-  color: #2d3436;
+  color: var(--color-text-primary, #1E293B);
   font-weight: 500;
 }
 
 .goal-input-wrapper {
   display: flex;
   align-items: center;
-  background: #f5f6fa;
+  background: var(--color-border-light, #F1F5F9);
   border-radius: 12rpx;
   padding: 12rpx 20rpx;
 }
 
 .goal-input-prefix {
   font-size: 28rpx;
-  color: #636e72;
+  color: var(--color-text-secondary, #94A3B8);
   margin-right: 8rpx;
 }
 
 .goal-input {
   width: 240rpx;
   font-size: 28rpx;
-  color: #2d3436;
+  color: var(--color-text-primary, #1E293B);
   text-align: right;
 }
 
 .goal-tip {
   margin-top: 20rpx;
   padding: 12rpx 16rpx;
-  background: rgba(0, 191, 255, 0.04);
+  background: var(--color-primary-light, #E6F7F5);
   border-radius: 8rpx;
 }
 
 .tip-text {
   font-size: 22rpx;
-  color: #636e72;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .quick-calc {
   margin-top: 24rpx;
   padding-top: 24rpx;
-  border-top: 1rpx solid #f0f0f0;
+  border-top: 1rpx solid var(--color-border, #E2E8F0);
 }
 
 .quick-label {
   font-size: 24rpx;
-  color: #b2bec3;
+  color: var(--color-text-secondary, #94A3B8);
   margin-bottom: 16rpx;
   display: block;
 }
@@ -433,27 +433,27 @@ onMounted(() => {
 
 .quick-input-label {
   font-size: 26rpx;
-  color: #636e72;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 .quick-input-wrapper {
   display: flex;
   align-items: center;
-  background: #f5f6fa;
+  background: var(--color-border-light, #F1F5F9);
   border-radius: 12rpx;
   padding: 10rpx 20rpx;
 }
 
 .quick-input-prefix {
   font-size: 26rpx;
-  color: #636e72;
+  color: var(--color-text-secondary, #94A3B8);
   margin-right: 8rpx;
 }
 
 .quick-input {
   width: 200rpx;
   font-size: 26rpx;
-  color: #2d3436;
+  color: var(--color-text-primary, #1E293B);
   text-align: right;
 }
 
@@ -463,25 +463,25 @@ onMounted(() => {
   align-items: center;
   justify-content: space-between;
   padding: 16rpx 20rpx;
-  background: rgba(0, 191, 255, 0.06);
+  background: var(--color-primary-light, #E6F7F5);
   border-radius: 12rpx;
 }
 
 .quick-result-text {
   font-size: 24rpx;
-  color: #00BFFF;
+  color: var(--color-primary, #0D9488);
   font-weight: 500;
 }
 
 .quick-apply {
   padding: 8rpx 20rpx;
-  background: #00BFFF;
+  background: var(--color-primary, #0D9488);
   border-radius: 8rpx;
 }
 
 .quick-apply-text {
   font-size: 22rpx;
-  color: #fff;
+  color: var(--color-text-inverse, #FFFFFF);
 }
 
 .info-section {
@@ -489,7 +489,7 @@ onMounted(() => {
 }
 
 .info-card {
-  background: #fff;
+  background: var(--color-bg-card, #FFFFFF);
   border-radius: 20rpx;
   padding: 28rpx 24rpx;
   box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
@@ -506,14 +506,14 @@ onMounted(() => {
 
 .info-dot {
   font-size: 24rpx;
-  color: #00BFFF;
+  color: var(--color-primary, #0D9488);
   margin-right: 12rpx;
   flex-shrink: 0;
 }
 
 .info-text {
   font-size: 24rpx;
-  color: #636e72;
+  color: var(--color-text-secondary, #94A3B8);
   line-height: 1.6;
 }
 </style>

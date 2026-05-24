@@ -82,7 +82,7 @@ onMounted(() => {
 <style scoped>
 .page {
   min-height: 100vh;
-  background: #f5f6fa;
+  background: var(--color-bg-page, #F5F7FA);
 }
 
 .content {

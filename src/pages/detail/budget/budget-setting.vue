@@ -522,7 +522,7 @@ onMounted(async () => {
 <style scoped>
 .page {
   min-height: 100vh;
-  background: #f5f6fa;
+  background: var(--color-bg-page, #F5F7FA);
 }
 
 .content {
@@ -538,14 +538,14 @@ onMounted(async () => {
   padding: 20rpx 0;
 }
 .skeleton-card {
-  background: #fff;
+  background: var(--color-bg-card, #FFFFFF);
   border-radius: 16rpx;
   padding: 28rpx;
   margin-bottom: 20rpx;
 }
 .skeleton-line {
   height: 32rpx;
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background: linear-gradient(90deg, var(--color-border, #E2E8F0) 25%, var(--color-border-light, #F1F5F9) 50%, var(--color-border, #E2E8F0) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
   border-radius: 8rpx;
@@ -563,7 +563,7 @@ onMounted(async () => {
 
 /* ===== 新手引导卡片 ===== */
 .guide-card {
-  background: linear-gradient(135deg, #00BFFF 0%, #0099CC 100%);
+  background: linear-gradient(135deg, var(--color-primary, #0D9488) 0%, var(--color-primary-dark, #0B7A70) 100%);
   border-radius: 20rpx;
   padding: 44rpx 32rpx;
   margin-bottom: 24rpx;
@@ -578,7 +578,7 @@ onMounted(async () => {
 .guide-title {
   font-size: 34rpx;
   font-weight: 700;
-  color: #fff;
+  color: var(--color-text-inverse, #FFFFFF);
   text-align: center;
   margin-bottom: 12rpx;
 }
@@ -601,14 +601,14 @@ onMounted(async () => {
 .guide-currency {
   font-size: 40rpx;
   font-weight: 700;
-  color: #fff;
+  color: var(--color-text-inverse, #FFFFFF);
   margin-right: 12rpx;
 }
 .guide-input {
   flex: 1;
   font-size: 40rpx;
   font-weight: 700;
-  color: #fff;
+  color: var(--color-text-inverse, #FFFFFF);
   height: 56rpx;
 }
 .guide-input::placeholder {
@@ -636,7 +636,7 @@ onMounted(async () => {
 .guide-suggestion-amount {
   font-size: 48rpx;
   font-weight: 800;
-  color: #FFD700;
+  color: var(--color-warning, #F59E0B);
   margin-bottom: 6rpx;
 }
 .guide-suggestion-hint {
@@ -652,8 +652,8 @@ onMounted(async () => {
 }
 .btn-primary {
   width: 100%;
-  background: #fff;
-  color: #00BFFF;
+  background: var(--color-text-inverse, #FFFFFF);
+  color: var(--color-primary, #0D9488);
   font-size: 30rpx;
   font-weight: 700;
   text-align: center;
@@ -675,7 +675,7 @@ onMounted(async () => {
   align-items: center;
   font-size: 30rpx;
   font-weight: 700;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
   padding: 36rpx 0 16rpx 8rpx;
 }
 .section-icon {
@@ -685,7 +685,7 @@ onMounted(async () => {
 
 /* ===== 卡片 ===== */
 .card {
-  background: #fff;
+  background: var(--color-bg-card, #FFFFFF);
   border-radius: 16rpx;
   padding: 28rpx;
   margin-bottom: 20rpx;
@@ -700,21 +700,21 @@ onMounted(async () => {
 .card-title {
   font-size: 28rpx;
   font-weight: 600;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
 }
 .card-tip {
-  background: #f8f9ff;
+  background: var(--color-border-light, #F1F5F9);
   border-radius: 10rpx;
   padding: 16rpx 20rpx;
   margin-bottom: 20rpx;
   font-size: 22rpx;
-  color: #666;
+  color: var(--color-text-secondary, #94A3B8);
   line-height: 1.6;
 }
 .badge-soft {
   font-size: 20rpx;
-  color: #999;
-  background: #f5f5f5;
+  color: var(--color-text-secondary, #94A3B8);
+  background: var(--color-border, #E2E8F0);
   padding: 4rpx 14rpx;
   border-radius: 20rpx;
 }
@@ -723,29 +723,29 @@ onMounted(async () => {
 .budget-input-row {
   display: flex;
   align-items: center;
-  border-bottom: 2rpx solid #e8e8e8;
+  border-bottom: 2rpx solid var(--color-border, #E2E8F0);
   padding-bottom: 8rpx;
   transition: border-color 0.2s;
 }
 .budget-input-row:focus-within {
-  border-color: #00BFFF;
+  border-color: var(--color-primary, #0D9488);
 }
 .currency {
   font-size: 36rpx;
   font-weight: 700;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
   margin-right: 8rpx;
 }
 .currency-sm {
   font-size: 26rpx;
   font-weight: 600;
-  color: #666;
+  color: var(--color-text-secondary, #94A3B8);
   margin-right: 4rpx;
 }
 .currency-xs {
   font-size: 22rpx;
   font-weight: 600;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
   margin-right: 2rpx;
 }
 .budget-input {
@@ -762,7 +762,7 @@ onMounted(async () => {
 .progress-meta {
   display: block;
   font-size: 20rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
   margin-top: 6rpx;
 }
 
@@ -778,24 +778,24 @@ onMounted(async () => {
 }
 .meta-label {
   font-size: 22rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
   margin-right: 8rpx;
 }
 .meta-value {
   font-size: 24rpx;
   font-weight: 600;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
 }
 .meta-divider {
   width: 1rpx;
   height: 24rpx;
-  background: #e8e8e8;
+  background: var(--color-border, #E2E8F0);
   margin: 0 24rpx;
 }
 .threshold-input-wrap {
   display: flex;
   align-items: center;
-  background: #f0f9ff;
+  background: var(--color-primary-light, #E6F7F5);
   border-radius: 8rpx;
   padding: 4rpx 12rpx;
 }
@@ -803,13 +803,13 @@ onMounted(async () => {
   width: 56rpx;
   height: 40rpx;
   font-size: 22rpx;
-  color: #00bfff;
+  color: var(--color-primary, #0D9488);
   font-weight: 600;
   text-align: center;
 }
 .threshold-suffix {
   font-size: 20rpx;
-  color: #00bfff;
+  color: var(--color-primary, #0D9488);
 }
 
 /* ===== 添加按钮 ===== */
@@ -818,9 +818,9 @@ onMounted(async () => {
   align-items: center;
   gap: 4rpx;
   font-size: 24rpx;
-  color: #00bfff;
+  color: var(--color-primary, #0D9488);
   padding: 8rpx 20rpx;
-  border: 1rpx solid #00bfff;
+  border: 1rpx solid var(--color-primary, #0D9488);
   border-radius: 20rpx;
 }
 .btn-add-icon {
@@ -828,7 +828,7 @@ onMounted(async () => {
   font-weight: 700;
 }
 .btn-add:active {
-  background: rgba(0, 191, 255, 0.05);
+  background: var(--color-primary-light, #E6F7F5);
 }
 
 /* ===== 空状态 ===== */
@@ -844,17 +844,17 @@ onMounted(async () => {
 }
 .empty-text {
   font-size: 26rpx;
-  color: #666;
+  color: var(--color-text-secondary, #94A3B8);
   margin-bottom: 6rpx;
 }
 .empty-hint {
   font-size: 22rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
 }
 
 /* ===== 分类汇总条 ===== */
 .category-summary-bar {
-  background: #f0f9ff;
+  background: var(--color-primary-light, #E6F7F5);
   border-radius: 10rpx;
   padding: 14rpx 18rpx;
   margin-bottom: 20rpx;
@@ -864,17 +864,17 @@ onMounted(async () => {
 }
 .summary-text {
   font-size: 24rpx;
-  color: #0369a1;
+  color: var(--color-primary-dark, #0B7A70);
   font-weight: 600;
 }
 .summary-warn {
   font-size: 22rpx;
-  color: #e17055;
+  color: var(--color-danger, #EF4444);
 }
 
 /* ===== 分类卡片 ===== */
 .category-card {
-  border: 1rpx solid #f0f0f0;
+  border: 1rpx solid var(--color-border, #E2E8F0);
   border-radius: 12rpx;
   padding: 20rpx;
   margin-bottom: 14rpx;
@@ -894,7 +894,7 @@ onMounted(async () => {
 }
 .category-icon-text {
   font-size: 36rpx;
-  color: #00BFFF;
+  color: var(--color-primary, #0D9488);
   margin-right: 14rpx;
   flex-shrink: 0;
 }
@@ -906,11 +906,11 @@ onMounted(async () => {
 .category-name {
   font-size: 28rpx;
   font-weight: 600;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
 }
 .category-meta {
   font-size: 20rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
   margin-top: 2rpx;
 }
 .category-actions {
@@ -922,12 +922,12 @@ onMounted(async () => {
 .category-input-wrap {
   display: flex;
   align-items: center;
-  background: #f5f6fa;
+  background: var(--color-border-light, #F1F5F9);
   border-radius: 8rpx;
   padding: 6rpx 12rpx;
 }
 .category-input-wrap:focus-within {
-  box-shadow: 0 0 0 2rpx rgba(0, 191, 255, 0.2);
+  box-shadow: 0 0 0 2rpx var(--color-primary-light, #E6F7F5);
 }
 .category-input {
   width: 120rpx;
@@ -945,7 +945,7 @@ onMounted(async () => {
 .category-progress-row {
   margin-top: 14rpx;
   padding-top: 14rpx;
-  border-top: 1rpx solid #f5f5f5;
+  border-top: 1rpx solid var(--color-border, #E2E8F0);
 }
 
 /* ===== 月度微调行 ===== */
@@ -954,7 +954,7 @@ onMounted(async () => {
   justify-content: space-between;
   align-items: center;
   padding: 18rpx 0;
-  border-bottom: 1rpx solid #f5f5f5;
+  border-bottom: 1rpx solid var(--color-border, #E2E8F0);
 }
 .tune-row:last-child { border-bottom: none; }
 .tune-left {
@@ -963,28 +963,28 @@ onMounted(async () => {
 }
 .tune-name {
   font-size: 28rpx;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
   font-weight: 500;
 }
 .tune-default {
   font-size: 20rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
   margin-top: 4rpx;
 }
 .tune-input-wrap {
   display: flex;
   align-items: center;
-  background: #f5f6fa;
+  background: var(--color-border-light, #F1F5F9);
   border-radius: 8rpx;
   padding: 6rpx 12rpx;
   transition: all 0.2s;
 }
 .tune-input-wrap.is-tuned {
-  background: #fff7e6;
-  box-shadow: 0 0 0 2rpx rgba(250, 173, 20, 0.25);
+  background: var(--color-warning-light, #FFF7ED);
+  box-shadow: 0 0 0 2rpx var(--color-warning, #F59E0B);
 }
 .tune-input-wrap:focus-within {
-  box-shadow: 0 0 0 2rpx rgba(0, 191, 255, 0.2);
+  box-shadow: 0 0 0 2rpx var(--color-primary-light, #E6F7F5);
 }
 .tune-input {
   width: 120rpx;
@@ -1008,7 +1008,7 @@ onMounted(async () => {
 .picker-panel {
   width: 100%;
   max-height: 60vh;
-  background: #fff;
+  background: var(--color-bg-card, #FFFFFF);
   border-radius: 24rpx 24rpx 0 0;
   display: flex;
   flex-direction: column;
@@ -1018,17 +1018,17 @@ onMounted(async () => {
   justify-content: space-between;
   align-items: center;
   padding: 28rpx 32rpx;
-  border-bottom: 1rpx solid #f0f0f0;
+  border-bottom: 1rpx solid var(--color-border, #E2E8F0);
   flex-shrink: 0;
 }
 .picker-title {
   font-size: 30rpx;
   font-weight: 700;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
 }
 .picker-close {
   font-size: 36rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
   padding: 8rpx;
 }
 .picker-list {
@@ -1040,14 +1040,14 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   padding: 20rpx 32rpx;
-  border-bottom: 1rpx solid #f8f8f8;
+  border-bottom: 1rpx solid var(--color-border, #E2E8F0);
 }
 .picker-item:active {
-  background: #f5f9ff;
+  background: var(--color-primary-light, #E6F7F5);
 }
 .picker-item-icon {
   font-size: 40rpx;
-  color: #00BFFF;
+  color: var(--color-primary, #0D9488);
   margin-right: 18rpx;
   width: 48rpx;
   text-align: center;
@@ -1059,17 +1059,17 @@ onMounted(async () => {
 }
 .picker-item-name {
   font-size: 28rpx;
-  color: #333;
+  color: var(--color-text-primary, #1E293B);
   font-weight: 500;
 }
 .picker-item-group {
   font-size: 20rpx;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
   margin-top: 2rpx;
 }
 .picker-item-arrow {
   font-size: 32rpx;
-  color: #00BFFF;
+  color: var(--color-primary, #0D9488);
   font-weight: 700;
   padding: 4rpx 8rpx;
 }
@@ -1078,7 +1078,7 @@ onMounted(async () => {
   flex-direction: column;
   align-items: center;
   padding: 60rpx 0;
-  color: #999;
+  color: var(--color-text-secondary, #94A3B8);
   font-size: 26rpx;
 }
 .picker-empty-icon {
