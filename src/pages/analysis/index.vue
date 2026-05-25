@@ -7,7 +7,7 @@
   <view class="page">
     <view class="net-worth-card">
       <text class="nw-label">净资产</text>
-      <text class="nw-value">¥{{ formatAmount(netWorth) }}</text>
+      <text class="nw-value">{{ formatAmount(netWorth) }}</text>
       <view v-if="loadingNetWorth" class="nw-loading">计算中...</view>
     </view>
 
