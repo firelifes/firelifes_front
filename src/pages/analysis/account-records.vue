@@ -43,8 +43,7 @@
         </view>
         <view v-for="record in group.records" :key="record.id" class="record-item" @tap="goToEdit(record)">
           <view class="record-icon-wrap" :style="{ backgroundColor: record.type === 'income' ? 'var(--color-success-light, #e8f5e9)' : 'var(--color-danger-light, #fde8e8)' }">
-            <view v-if="record.categoryIconType === 'svg'" :class="'icon-svg icon-' + record.categoryIcon" class="record-icon-svg"></view>
-            <text v-else class="record-icon-emoji">{{ record.categoryIcon }}</text>
+            <view class="category-icon-svg" :class="getCategoryIconClass(record.categoryName)"></view>
           </view>
           <view class="record-info">
             <text class="record-name">{{ getRecordName(record) }}</text>
@@ -70,6 +69,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { recordApi } from '../../api/record'
 import { getAccountIconClass } from '../../types/account'
+import { getCategoryIconClass } from '../../utils/category-icon-map'
 
 const accountId = ref(0)
 const loading = ref(true)
@@ -98,8 +98,6 @@ interface AccountRecord {
   remark: string
   direction: 'in' | 'out'
   categoryName: string
-  categoryIcon: string
-  categoryIconType: string
   counterpartAccountName: string
   createdAt: string
 }
@@ -379,13 +377,9 @@ onMounted(() => {
   flex-shrink: 0;
 }
 
-.record-icon-emoji {
-  font-size: 36rpx;
-}
-
-.record-icon-svg {
-  width: 36rpx;
-  height: 36rpx;
+.record-icon-wrap .category-icon-svg {
+  width: 28rpx;
+  height: 28rpx;
 }
 
 .record-info {
