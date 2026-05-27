@@ -123,22 +123,28 @@ onUnmounted(() => {
   saveDraft()
 })
 
+/** 应用30小时内最近记录：恢复日期和交易类型，无记录返回false */
+const applyRecentRecord = (): boolean => {
+  const recent = getRecentRecord()
+  if (!recent) return false
+  selectedDate.value = recent.date
+  if (recent.transactionType === 'expense' || recent.transactionType === 'income') {
+    transactionType.value = recent.transactionType
+  }
+  // 后续新增字段在此追加
+  return true
+}
+
 onShow(() => {
   if (draft.hasValidDraft()) {
     draftData = draft.load()
     showDraftBanner.value = true
   } else if (justCompleted) {
-    // 记账成功后 reLaunch 回来，不重置日期，保持连续记账状态
     justCompleted = false
+    applyRecentRecord()
     partialReset()
   } else {
-    // 用户主动进入记账页，检查30小时内是否有最近记录
-    const recent = getRecentRecord()
-    if (recent) {
-      selectedDate.value = recent.date
-      if (recent.transactionType === 'expense' || recent.transactionType === 'income') {
-        transactionType.value = recent.transactionType
-      }
+    if (applyRecentRecord()) {
       selectedCategory.value = null
       displayAmount.value = ''
       remark.value = ''
