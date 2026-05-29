@@ -447,30 +447,27 @@ onShow(() => {
 .account-row {
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 100%;
-  padding-bottom: 20rpx;
+  padding-bottom: 16rpx;
+  gap: 12rpx;
 }
 
 .account-icon {
-  width: 48rpx;
-  height: 48rpx;
+  width: 40rpx;
+  height: 40rpx;
   color: #FFFFFF;
   flex-shrink: 0;
 }
 
 .account-name {
-  font-size: 32rpx;
+  font-size: 30rpx;
   color: #FFFFFF;
   font-weight: 500;
-  margin-left: 16rpx;
-  flex: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .account-balance {
-  font-size: 40rpx;
+  font-size: 38rpx;
   color: #FFFFFF;
   font-weight: 700;
   flex-shrink: 0;
