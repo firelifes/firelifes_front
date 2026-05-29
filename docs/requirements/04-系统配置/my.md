@@ -1,12 +1,13 @@
 # 个人中心页
 > 文件：`settings.md` | 中文名称：个人中心页（我的页面） | 所属模块：系统配置 | 页面路径：`pages/my/index`
 
-> 版本：v1.2 | 状态：✅已完成 | 最后更新：2026-05-24
+> 版本：v2.0 | 状态：✅已完成 | 最后更新：2026-05-28
 
 ## 版本历史
 
 | 版本 | 日期 | 变更内容 | 作者 |
 |------|------|---------|------|
+| v2.0 | 2026-05-28 | 全部菜单图标从 emoji 替换为 SVG 图标（Lucide 风格），同步更新 my.pen 设计稿 | AI |
 | v1.2 | 2026-05-24 | 新增主题设置菜单项（🎨），代码/设计稿/文档同步 | AI |
 | v1.1 | 2026-05-21 | 隐藏系统导航栏（`navigationStyle: "custom"`），用户卡片从屏幕顶部渐变展开，适配安全区；代码/设计/文档同步 | AI-UI设计 |
 | v1.0 | 2026-05-21 | 全面更新：同步代码实际实现（用户卡片渐变+菜单+预算设置+CustomTabbar 5tab）、新增 Pencil 设计稿 `designs/my/my.pen`、补充完整 UI 规范 | AI |
@@ -154,12 +155,12 @@
 
 ### 菜单项配置
 
-| 菜单项 | emoji | 路由路径 | 说明 |
-|--------|-------|---------|------|
-| 分类设置 | 📂 | `/pages/my/category-group-list` | 管理支出/收入分类大类及子分类 |
-| 账户设置 | 💳 | `/pages/my/account-setting/account-list` | 管理5种账户类型（现金/投资/固定/折旧/负债） |
-| 预算设置 | 📊 | `/pages/detail/budget/budget-setting` | 双预算体系（常规月度+专项准备金） |
-| 主题设置 | 🎨 | `/pages/my/theme-setting/theme` | 3套预设主题（teal/blue/amber）+ 自定义颜色 |
+| 序号 | 菜单项 | SVG图标 | 点击跳转 | 说明 |
+|------|--------|---------|---------|------|
+| 1 | 分类设置 | `category-icon-fenleishezhi`（文件夹+标签） | `pages/my/category-setting/index` | 管理支出/收入分类，自定义排序与分组 |
+| 2 | 账户设置 | `category-icon-zhanghushezhi`（银行卡+对勾） | `pages/my/account-setting/index` | 添加/编辑/删除账户，设置默认账户 |
+| 3 | 预算设置 | `category-icon-yusuan`（靶心） | `pages/detail/budget/budget-setting` | 配置月/年预算，预警阈值 |
+| 4 | 主题设置 | `category-icon-zhutishezhi`（调色板） | `pages/my/theme-setting/theme` | 切换主题色/暗黑模式，自定义配色 |
 
 ---
 

@@ -72,6 +72,10 @@ const SYSTEM_ICON_MAP: Record<string, string> = {
   '设置': 'category-icon-shezhi',
   '账单': 'category-icon-zhangdan',
   '通讯录': 'category-icon-tongxunlu',
+  '分类设置': 'category-icon-fenleishezhi',
+  '账户设置': 'category-icon-zhanghushezhi',
+  '预算设置': 'category-icon-yusuan',
+  '主题设置': 'category-icon-zhutishezhi',
 }
 
 export function getCategoryIconClass(name: string): string {

@@ -134,7 +134,7 @@
                                 {
                                   "type": "text",
                                   "id": "N54iH",
-                                  "content": "📂",
+                                  "content": "SVG:category-icon-fenleishezhi",
                                   "fontFamily": "Inter",
                                   "fontSize": 18,
                                   "fontWeight": "normal"
@@ -198,7 +198,7 @@
                                 {
                                   "type": "text",
                                   "id": "pois1",
-                                  "content": "💳",
+                                  "content": "SVG:category-icon-zhanghushezhi",
                                   "fontFamily": "Inter",
                                   "fontSize": 18,
                                   "fontWeight": "normal"
@@ -262,7 +262,7 @@
                                 {
                                   "type": "text",
                                   "id": "n6BBw7",
-                                  "content": "📊",
+                                  "content": "SVG:category-icon-yusuan",
                                   "fontFamily": "Inter",
                                   "fontSize": 18,
                                   "fontWeight": "normal"
@@ -326,7 +326,7 @@
                                 {
                                   "type": "text",
                                   "id": "THMEMOJ",
-                                  "content": "🎨",
+                                  "content": "SVG:category-icon-zhutishezhi",
                                   "fontFamily": "Inter",
                                   "fontSize": 18,
                                   "fontWeight": "normal"

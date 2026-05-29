@@ -23,28 +23,28 @@
     <view class="menu-list">
       <view class="menu-item" @click="navigateToCategoryList">
         <view class="menu-left">
-          <text class="menu-emoji">📂</text>
+          <view class="category-icon-svg menu-icon category-icon-fenleishezhi"></view>
           <text class="menu-text">分类设置</text>
         </view>
         <text class="arrow">›</text>
       </view>
       <view class="menu-item" @click="navigateToAccountList">
         <view class="menu-left">
-          <text class="menu-emoji">💳</text>
+          <view class="category-icon-svg menu-icon category-icon-zhanghushezhi"></view>
           <text class="menu-text">账户设置</text>
         </view>
         <text class="arrow">›</text>
       </view>
       <view class="menu-item" @click="navigateToBudget">
         <view class="menu-left">
-          <text class="menu-emoji">📊</text>
+          <view class="category-icon-svg menu-icon category-icon-yusuan"></view>
           <text class="menu-text">预算设置</text>
         </view>
         <text class="arrow">›</text>
       </view>
       <view class="menu-item" @click="navigateToTheme">
         <view class="menu-left">
-          <text class="menu-emoji">🎨</text>
+          <view class="category-icon-svg menu-icon category-icon-zhutishezhi"></view>
           <text class="menu-text">主题设置</text>
         </view>
         <text class="arrow">›</text>
@@ -207,7 +207,7 @@ const handleLogout = () => {
   align-items: center;
 }
 
-.menu-emoji {
+.menu-icon {
   width: 72rpx;
   height: 72rpx;
   border-radius: 20rpx;
@@ -218,6 +218,7 @@ const handleLogout = () => {
   font-size: 36rpx;
   margin-right: 20rpx;
   flex-shrink: 0;
+  color: var(--color-primary, #00BFFF);
 }
 
 .menu-text {
