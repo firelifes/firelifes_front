@@ -81,7 +81,7 @@
       <view class="card" @click="showIconPicker = true">
         <view class="icon-trigger-row">
           <view class="icon-trigger-preview category-icon-svg" :class="getAccountIconClass(formData.icon, formData.type)"></view>
-          <text class="icon-trigger-text">点击选择图标</text>
+          <text class="icon-trigger-text">{{ isEdit ? '点击可切换其他图标' : '点击选择图标' }}</text>
           <text class="icon-trigger-arrow">›</text>
         </view>
       </view>
@@ -624,6 +624,9 @@ onLoad((options: any) => {
 .icon-trigger-preview {
   width: 44rpx;
   height: 44rpx;
+  padding: 12rpx;
+  border-radius: 16rpx;
+  background: var(--color-primary-light, rgba(0, 191, 255, 0.1));
   color: var(--color-primary, #00BFFF);
   flex-shrink: 0;
 }
