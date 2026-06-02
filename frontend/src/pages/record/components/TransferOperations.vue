@@ -42,66 +42,56 @@ const handleOperation = (operation: TransferOperationType) => {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .transfer-operations {
-  padding: 24rpx;
+  padding: 20rpx;
 }
 
 .category-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 16rpx;
-  padding: 16rpx 0;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30rpx 20rpx;
 }
 
 .category-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12rpx;
-  padding: 16rpx 8rpx;
-  border-radius: 16rpx;
-  transition: all 0.2s ease;
+  padding: 10rpx;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-  &:active {
-    background: rgba(0, 0, 0, 0.05);
-  }
-
-  &.selected {
-    .category-icon {
-      background: #6366F1;
-    }
-    .category-icon-svg {
-      color: #FFFFFF;
-    }
-    .category-name {
-      color: #6366F1;
-      font-weight: 600;
-    }
-  }
+.category-item:active {
+  transform: scale(0.95);
 }
 
 .category-icon {
-  width: 72rpx;
-  height: 72rpx;
+  width: 88rpx;
+  height: 88rpx;
+  background: var(--color-bg-card, #FFFFFF);
   border-radius: 50%;
-  background: #F1F5F9;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
+  margin-bottom: 10rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+  color: var(--color-primary, #0D9488);
+}
+
+.category-item.selected .category-icon {
+  background: linear-gradient(135deg, var(--color-primary, #0D9488) 0%, var(--color-primary-dark, #0B7A70) 100%);
+  box-shadow: 0 4rpx 16rpx rgba(13, 148, 136, 0.3);
+  color: var(--color-text-inverse, #FFFFFF);
 }
 
 .category-icon-svg {
-  width: 36rpx;
-  height: 36rpx;
-  color: #64748B;
-  transition: all 0.2s ease;
+  width: 44rpx;
+  height: 44rpx;
 }
 
 .category-name {
-  font-size: 22rpx;
-  color: #475569;
-  transition: all 0.2s ease;
+  font-size: var(--text-small);
+  color: var(--color-text-primary, #1E293B);
+  text-align: center;
 }
 </style>
