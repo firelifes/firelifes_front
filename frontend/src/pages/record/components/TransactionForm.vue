@@ -18,7 +18,7 @@
       <view class="account-row" @tap="openFromAccount">
         <text class="account-label">{{ isRepayment ? '还款账户' : '转出账户' }}</text>
         <view class="account-value" v-if="fromAccount">
-          <text class="account-value-icon">{{ fromAccount.icon }}</text>
+          <view class="account-value-icon category-icon-svg" :class="getAccountIconClass(fromAccount.icon, fromAccount.type)"></view>
           <text class="account-value-name">{{ fromAccount.name }}</text>
         </view>
         <text class="account-value placeholder" v-else>点击选择</text>
@@ -27,7 +27,7 @@
       <view class="account-row" @tap="openToAccount">
         <text class="account-label">{{ isRepayment ? '债权账户' : '转入账户' }}</text>
         <view class="account-value" v-if="toAccount">
-          <text class="account-value-icon">{{ toAccount.icon }}</text>
+          <view class="account-value-icon category-icon-svg" :class="getAccountIconClass(toAccount.icon, toAccount.type)"></view>
           <text class="account-value-name">{{ toAccount.name }}</text>
         </view>
         <text class="account-value placeholder" v-else>点击选择</text>
@@ -39,7 +39,7 @@
       <view class="account-row" @tap="openFromAccount">
         <text class="account-label">还款账户</text>
         <view class="account-value" v-if="fromAccount">
-          <text class="account-value-icon">{{ fromAccount.icon }}</text>
+          <view class="account-value-icon category-icon-svg" :class="getAccountIconClass(fromAccount.icon, fromAccount.type)"></view>
           <text class="account-value-name">{{ fromAccount.name }}</text>
         </view>
         <text class="account-value placeholder" v-else>点击选择</text>
@@ -48,7 +48,7 @@
       <view class="account-row" @tap="openToAccount">
         <text class="account-label">信用卡账户</text>
         <view class="account-value" v-if="toAccount">
-          <text class="account-value-icon">{{ toAccount.icon }}</text>
+          <view class="account-value-icon category-icon-svg" :class="getAccountIconClass(toAccount.icon, toAccount.type)"></view>
           <text class="account-value-name">{{ toAccount.name }}</text>
         </view>
         <text class="account-value placeholder" v-else>点击选择</text>
@@ -60,7 +60,7 @@
       <view class="account-row" @tap="openFromAccount">
         <text class="account-label">还款账户</text>
         <view class="account-value" v-if="fromAccount">
-          <text class="account-value-icon">{{ fromAccount.icon }}</text>
+          <view class="account-value-icon category-icon-svg" :class="getAccountIconClass(fromAccount.icon, fromAccount.type)"></view>
           <text class="account-value-name">{{ fromAccount.name }}</text>
         </view>
         <text class="account-value placeholder" v-else>点击选择</text>
@@ -69,7 +69,7 @@
       <view class="account-row" @tap="openToAccount">
         <text class="account-label">贷款账户</text>
         <view class="account-value" v-if="toAccount">
-          <text class="account-value-icon">{{ toAccount.icon }}</text>
+          <view class="account-value-icon category-icon-svg" :class="getAccountIconClass(toAccount.icon, toAccount.type)"></view>
           <text class="account-value-name">{{ toAccount.name }}</text>
         </view>
         <text class="account-value placeholder" v-else>点击选择</text>
@@ -103,7 +103,7 @@
       <view class="account-row single" @tap="openAccount">
         <text class="account-label">{{ transactionType === 'income' ? '收入账户' : '支出账户' }}</text>
         <view class="account-value" v-if="selectedAccount">
-          <text class="account-value-icon">{{ selectedAccount.icon }}</text>
+          <view class="account-value-icon category-icon-svg" :class="getAccountIconClass(selectedAccount.icon, selectedAccount.type)"></view>
           <text class="account-value-name">{{ selectedAccount.name }}</text>
         </view>
         <text class="account-value placeholder" v-else>点击选择</text>
@@ -177,6 +177,7 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
 import type { Account } from '../../../types/account'
+import { getAccountIconClass } from '../../../types/account'
 import type { DepreciatingAssetData } from '../../../types/asset'
 import AccountSelectorPopup from './AccountSelectorPopup.vue'
 import AssetFields from './AssetFields.vue'
@@ -501,8 +502,10 @@ const toggleDatePicker = () => {
 }
 
 .account-value-icon {
-  font-size: var(--text-title);
-  margin-right: 12rpx;
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
 }
 
 .account-value-name {
