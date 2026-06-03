@@ -318,12 +318,17 @@ onShow(() => {
 .settings-header {
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: calc(env(safe-area-inset-top) + 20rpx) 30rpx 20rpx;
   background: linear-gradient(135deg, var(--color-primary, #00BFFF) 0%, var(--color-primary-dark, #0099CC) 100%);
   flex-shrink: 0;
+  position: relative;
 }
 
 .header-back {
+  position: absolute;
+  left: 20rpx;
+  bottom: 14rpx;
   width: 72rpx;
   height: 72rpx;
   display: flex;
@@ -338,14 +343,15 @@ onShow(() => {
 }
 
 .header-title {
-  flex: 1;
-  text-align: center;
   font-size: var(--text-nav);
   font-weight: 600;
   color: #fff;
 }
 
 .header-right {
+  position: absolute;
+  right: 20rpx;
+  bottom: 14rpx;
   width: 72rpx;
   height: 72rpx;
   display: flex;

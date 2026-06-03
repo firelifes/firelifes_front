@@ -1,10 +1,10 @@
 <template>
   <view class="theme-container">
-    <view class="theme-header">
-      <view class="back-btn" @click="goBack">
-        <view class="back-icon category-icon-svg category-icon-chevron-left"></view>
+    <view class="settings-header">
+      <view class="header-back" @click="goBack">
+        <view class="header-back-icon category-icon-svg category-icon-chevron-left"></view>
       </view>
-      <text class="title">主题设置</text>
+      <text class="header-title">主题设置</text>
     </view>
 
     <view class="section">
@@ -207,7 +207,7 @@ onMounted(() => {
   align-items: center;
 }
 
-.theme-header {
+.settings-header {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -215,26 +215,27 @@ onMounted(() => {
   padding: calc(env(safe-area-inset-top) + 20rpx) 30rpx 20rpx;
   background: linear-gradient(135deg, var(--color-primary, #00BFFF) 0%, var(--color-primary-dark, #0099CC) 100%);
   position: relative;
+  flex-shrink: 0;
 }
 
-.back-btn {
+.header-back {
   position: absolute;
   left: 20rpx;
   bottom: 14rpx;
+  width: 72rpx;
+  height: 72rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 72rpx;
-  height: 72rpx;
 }
 
-.back-icon {
+.header-back-icon {
   width: 40rpx;
   height: 40rpx;
   color: #fff;
 }
 
-.title {
+.header-title {
   font-size: var(--text-nav);
   font-weight: 600;
   color: #fff;

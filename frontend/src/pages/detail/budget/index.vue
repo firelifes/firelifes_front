@@ -1,20 +1,14 @@
 <template>
   <view class="page">
-    <wd-navbar
-      title="预算"
-      left-arrow
-      fixed
-      placeholder
-      bordered
-      safe-area-inset-top
-      @click-left="goBack"
-    >
-      <template #right>
-        <view class="nav-right" @tap="goToSetting">
-          <text class="setting-icon">⚙️</text>
-        </view>
-      </template>
-    </wd-navbar>
+    <view class="settings-header">
+      <view class="header-back" @click="goBack">
+        <view class="header-back-icon category-icon-svg category-icon-chevron-left"></view>
+      </view>
+      <text class="header-title">预算</text>
+      <view class="header-right" @click="goToSetting">
+        <text class="setting-icon">⚙️</text>
+      </view>
+    </view>
 
     <view class="content">
       <BudgetProgress
@@ -85,15 +79,57 @@ onMounted(() => {
   background: var(--color-bg-page, #F5F7FA);
 }
 
-.content {
-  padding: 16rpx 24rpx;
+.settings-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(env(safe-area-inset-top) + 20rpx) 30rpx 20rpx;
+  background: linear-gradient(135deg, var(--color-primary, #00BFFF) 0%, var(--color-primary-dark, #0099CC) 100%);
+  flex-shrink: 0;
+  position: relative;
 }
 
-.nav-right {
-  padding: 8rpx 16rpx;
+.header-back {
+  position: absolute;
+  left: 20rpx;
+  bottom: 14rpx;
+  width: 72rpx;
+  height: 72rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-back-icon {
+  width: 40rpx;
+  height: 40rpx;
+  color: #fff;
+}
+
+.header-title {
+  font-size: var(--text-nav);
+  font-weight: 600;
+  color: #fff;
+}
+
+.header-right {
+  position: absolute;
+  right: 20rpx;
+  bottom: 14rpx;
+  width: 72rpx;
+  height: 72rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .setting-icon {
-  font-size: var(--text-number);
+  font-size: 40rpx;
+  color: #fff;
+  line-height: 1;
+}
+
+.content {
+  padding: 16rpx 24rpx;
 }
 </style>
