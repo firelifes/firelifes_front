@@ -44,7 +44,8 @@
       :z-index="1000"
       :modal="true"
       :close-on-click-modal="true"
-      custom-style="border-radius: 32rpx 32rpx 0 0; background: transparent;"
+      :safe-area-inset-bottom="true"
+      custom-style="border-radius: 32rpx 32rpx 0 0; background: transparent; max-height: 85vh; overflow: hidden;"
       @close="handleCloseTransactionForm"
     >
       <TransactionForm

@@ -429,6 +429,9 @@ const toggleDatePicker = () => {
   padding-bottom: 100rpx;
   backdrop-filter: blur(20rpx);
   border-top: 1rpx solid rgba(255, 255, 255, 0.5);
+  max-height: 80vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 @keyframes slideUp {
