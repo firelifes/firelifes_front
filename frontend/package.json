@@ -37,6 +37,8 @@
     "build:quickapp-webview-huawei": "uni build -p quickapp-webview-huawei",
     "build:quickapp-webview-union": "uni build -p quickapp-webview-union",
     "type-check": "vue-tsc --noEmit",
+    "check:vue": "node scripts/check-vue-template.js",
+    "prebuild:sit:h5": "npm run check:vue",
     "build:sit:h5": "uni build --mode sit",
     "build:sit:mp-weixin": "uni build -p mp-weixin --mode sit",
     "build:sit:mp-alipay": "uni build -p mp-alipay --mode sit",
