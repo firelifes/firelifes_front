@@ -1,13 +1,16 @@
-import { Configuration, App, CommonJSFileDetector, IMidwayContainer } from '@midwayjs/core';
+import { Configuration, App, IMidwayContainer } from '@midwayjs/core';
 import * as koa from '@midwayjs/koa';
 import * as validation from '@midwayjs/validation';
 import * as info from '@midwayjs/info';
 import * as typeorm from '@midwayjs/typeorm';
+import { BodyParserMiddleware } from '@midwayjs/koa';
 import { join } from 'path';
 import { ReportMiddleware } from './middleware/report.middleware';
 import { JwtMiddleware } from './middleware/jwt.middleware';
+import { CorsMiddleware } from './middleware/cors.middleware';
+import { DefaultErrorFilter } from './filter/default.filter';
+import { NotFoundFilter } from './filter/notfound.filter';
 import { CategoryService } from './service/category.service';
-const bodyParser = require('koa-bodyparser');
 
 @Configuration({
   imports: [
@@ -20,29 +23,20 @@ const bodyParser = require('koa-bodyparser');
     },
   ],
   importConfigs: [join(__dirname, './config')],
-  detector: new CommonJSFileDetector(),
 })
 export class MainConfiguration {
   @App('koa')
   app: koa.Application;
 
   async onReady(container: IMidwayContainer) {
-    this.app.use(bodyParser());
+    this.app.useMiddleware([
+      BodyParserMiddleware,
+      CorsMiddleware,
+      ReportMiddleware,
+      JwtMiddleware,
+    ]);
 
-    this.app.use(async (ctx: any, next: any) => {
-      ctx.set('Access-Control-Allow-Origin', '*');
-      ctx.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-      ctx.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-
-      if (ctx.method === 'OPTIONS') {
-        ctx.status = 204;
-        return;
-      }
-
-      await next();
-    });
-
-    this.app.useMiddleware([ReportMiddleware, JwtMiddleware]);
+    this.app.useFilter([NotFoundFilter, DefaultErrorFilter]);
 
     console.log('[启动] 开始检查并初始化全局数据...');
     await this.seedGlobalData(container);
