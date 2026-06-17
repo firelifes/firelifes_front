@@ -86,7 +86,8 @@
 		{
 			"path": "pages/statistics/index",
 			"style": {
-				"navigationBarTitleText": "Statistics"
+				"navigationBarTitleText": "Statistics",
+				"navigationStyle": "custom"
 			}
 		},
 		{

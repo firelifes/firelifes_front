@@ -108,7 +108,7 @@ work_for_fire/
 | detail | `pages/detail/*` | 明细首页、账单、FIRE进度、预算 |
 | record | `pages/record/*` | 记账入口、编辑记录 |
 | analysis | `pages/analysis/*` | 收支分析、账户交易明细 |
-| statistics | `pages/statistics/index` | 统计概览 |
+| statistics | `pages/statistics/index` | 统计概览（分类占比圆环图、收支趋势图、消费排行榜） |
 | my | `pages/my/*` | 个人中心、分类设置、账户设置、主题设置 |
 
 ### 状态管理
