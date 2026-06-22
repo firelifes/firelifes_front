@@ -82,8 +82,7 @@
       @update:interest="interestAmount = $event"
       @update:interestTypeId="interestTypeId = $event"
       @update:counterparty="counterparty = $event"
-      @update:direction="transferDirection = $event"
-      @update:implicitAccount="implicitAccount = $event"
+      @update:loanData="loanData = $event"
       @complete="handleComplete"
       @toggleDatePicker="showDatePicker = true"
       @openInterestCategoryPicker="handleOpenInterestCategoryPicker"
@@ -120,7 +119,7 @@ import DatePicker from './components/DatePicker.vue'
 import TransferOperations from './components/TransferOperations.vue'
 import InterestCategorySelectorPopup from './components/InterestCategorySelectorPopup.vue'
 import { recordApi } from '../../api/record'
-import { getAccountList, getImplicitAccounts, getCounterparties } from '../../api/account'
+import { getAccountList, createAccount } from '../../api/account'
 import { categoryApi } from '../../api/category'
 import type { Account } from '../../types/account'
 import type { DepreciatingAssetData } from '../../types/asset'
@@ -160,6 +159,7 @@ const interestCategoryPopupRef = ref()
 const counterparty = ref('')
 const transferDirection = ref<'out' | 'in'>('out')
 const implicitAccount = ref<Account | null>(null)
+const loanData = ref<any>(null)
 let draftData: RecordDraft | null = null
 /** 标记是否刚完成记账（用于区分 onShow 是记账成功回跳还是用户主动进入） */
 const justCompletedKey = 'record_just_completed'
@@ -387,13 +387,9 @@ const handleTransferOperation = async (operation: TransferOperationType) => {
       }
       case 'lend':
       case 'borrow': {
+        // 初始化资金账户（借入时为到账账户，借出时为扣款账户）
         const assetAccounts = accounts.filter(a => ['cash', 'investment', 'fixed_asset', 'depreciable_asset'].includes(a.type))
         fromAccount.value = assetAccounts.find(a => a.isDefaultExpense) || assetAccounts[0] || null
-        
-        const counterRes = await getCounterparties()
-        if (counterRes.success && counterRes.data) {
-          counterparties.value = counterRes.data
-        }
         break
       }
     }
@@ -659,32 +655,145 @@ const handleComplete = async () => {
     uni.showToast({ title: '请输入金额', icon: 'none' })
     return
   }
-  if (!selectedCategory.value) {
-    uni.showToast({ title: '请选择分类', icon: 'none' })
-    return
-  }
-
-  if (isTransfer.value || isRepayment.value) {
-    if (!fromAccount.value) {
-      uni.showToast({ title: isRepayment.value ? '请选择还款账户' : '请选择转出账户', icon: 'none' })
-      return
-    }
-    if (!toAccount.value) {
-      uni.showToast({ title: isRepayment.value ? '请选择债权账户' : '请选择转入账户', icon: 'none' })
-      return
-    }
-    if (fromAccount.value.id === toAccount.value.id) {
-      uni.showToast({ title: '转出和转入账户不能相同', icon: 'none' })
-      return
-    }
-  }
 
   if (isSubmitting.value) return
   isSubmitting.value = true
   submitStatus.value = 'submitting'
 
+  // ========== 借入/借出：先创建账户，再生成转账记录 ==========
+  const isBorrowLend = currentTransferOperation.value === 'borrow' || currentTransferOperation.value === 'lend'
+
   try {
+    let finalFromAccount = fromAccount.value
+    let finalToAccount = toAccount.value
+    let recordTypeId = 0
+    let recordTypeVal: RecordType = transactionType.value
     const amount = parseFloat(displayAmount.value)
+
+    if (isBorrowLend) {
+      // --- 借入/借出特有校验 ---
+      if (!loanData.value || !loanData.value.accountName) {
+        uni.showToast({ title: '请填写账户名称', icon: 'none' })
+        isSubmitting.value = false
+        submitStatus.value = 'idle'
+        return
+      }
+      if (!loanData.value.accountId) {
+        uni.showToast({ title: `请选择${currentTransferOperation.value === 'borrow' ? '到账' : '扣款'}账户`, icon: 'none' })
+        isSubmitting.value = false
+        submitStatus.value = 'idle'
+        return
+      }
+
+      // --- 第一步：创建新账户 ---
+      // 借入 -> 创建 liability（负债/贷款）账户
+      // 借出 -> 创建 receivable（应收账款）账户
+      const accountType = currentTransferOperation.value === 'borrow' ? 'liability' : 'receivable'
+      const accountPayload: any = {
+        name: loanData.value.accountName,
+        icon: 'account-icon-loan',
+        type: accountType,
+        balance: Math.abs(amount),
+        description: counterparty.value ? `对方：${counterparty.value}` : '',
+        isDefaultExpense: false,
+        isDefaultIncome: false,
+      }
+
+      // 如果设置了贷款参数，附加到账户信息
+      if (loanData.value.hasLoanParams && loanData.value.annualInterestRate !== undefined) {
+        accountPayload.originalPrincipal = Math.abs(amount)
+        accountPayload.annualInterestRate = loanData.value.annualInterestRate
+        accountPayload.repaymentMethod = loanData.value.repaymentMethod || 'flexible'
+        if (loanData.value.totalMonths !== undefined && loanData.value.repaymentMethod !== 'flexible') {
+          accountPayload.totalMonths = loanData.value.totalMonths
+          accountPayload.remainingMonths = loanData.value.totalMonths
+        }
+        if (loanData.value.repaymentDay !== undefined && loanData.value.repaymentMethod !== 'flexible') {
+          accountPayload.repaymentDay = loanData.value.repaymentDay
+        }
+      }
+
+      const accountRes = await createAccount(accountPayload)
+      if (!accountRes.success) {
+        uni.showToast({ title: accountRes.message || '创建账户失败', icon: 'none' })
+        isSubmitting.value = false
+        submitStatus.value = 'idle'
+        return
+      }
+      const newAccount = accountRes.data
+
+      // --- 第二步：设置转账账户 ---
+      // 借入：新贷款账户 -> 用户资金账户
+      // 借出：用户资金账户 -> 新应收账款账户
+      if (currentTransferOperation.value === 'borrow') {
+        finalFromAccount = newAccount
+        finalToAccount = fromAccount.value
+      } else {
+        finalFromAccount = fromAccount.value
+        finalToAccount = newAccount
+      }
+
+      // --- 第三步：创建转账记录 ---
+      const recordPayload: CreateRecordData = {
+        typeId: 0, // 转账/借贷不需要分类id，但后端可能要
+        type: 'transfer',
+        amount: Math.abs(amount),
+        remark: remark.value || (currentTransferOperation.value === 'borrow' ? `借入：${loanData.value.accountName}` : `借出：${loanData.value.accountName}`),
+        date: selectedDate.value,
+        accountId: parseInt(finalFromAccount!.id),
+        toAccountId: parseInt(finalToAccount!.id),
+      }
+
+      const recordRes = await recordApi.createRecord(recordPayload)
+      if (!recordRes.success) {
+        uni.showToast({ title: recordRes.message || '记账失败', icon: 'none' })
+        isSubmitting.value = false
+        submitStatus.value = 'idle'
+        return
+      }
+
+      // 成功
+      draft.remove()
+      submitStatus.value = 'idle'
+      isSubmitting.value = false
+      showTransactionForm.value = false
+      setJustCompleted(true)
+      uni.showToast({ title: '记账成功', icon: 'success' })
+      setTimeout(() => {
+        uni.reLaunch({ url: '/pages/detail/index' })
+      }, 800)
+      return
+    }
+
+    // ========== 普通收支 / 转账 / 还信用卡 / 还贷款 ==========
+    if (!selectedCategory.value) {
+      uni.showToast({ title: '请选择分类', icon: 'none' })
+      isSubmitting.value = false
+      submitStatus.value = 'idle'
+      return
+    }
+
+    if (isTransfer.value || isRepayment.value) {
+      if (!fromAccount.value) {
+        uni.showToast({ title: isRepayment.value ? '请选择还款账户' : '请选择转出账户', icon: 'none' })
+        isSubmitting.value = false
+        submitStatus.value = 'idle'
+        return
+      }
+      if (!toAccount.value) {
+        uni.showToast({ title: isRepayment.value ? '请选择债权账户' : '请选择转入账户', icon: 'none' })
+        isSubmitting.value = false
+        submitStatus.value = 'idle'
+        return
+      }
+      if (fromAccount.value.id === toAccount.value.id) {
+        uni.showToast({ title: '转出和转入账户不能相同', icon: 'none' })
+        isSubmitting.value = false
+        submitStatus.value = 'idle'
+        return
+      }
+    }
+
     const finalAmount = transactionType.value === 'expense' || isTransfer.value || isRepayment.value ? -Math.abs(amount) : Math.abs(amount)
 
     const payload: CreateRecordData = {

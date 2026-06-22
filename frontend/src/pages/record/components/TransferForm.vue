@@ -36,13 +36,10 @@
       <BorrowLendForm
         v-if="transferOperation === 'lend' || transferOperation === 'borrow'"
         :type="transferOperation === 'lend' ? 'lend' : 'borrow'"
-        :accounts="[]"
-        :implicitAccounts="implicitAccounts"
-        :counterparties="counterparties"
-        @update:direction="(val) => emit('update:direction', val)"
-        @update:counterparty="(val) => emit('update:counterparty', val)"
+        :initialAccount="fromAccount"
         @update:account="(val) => emit('update:fromAccount', val)"
-        @update:implicitAccount="(val) => emit('update:implicitAccount', val)"
+        @update:counterparty="(val) => emit('update:counterparty', val)"
+        @update:loanData="(val) => emit('update:loanData', val)"
       />
 
       <RepaymentSplitForm
@@ -115,7 +112,6 @@ import AccountSelectorPopup from './AccountSelectorPopup.vue'
 import RepaymentSplitForm from './RepaymentSplitForm.vue'
 import BorrowLendForm from './BorrowLendForm.vue'
 import BottomScrollPopup from '../../../components/BottomScrollPopup.vue'
-import { getImplicitAccounts, getCounterparties } from '../../../api/account'
 
 type TransferOperationType = 'transfer' | 'repay-credit' | 'repay-loan' | 'lend' | 'borrow'
 
@@ -145,8 +141,7 @@ const emit = defineEmits<{
   (e: 'update:interest', value: number): void
   (e: 'update:interestTypeId', value: number): void
   (e: 'update:counterparty', value: string): void
-  (e: 'update:direction', value: 'out' | 'in'): void
-  (e: 'update:implicitAccount', account: Account | null): void
+  (e: 'update:loanData', data: any): void
   (e: 'complete'): void
   (e: 'toggleDatePicker'): void
   (e: 'openInterestCategoryPicker'): void  // 转发到页面，由页面展示二级弹框
@@ -175,32 +170,9 @@ const remark = ref('')
 const firstOperand = ref<string>('')
 const operator = ref<string>('')
 const waitingForSecondOperand = ref(false)
-const implicitAccounts = ref<Account[]>([])
-const counterparties = ref<string[]>([])
 
 const fromAccountPopupRef = ref<InstanceType<typeof AccountSelectorPopup> | null>(null)
 const toAccountPopupRef = ref<InstanceType<typeof AccountSelectorPopup> | null>(null)
-
-const loadImplicitAccounts = async () => {
-  const res = await getImplicitAccounts()
-  if (res.success && res.data) {
-    implicitAccounts.value = res.data
-  }
-}
-
-const loadCounterparties = async () => {
-  const res = await getCounterparties()
-  if (res.success && res.data) {
-    counterparties.value = res.data
-  }
-}
-
-watch(() => props.transferOperation, async (op) => {
-  if (op === 'lend' || op === 'borrow') {
-    await loadImplicitAccounts()
-    await loadCounterparties()
-  }
-})
 
 const openFromAccount = () => {
   fromAccountPopupRef.value?.open(props.fromAccount?.id)
